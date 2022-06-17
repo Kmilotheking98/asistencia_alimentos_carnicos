@@ -18,11 +18,10 @@
 
   die("La conexión ha fallado " . $conexion->connect_error);
 
-  echo "algo va mal";
 
   }else{
 
-  echo "Todo ha salido bien";
+
 
   }
 
