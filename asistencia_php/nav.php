@@ -23,6 +23,10 @@
             <li class="nav-item active">
                 <a class="nav-link" href="//parzibyte.me/blog">Support & help&nbsp;<i class="fa fa-hands-helping"></i></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="search.php">Search&nbsp;<i class="fa fa-hands-helping"></i></a>
+            </li>
+
         </ul>
     </div>
 </nav>

@@ -1,6 +1,8 @@
 <?php
 include_once "header.php";
 include_once "nav.php";
+include("conexion.php");
+
 ?>
 <div class="row" id="app">
     <div class="col-12">
@@ -14,41 +16,62 @@ include_once "nav.php";
         </form>
     </div>
     <div class="col-12">
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            Employee
-                        </th>
-                        <th>
-                            RFID serial
-                        </th>
-                        <th>
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="employee in employees">
-                        <td>{{employee.name}}</td>
-                        <td>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Employee
+                    </th>
+                    <th>
+                        RFID serial
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+ <?php
+          $aKeyword= explode(" ", $_POST['buscar']);
 
-                            <h4 v-if="employee.rfid_serial"><span class="badge badge-success"><i class="fa fa-check"></i>&nbsp;Assigned ({{employee.rfid_serial}})</span></h4>
-                            <h4 v-else-if="employee.waiting"><span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;Waiting... Please read a RFID card</span></h4>
-                            <h4 v-else><span class="badge badge-primary"><i class="fa fa-times"></i>&nbsp;Not assigned</span></h4>
-                        </td>
-                        <td>
-                            <button @click="removeRfidCard(employee.rfid_serial)" v-if="employee.rfid_serial" class="btn btn-danger">Remove</button>
-                            <button v-else-if="employee.waiting" @click="cancelWaitingForPairing" class="btn btn-warning">Cancel</button>
-                            <button @click="assignRfidCard(employee)" v-else class="btn btn-info">Assign</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+          $query ="SELECT * FROM employee_rfid WHERE  employee_id  LIKE LOWER('%".$aKeyword[0]."%') OR rfid_serial LIKE LOWER('%".$aKeyword[0]."%')";
+          for($i = 1; $i < count($aKeyword); $i++) {
+             if(!empty($aKeyword[$i])) {
+                 $query .= " OR  employee_id  LIKE '%" . $aKeyword[$i] . "%' OR rfid_serial LIKE '%" . $aKeyword[$i] . "%'";
+             }
+           }
+          
+          $result = $conexion->query($query);
+          $numero = mysqli_num_rows($result);
+          if( mysqli_num_rows($result) > 0 AND $_POST['buscar'] != '') {
+            while($employees=mysqli_fetch_row($result)){ ?>
+            
+   
+            <tbody>
+                <tr v-for="employee in employees">
+                    <td>{{employee.name}}</td>
+                    <td>
+
+                        <h4 v-if="employee.rfid_serial"><span class="badge badge-success"><i class="fa fa-check"></i>&nbsp;Assigned ({{employee.rfid_serial}})</span></h4>
+                        <h4 v-else-if="employee.waiting"><span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;Waiting... Please read a RFID card</span></h4>
+                        <h4 v-else><span class="badge badge-primary"><i class="fa fa-times"></i>&nbsp;Not assigned</span></h4>
+                    </td>
+                    <td>
+                        <button @click="removeRfidCard(employee.rfid_serial)" v-if="employee.rfid_serial" class="btn btn-danger">Remove</button>
+                        <button v-else-if="employee.waiting" @click="cancelWaitingForPairing" class="btn btn-warning">Cancel</button>
+                        <button @click="assignRfidCard(employee)" v-else class="btn btn-info">Assign</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+</div>
+<?php     }}
+?>
+
+
+
 <script src="js/vue.min.js"></script>
 <script src="js/vue-toasted.min.js"></script>
 <script>
