@@ -1,22 +1,9 @@
-<style>
-  th, td{
-    text-align: left;
-  }
-  .h2g{
-    color: blue;
-    font-size: 26px;
-  }
-  .pg{
-    line-height: 2px;
-  }
-</style>
+
 
 <?php 
 include("conexion.php");
 
 ?>
-
-
 
 
 <!-- //resultados buscador -->
@@ -73,9 +60,9 @@ if(!empty($_POST))
         echo "</table>";
 	
     }
-    else if( $_REQUEST["mostrar_todo"] == 'ok') {
+    else {
       //mostramos todos los resultados
-       {
+      if( $_REQUEST["mostrar_todo"] == 'ok') {
         $row_count=0;
         echo "<br>Resultados encontrados:<b> ".$numero."</b>";
         echo "<br><br><table class='table table-striped'>";
