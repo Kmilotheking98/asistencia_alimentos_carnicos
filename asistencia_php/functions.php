@@ -44,38 +44,43 @@ function getVarFromEnvironmentVariables($key)
         throw new Exception("The specified key (" . $key . ") does not exist in the environment file");
     }
 }
-function deleteEmployee($id)
+function deleteEmployee($employee_id)
 {
     $db = getDatabase();
-    $statement = $db->prepare("DELETE FROM employees WHERE id = ?");
-    return $statement->execute([$id]);
+    $statement = $db->prepare("DELETE FROM employees WHERE employee_id = ?");
+    return $statement->execute([$employee_id]);
 }
 
-function updateEmployee($name, $id)
+function updateEmployee($employee_id, $name, $last_name, $dni, $date_birth, $home)
 {
-    $db = getDatabase();
-    $statement = $db->prepare("UPDATE employees SET name = ? WHERE id = ?");
-    return $statement->execute([$name, $id]);
+    $db = getDatabase();   
+    $datebirth = date("Y-m-d"); 
+    $query = "UPDATE employees SET name = ?, last_name = ?, dni = ?, date_birth = ?, home = ? WHERE employee_id = ?";
+    $statement = $db->prepare($query);
+    return $statement->execute([$name, $last_name, $dni, $date_birth, $home]);
 }
-function getEmployeeById($id)
+function getEmployeeById($employee_id)
 {
     $db = getDatabase();
-    $statement = $db->prepare("SELECT id, name FROM employees WHERE id = ?");
-    $statement->execute([$id]);
+    $statement = $db->prepare("SELECT employee_id, name, last_name, dni, date_birth, home  FROM employees WHERE employee_id = ?");
+    $statement->execute([$employee_id]);
     return $statement->fetchObject();
 }
 
-function saveEmployee($name)
-{
+function saveEmployee($employee_id, $name, $last_name, $dni, $date_birth, $home)
+{ 
+   
+    $datebirth = date("Y-m-d");
+    $query = "INSERT INTO employees(`employee_id`, `name`, `last_name`, `dni`, `date_birth`, `home` ) VALUES (?,?,?,?,?,?)";
     $db = getDatabase();
-    $statement = $db->prepare("INSERT INTO employees(name) VALUES (?)");
-    return $statement->execute([$name]);
+    $statement = $db->prepare($query);
+    return $statement->execute([$employee_id, $name, $last_name, $dni, $date_birth, $home]);
 }
 
 function getEmployees()
 {
     $db = getDatabase();
-    $statement = $db->query("SELECT id, name FROM employees");
+    $statement = $db->query("SELECT `employee_id`, `name`, `last_name`, `dni`, `date_birth`, `home`  FROM employees");
     return $statement->fetchAll();
 }
 function saveAttendanceData($date, $employees)

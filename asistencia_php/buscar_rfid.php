@@ -44,14 +44,15 @@ include("conexion.php");
           $result = $conexion->query($query);
           $numero = mysqli_num_rows($result);
           if( mysqli_num_rows($result) > 0 AND $_POST['buscar'] != '') {
-            while($employees=mysqli_fetch_row($result)){ ?>
-            
+            while($employee=mysqli_fetch_row($result)){ ?>
+        
    
             <tbody>
                 <tr v-for="employee in employees">
+                    
                     <td>{{employee.name}}</td>
                     <td>
-
+                  
                         <h4 v-if="employee.rfid_serial"><span class="badge badge-success"><i class="fa fa-check"></i>&nbsp;Assigned ({{employee.rfid_serial}})</span></h4>
                         <h4 v-else-if="employee.waiting"><span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;Waiting... Please read a RFID card</span></h4>
                         <h4 v-else><span class="badge badge-primary"><i class="fa fa-times"></i>&nbsp;Not assigned</span></h4>
@@ -80,7 +81,7 @@ include("conexion.php");
     const CHECK_PAIRING_EMPLOYEE_INTERVAL = 1000;
     new Vue({
         el: "#app",
-        data: () => ({
+        data: ($employees) => ({
             employees: [],
             date: "",
         }),

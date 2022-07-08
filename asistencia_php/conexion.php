@@ -10,7 +10,7 @@
 
   $password = "";
 
-  $nombreBD = "attendance";
+  $nombreBD = "attendance1";
 
   $conexion = new mysqli($servidor, $usuario, $password, $nombreBD);
 
