@@ -26,10 +26,14 @@ include("conexion.php");
      <div class="col-12">
         <div class="table-responsive">
             <table class="table">
-                <thead>
+                <thead>                    
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>last Name</th>
+                        <th>DNI</th>
+                        <th>Date Birth</th>
+                        <th>Home</th>                        
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -37,11 +41,12 @@ include("conexion.php");
        
                 <?php 
                     
-                     
-                    $query ="SELECT * FROM employees WHERE  `id`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
-                         for($i = 1; $i < count($aKeyword); $i++) {
+                    // largo de la busqueda 
+                    $query ="SELECT * FROM employees WHERE  `employee_id`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%') OR last_name LIKE LOWER('%".$aKeyword[0]."%') OR dni LIKE LOWER('%".$aKeyword[0]."%') OR date_birth LIKE LOWER('%".$aKeyword[0]."%') OR home LIKE LOWER('%".$aKeyword[0]."%')";
+                    // cantidad de capos que recorrer 
+                         for($i = 5; $i < count($aKeyword); $i++) {
                             if(!empty($aKeyword[$i])) {
-                                $query .= " OR  `id`  LIKE '%" . $aKeyword[$i] . "%' OR id LIKE '%" . $aKeyword[$i] . "%'";
+                                $query .= "OR  `employee_id`  LIKE '%" . $aKeyword[$i] . "%' OR employee_id LIKE '%" . $aKeyword[$i] . "%'";
                             }
                           }
                          
@@ -64,12 +69,24 @@ include("conexion.php");
                                 <?php echo $employee['1'] ?>
                             </td>
                             <td>
-                                <a class="btn btn-warning" href="employee_edit.php?id=<?php echo $employee['0'] ?>">
+                                <?php echo $employee['2'] ?>
+                            </td>
+                            <td>
+                                <?php echo $employee['3'] ?>
+                            </td>                            
+                            <td>
+                                <?php echo $employee['4'] ?>
+                            </td>
+                            <td>
+                                <?php echo $employee['5'] ?>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning" href="employee_edit.php?employee_id=<?php echo $employee['0'] ?>">
                                 Edit <i class="fa fa-edit"></i>
                             </a>
                             </td>
                             <td>
-                                <a class="btn btn-danger" href="employee_delete.php?id=<?php echo $employee['1']  ?>">
+                                <a class="btn btn-danger" href="employee_delete.php?employee_id=<?php echo $employee['1']  ?>">
                                 Delete <i class="fa fa-trash"></i>
                             </a>
                             </td>

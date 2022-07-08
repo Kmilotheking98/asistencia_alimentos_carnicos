@@ -30,8 +30,12 @@ include("conexion.php");
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>Employee ID</th>
                         <th>Name</th>
+                        <th>last Name</th>
+                        <th>DNI</th>
+                        <th>Date Birth</th>
+                        <th>Home</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -40,18 +44,31 @@ include("conexion.php");
                     <?php foreach ($employees as $employee) { ?>
                         <tr>
                             <td>
-                                <?php echo $employee->id ?>
+                                <?php echo $employee->employee_id ?>
                             </td>
                             <td>
                                 <?php echo $employee->name ?>
                             </td>
                             <td>
-                                <a class="btn btn-warning" href="employee_edit.php?id=<?php echo $employee->id ?>">
+                                <?php echo $employee->last_name ?>
+                            </td>
+                            <td>
+                                <?php echo $employee->dni ?>
+                            </td>
+                            <td>
+                                <?php echo $employee->date_birth ?>
+                            </td>
+                            <td>
+                                <?php echo $employee->home ?>
+                            </td>
+                            
+                            <td>
+                                <a class="btn btn-warning" href="employee_edit.php? employee_id=<?php echo $employee->employee_id ?>">
                                 Edit <i class="fa fa-edit"></i>
                             </a>
                             </td>
                             <td>
-                                <a class="btn btn-danger" href="employee_delete.php?id=<?php echo $employee->id ?>">
+                                <a class="btn btn-danger" href="employee_delete.php?employee_id=<?php echo $employee->employee_id ?>">
                                 Delete <i class="fa fa-trash"></i>
                             </a>
                             </td>
