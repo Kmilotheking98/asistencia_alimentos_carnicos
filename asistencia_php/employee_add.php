@@ -10,17 +10,17 @@ include_once "nav.php";
         <form action="employee_save.php" method="POST">
             <div class="form-group">
                 <label for="name">Employee ID</label>
-                <input name="employee_id" placeholder="Employee ID" type="number" id="employee_id" class="form-control"  >
+                <input name="employee_id" placeholder="Employee ID" type="number" id="employee_id" class="form-control" required >
                 <label for="name">Name</label>
-                <input name="name" placeholder="Name" type="text" id="name" class="form-control"  >
+                <input name="name" placeholder="Name" type="text" id="name" class="form-control" required >
                 <label for="name">last Name</label>
-                <input name="last_name" placeholder="last Name" type="text" id="last_name" class="form-control"  >
+                <input name="last_name" placeholder="last Name" type="text" id="last_name" class="form-control" required >
                 <label for="name">DNI</label>
-                <input name="dni" placeholder="DNI" type="number" id="dni" class="form-control"  >
+                <input name="dni" placeholder="DNI" type="number" id="dni" class="form-control" required >
                 <label for="date">Date Birth &nbsp;</label>
-                <input @change="refreshEmployeesList" v-model="date" name="date_birth" id="date_birth" type="date" class="form-control">
+                <input @change="refreshEmployeesList" v-model="date" name="date_birth" id="date_birth" type="date" class="form-control" required>
                 <label for="name">Home</label>
-                <input name="home" placeholder="Home" type="text" id="home" class="form-control"  >
+                <input name="home" placeholder="Home" type="text" id="home" class="form-control" required >
             </div>
             <div class="form-group">
                 <button class="btn btn-success">
