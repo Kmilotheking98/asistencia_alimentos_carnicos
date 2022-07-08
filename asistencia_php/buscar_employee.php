@@ -38,10 +38,10 @@ include("conexion.php");
                 <?php 
                     
                      
-                    $query ="SELECT * FROM employees WHERE  `id`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
+                    $query ="SELECT * FROM employees WHERE  `employee_id`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
                          for($i = 1; $i < count($aKeyword); $i++) {
                             if(!empty($aKeyword[$i])) {
-                                $query .= " OR  `id`  LIKE '%" . $aKeyword[$i] . "%' OR id LIKE '%" . $aKeyword[$i] . "%'";
+                                $query .= " OR  `employee_id`  LIKE '%" . $aKeyword[$i] . "%' OR employee_id LIKE '%" . $aKeyword[$i] . "%'";
                             }
                           }
                          
@@ -64,12 +64,12 @@ include("conexion.php");
                                 <?php echo $employee['1'] ?>
                             </td>
                             <td>
-                                <a class="btn btn-warning" href="employee_edit.php?id=<?php echo $employee['0'] ?>">
+                                <a class="btn btn-warning" href="employee_edit.php?employee_id=<?php echo $employee['0'] ?>">
                                 Edit <i class="fa fa-edit"></i>
                             </a>
                             </td>
                             <td>
-                                <a class="btn btn-danger" href="employee_delete.php?id=<?php echo $employee['1']  ?>">
+                                <a class="btn btn-danger" href="employee_delete.php?employee_id=<?php echo $employee['1']  ?>">
                                 Delete <i class="fa fa-trash"></i>
                             </a>
                             </td>
