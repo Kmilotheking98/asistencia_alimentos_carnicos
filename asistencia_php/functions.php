@@ -55,9 +55,9 @@ function updateEmployee($employee_id, $name, $last_name, $dni, $date_birth, $hom
 {
     $db = getDatabase();   
     $datebirth = date("Y-m-d"); 
-    $query = "UPDATE employees SET name = ?, last_name = ?, dni = ?, date_birth = ?, home = ? WHERE employee_id = ?";
+    $query = "UPDATE employees SET employee_id = ?, name = ?, last_name = ?, dni = ?, date_birth = ?, home = ? WHERE employee_id = ?";
     $statement = $db->prepare($query);
-    return $statement->execute([$name, $last_name, $dni, $date_birth, $home]);
+    return $statement->execute([$employee_id, $name, $last_name, $dni, $date_birth, $home, $employee_id]);
 }
 function getEmployeeById($employee_id)
 {
