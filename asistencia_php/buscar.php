@@ -1,22 +1,9 @@
-<style>
-  th, td{
-    text-align: left;
-  }
-  .h2g{
-    color: blue;
-    font-size: 26px;
-  }
-  .pg{
-    line-height: 2px;
-  }
-</style>
+
 
 <?php 
 include("conexion.php");
 
 ?>
-
-
 
 
 <!-- //resultados buscador -->
@@ -37,13 +24,13 @@ if(!empty($_POST))
     
   
       $aKeyword = explode(" ", $_POST['buscar']);
-      $filtro = "WHERE  `id`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
-      $query ="SELECT * FROM employees WHERE  `id`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
+      $filtro = "WHERE  `employee_id`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
+      $query ="SELECT * FROM employees WHERE  `employee_id`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
   
 
-     for($i = 1; $i < count($aKeyword); $i++) {
+     for($i = 5; $i < count($aKeyword); $i++) {
         if(!empty($aKeyword[$i])) {
-            $query .= " OR  `id`  LIKE '%" . $aKeyword[$i] . "%' OR id LIKE '%" . $aKeyword[$i] . "%'";
+            $query .= " OR  `employee_id`  LIKE '%" . $aKeyword[$i] . "%' OR employee_id LIKE '%" . $aKeyword[$i] . "%'";
         }
       }
      
@@ -61,27 +48,30 @@ if(!empty($_POST))
         <tr style='background-color:midnightblue; color:#FFFFFF;'>
         <th> # </th> 
         <th> id </th>       
-        <th> NOMBRE </th>
-                
+        <th> Nombre </th>
+        <th> Apellido </th>       
+        <th> DNI </th>                
+        <th> Fecha de Nacimiento </th>       
+        <th> Residencia </th>                
         </tr>
         </thead>
         ";
         While($row = $result->fetch_assoc()) {   
             $row_count++;   
-            echo "<tr><td>".$row_count." </td><td>". resaltar_frase($row['id'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['name'] ,$_POST['buscar']) . "</td></tr>";
+            echo "<tr><td>".$row_count." </td><td>". resaltar_frase($row['employee_id'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['name'] ,$_POST['buscar']) .resaltar_frase($row['last_name'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['dni'] ,$_POST['buscar']).resaltar_frase($row['date_birth'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['home'] ,$_POST['buscar']) .  "</td></tr>";
         }
         echo "</table>";
 	
     }
-    else if( $_REQUEST["mostrar_todo"] == 'ok') {
+    else {
       //mostramos todos los resultados
-       {
+      if( $_REQUEST["mostrar_todo"] == 'ok') {
         $row_count=0;
         echo "<br>Resultados encontrados:<b> ".$numero."</b>";
         echo "<br><br><table class='table table-striped'>";
         While($row = $result->fetch_assoc()) {   
             $row_count++;   
-            echo "<tr><td>".$row_count." </td><td>". resaltar_frase($row['id'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['name'] ,$_POST['buscar']) . "</td></tr>";
+            echo "<tr><td>".$row_count." </td><td>". resaltar_frase($row['employee_id'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['name'] ,$_POST['buscar']) .  resaltar_frase($row['last_name'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['dni'] ,$_POST['buscar']) . resaltar_frase($row['date_birth'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['home'] ,$_POST['buscar']) .  "</td></tr>";
         }
         echo "</table>";
 	
