@@ -44,7 +44,7 @@ include("conexion.php");
                     <?php foreach ($employees as $employee) { ?>
                         <tr>
                             <td>
-                                <?php echo $employee->employee_id ?>
+                                <?php echo $employee->cod ?>
                             </td>
                             <td>
                                 <?php echo $employee->name ?>
@@ -63,12 +63,12 @@ include("conexion.php");
                             </td>
                             
                             <td>
-                                <a class="btn btn-warning" href="employee_edit.php? employee_id=<?php echo $employee->employee_id ?>">
+                                <a class="btn btn-warning" href="employee_edit.php? cod=<?php echo $employee->cod ?>">
                                 Edit <i class="fa fa-edit"></i>
                             </a>
                             </td>
                             <td>
-                                <a class="btn btn-danger" href="employee_delete.php?employee_id=<?php echo $employee->employee_id ?>">
+                                <a class="btn btn-danger" href="employee_delete.php?cod=<?php echo $employee->cod ?>">
                                 Delete <i class="fa fa-trash"></i>
                             </a>
                             </td>
