@@ -1,8 +1,8 @@
 <?php
-if (!isset($_GET["employee_id"])) {
+if (!isset($_GET["cod"])) {
     exit("No data provided");
 }
 include_once "functions.php";
-$employee_id = $_GET["employee_id"];
-deleteEmployee($employee_id);
+$cod = $_GET["cod"];
+deleteEmployee($cod);
 header("Location: employees.php");

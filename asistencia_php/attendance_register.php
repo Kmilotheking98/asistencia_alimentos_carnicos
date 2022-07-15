@@ -68,7 +68,7 @@ include_once "nav.php";
                 // We only need id and status, nothing more
                 let employeesMapped = this.employees.map(employee => {
                     return {
-                        id: employee.id,
+                        cod: employee.cod,
                         status: employee.status,
                     }
                 });
@@ -94,9 +94,9 @@ include_once "nav.php";
                 // Set default status: unset
                 let employeeDictionary = {};
                 employees = employees.map((employee, index) => {
-                    employeeDictionary[employee.id] = index;
+                    employeeDictionary[employee.cod] = index;
                     return {
-                        id: employee.id,
+                        cod: employee.cod,
                         name: employee.name,
                         status: UNSET_STATUS,
                     }

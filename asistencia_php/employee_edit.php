@@ -1,10 +1,10 @@
 <?php
-if (!isset($_GET["employee_id"])) exit("No id provided");
+if (!isset($_GET["cod"])) exit("No id provided");
 include_once "header.php";
 include_once "nav.php";
-$employee_id = $_GET["employee_id"];
+$cod = $_GET["cod"];
 include_once "functions.php";
-$employee = getEmployeeById($employee_id);
+$employee = getEmployeeById($cod);
 ?>
 <div class="row">
     <div class="col-12">
@@ -12,10 +12,10 @@ $employee = getEmployeeById($employee_id);
     </div>
     <div class="col-12">
         <form action="employee_update.php" method="POST">
-            <input type="hidden" name="employee_id" value="<?php echo $employee->employee_id ?>">
+            <input type="hidden" name="cod" value="<?php echo $employee->cod ?>">
             <div class="form-group">
-                <label for="name">employee_id</label>
-                <input value="<?php echo $employee->employee_id ?>" name="employee_id" placeholder="Employee id" type="number" id="employee_id" class="form-control" required>
+                <label for="name">cod</label>
+                <input value="<?php echo $employee->cod ?>" name="cod" placeholder="Employee id" type="number" id="cod" class="form-control" required>
                 <label for="name">Name</label>
                 <input value="<?php echo $employee->name ?>" name="name" placeholder="Name" type="text" id="name" class="form-control" required>
                 <label for="name">Last Name</label>

@@ -10,7 +10,7 @@ include_once "nav.php";
         <form action="employee_save.php" method="POST">
             <div class="form-group">
                 <label for="name">Employee ID</label>
-                <input name="employee_id" placeholder="Employee ID" type="number" id="employee_id" class="form-control" required >
+                <input name="cod" placeholder="Employee ID" type="number" id="cod" class="form-control" required >
                 <label for="name">Name</label>
                 <input name="name" placeholder="Name" type="text" id="name" class="form-control" required >
                 <label for="name">last Name</label>
