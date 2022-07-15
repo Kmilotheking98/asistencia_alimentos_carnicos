@@ -8,11 +8,9 @@
     <link rel="stylesheet" href="css/all.min.css">
     <style>
         body {
-            padding-top: 100px;
+            padding-top: 80px;
         }
     </style>
 </head>
 <body>
 <main class="container-fluid">
-
-
