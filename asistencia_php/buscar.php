@@ -1,5 +1,3 @@
-
-
 <?php 
 include("conexion.php");
 
