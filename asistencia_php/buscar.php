@@ -22,13 +22,13 @@ if(!empty($_POST))
     
   
       $aKeyword = explode(" ", $_POST['buscar']);
-      $filtro = "WHERE  `employee_id`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
-      $query ="SELECT * FROM employees WHERE  `employee_id`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
+      $filtro = "WHERE  `cod`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
+      $query ="SELECT * FROM employees WHERE  `cod`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%')";
   
 
      for($i = 5; $i < count($aKeyword); $i++) {
         if(!empty($aKeyword[$i])) {
-            $query .= " OR  `employee_id`  LIKE '%" . $aKeyword[$i] . "%' OR employee_id LIKE '%" . $aKeyword[$i] . "%'";
+            $query .= " OR  `cod`  LIKE '%" . $aKeyword[$i] . "%' OR cod LIKE '%" . $aKeyword[$i] . "%'";
         }
       }
      
@@ -56,7 +56,7 @@ if(!empty($_POST))
         ";
         While($row = $result->fetch_assoc()) {   
             $row_count++;   
-            echo "<tr><td>".$row_count." </td><td>". resaltar_frase($row['employee_id'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['name'] ,$_POST['buscar']) .resaltar_frase($row['last_name'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['dni'] ,$_POST['buscar']).resaltar_frase($row['date_birth'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['home'] ,$_POST['buscar']) .  "</td></tr>";
+            echo "<tr><td>".$row_count." </td><td>". resaltar_frase($row['cod'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['name'] ,$_POST['buscar']) .resaltar_frase($row['last_name'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['dni'] ,$_POST['buscar']).resaltar_frase($row['date_birth'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['home'] ,$_POST['buscar']) .  "</td></tr>";
         }
         echo "</table>";
 	
@@ -69,7 +69,7 @@ if(!empty($_POST))
         echo "<br><br><table class='table table-striped'>";
         While($row = $result->fetch_assoc()) {   
             $row_count++;   
-            echo "<tr><td>".$row_count." </td><td>". resaltar_frase($row['employee_id'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['name'] ,$_POST['buscar']) .  resaltar_frase($row['last_name'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['dni'] ,$_POST['buscar']) . resaltar_frase($row['date_birth'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['home'] ,$_POST['buscar']) .  "</td></tr>";
+            echo "<tr><td>".$row_count." </td><td>". resaltar_frase($row['cod'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['name'] ,$_POST['buscar']) .  resaltar_frase($row['last_name'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['dni'] ,$_POST['buscar']) . resaltar_frase($row['date_birth'] ,$_POST['buscar']) . "</td><td>". resaltar_frase($row['home'] ,$_POST['buscar']) .  "</td></tr>";
         }
         echo "</table>";
 	

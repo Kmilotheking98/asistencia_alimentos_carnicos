@@ -5,7 +5,7 @@ function getEmployeesWithAttendanceCount($start, $end)
 sum(case when status = 'presence' then 1 else 0 end) as presence_count,
 sum(case when status = 'absence' then 1 else 0 end) as absence_count 
  from employee_attendance
- inner join employees on employees.employee_id = employee_attendance.employee_id
+ inner join employees on employees.cod = employee_attendance.employee_id
  where date >= ? and date <= ?
  group by employee_id;";
     $db = getDatabase();
@@ -19,9 +19,9 @@ function saveAttendanceData($date, $employees)
     deleteAttendanceDataByDate($date);
     $db = getDatabase();
     $db->beginTransaction();
-    $statement = $db->prepare("INSERT INTO employee_attendance (employee_id, date, status) VALUES (?, ?, ?)");
+    $statement = $db->prepare("INSERT INTO employee_attendance(employee_id, date, status) VALUES (?, ?, ?)");
     foreach ($employees as $employee) {
-        $statement->execute([$employee->employee_id, $date, $employee->status]);
+        $statement->execute([$employee->cod, $date, $employee->status]);
     }
     $db->commit();
     return true;
@@ -41,43 +41,42 @@ function getAttendanceDataByDate($date)
     return $statement->fetchAll();
 }
 
-
-function deleteEmployee($employee_id)
+function deleteEmployee($cod)
 {
     $db = getDatabase();
-    $statement = $db->prepare("DELETE FROM employees WHERE employee_id = ?");
-    return $statement->execute([$employee_id]);
+    $statement = $db->prepare("DELETE FROM employees WHERE cod = ?");
+    return $statement->execute([$cod]);
 }
 
-function updateEmployee($employee_id, $name, $last_name, $dni, $date_birth, $home)
+function updateEmployee($cod, $name, $last_name, $dni, $date_birth, $home)
 {
     $db = getDatabase();   
     $datebirth = date("Y-m-d"); 
-    $query = "UPDATE employees SET employee_id = ?, name = ?, last_name = ?, dni = ?, date_birth = ?, home = ? WHERE employee_id = ?";
+    $query = "UPDATE employees SET cod = ?, name = ?, last_name = ?, dni = ?, date_birth = ?, home = ? WHERE cod = ?";
     $statement = $db->prepare($query);
-    return $statement->execute([$employee_id, $name, $last_name, $dni, $date_birth, $home, $employee_id]);
+    return $statement->execute([$cod, $name, $last_name, $dni, $date_birth, $home, $cod]);
 }
-function getEmployeeById($employee_id)
+function getEmployeeById($cod)
 {
     $db = getDatabase();
-    $statement = $db->prepare("SELECT employee_id, name, last_name, dni, date_birth, home  FROM employees WHERE employee_id = ?");
-    $statement->execute([$employee_id]);
+    $statement = $db->prepare("SELECT cod, name, last_name, dni, date_birth, home  FROM employees WHERE cod = ?");
+    $statement->execute([$cod]);
     return $statement->fetchObject();
 }
-function saveEmployee($employee_id, $name, $last_name, $dni, $date_birth, $home)
+function saveEmployee($cod, $name, $last_name, $dni, $date_birth, $home)
 { 
    
     $datebirth = date("Y-m-d");
-    $query = "INSERT INTO employees(`employee_id`, `name`, `last_name`, `dni`, `date_birth`, `home` ) VALUES (?,?,?,?,?,?)";
+    $query = "INSERT INTO employees(`cod`, `name`, `last_name`, `dni`, `date_birth`, `home` ) VALUES (?,?,?,?,?,?)";
     $db = getDatabase();
     $statement = $db->prepare($query);
-    return $statement->execute([$employee_id, $name, $last_name, $dni, $date_birth, $home]);
+    return $statement->execute([$cod, $name, $last_name, $dni, $date_birth, $home]);
 }
 
 function getEmployees()
 {
     $db = getDatabase();
-    $statement = $db->query("SELECT `employee_id`, `name`, `last_name`, `dni`, `date_birth`, `home`  FROM employees");
+    $statement = $db->query("SELECT `cod`, `name`, `last_name`, `dni`, `date_birth`, `home`  FROM employees");
     return $statement->fetchAll();
 }
 
