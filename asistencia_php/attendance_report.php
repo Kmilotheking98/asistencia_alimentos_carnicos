@@ -31,6 +31,7 @@ $employees = getEmployeesWithAttendanceCount($start, $end);
             <table class="table">
                 <thead>
                     <tr>
+                        <th> ID Employee</th>
                         <th>Employee</th>
                         <th>Presence count</th>
                         <th>Absence count</th>
@@ -39,6 +40,9 @@ $employees = getEmployeesWithAttendanceCount($start, $end);
                 <tbody>
                     <?php foreach ($employees as $employee) { ?>
                         <tr>
+                        <td>
+                                <?php echo $employee->cod ?>
+                            </td>
                             <td>
                                 <?php echo $employee->name ?>
                             </td>
