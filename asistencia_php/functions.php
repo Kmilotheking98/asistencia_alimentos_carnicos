@@ -1,7 +1,7 @@
 <?php
 function getEmployeesWithAttendanceCount($start, $end)
 {
-    $query = "select employees.name, 
+    $query = "select employees.cod, employees.name, 
 sum(case when status = 'presence' then 1 else 0 end) as presence_count,
 sum(case when status = 'absence' then 1 else 0 end) as absence_count 
  from employee_attendance
@@ -19,9 +19,9 @@ function saveAttendanceData($date, $employees)
     deleteAttendanceDataByDate($date);
     $db = getDatabase();
     $db->beginTransaction();
-    $statement = $db->prepare("INSERT INTO employee_attendance(employee_id, date, status) VALUES (?, ?, ?)");
+    $statement = $db->prepare("INSERT INTO employee_attendance(employee_id, date, job, status, status_event, turn) VALUES (?, ?, ?, ?, ?, ?)");
     foreach ($employees as $employee) {
-        $statement->execute([$employee->cod, $date, $employee->status]);
+        $statement->execute([$employee->cod, $date, $employee->job, $employee->status, $employee->status_event, $employee->turn]);
     }
     $db->commit();
     return true;
@@ -36,7 +36,7 @@ function deleteAttendanceDataByDate($date)
 function getAttendanceDataByDate($date)
 {
     $db = getDatabase();
-    $statement = $db->prepare("SELECT employee_id, status FROM employee_attendance WHERE date = ?");
+    $statement = $db->prepare("SELECT employee_id, job, status, status_event, turn FROM employee_attendance WHERE date = ?");
     $statement->execute([$date]);
     return $statement->fetchAll();
 }
