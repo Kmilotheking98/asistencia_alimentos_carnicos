@@ -18,22 +18,61 @@ include_once "nav.php";
             <table class="table">
                 <thead>
                     <tr>
+                    <th>
+                            ID Employee
+                        </th>
                         <th>
                             Employee
                         </th>
                         <th>
+                            Job
+                        </th>
+                        <th>
                             Status
+                        </th>
+                        <th>
+                            Status event
+                        </th>
+                        <th>
+                            Turn
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="employee in employees">
+                    <td>{{employee.cod}}</td>
                         <td>{{employee.name}}</td>
+                        <td>
+                            <select v-model="employee.job" class="form-control">
+                                <option disabled value="unset">--Select--</option>
+                                <option value="Cajero">Cajero</option>
+                                <option value="Vendedor">Vendedor</option>
+                            </select>
+                        </td>
                         <td>
                             <select v-model="employee.status" class="form-control">
                                 <option disabled value="unset">--Select--</option>
                                 <option value="presence">Presence</option>
                                 <option value="absence">Absence</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select v-model="employee.status_event" class="form-control">
+                                <option disabled value="unset">--Select--</option>
+                                <option value="si">Si</option>
+                                <option value="no">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select v-model="employee.turn" class="form-control">
+                                <option disabled value="unset">--Select--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
                             </select>
                         </td>
                     </tr>
@@ -69,7 +108,10 @@ include_once "nav.php";
                 let employeesMapped = this.employees.map(employee => {
                     return {
                         cod: employee.cod,
+                        job: employee.job,
                         status: employee.status,
+                        status_event: employee.status_event,
+                        turn: employee.turn,
                     }
                 });
                 // And we need only where status is set
@@ -98,7 +140,10 @@ include_once "nav.php";
                     return {
                         cod: employee.cod,
                         name: employee.name,
+                        job: UNSET_STATUS,
                         status: UNSET_STATUS,
+                        status_event: UNSET_STATUS,
+                        turn: UNSET_STATUS,
                     }
                 });
                 // Get attendance data, if any
@@ -109,7 +154,11 @@ include_once "nav.php";
                     let employeeId = attendanceDetail.employee_id;
                     if (employeeId in employeeDictionary) {
                         let index = employeeDictionary[employeeId];
+                        employees[index].job = attendanceDetail.job;
                         employees[index].status = attendanceDetail.status;
+                        employees[index].status_event = attendanceDetail.status_event;
+                        employees[index].turn = attendanceDetail.turn;
+                        
                     }
                 });
                 // Let Vue do its magic ;)
