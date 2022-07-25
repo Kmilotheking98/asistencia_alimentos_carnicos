@@ -1,7 +1,7 @@
 <?php
 function getEmployeesWithAttendanceCount($start, $end)
 {
-    $query = "select employees.name, 
+    $query = "select employees.cod, employees.name, 
 sum(case when status = 'presence' then 1 else 0 end) as presence_count,
 sum(case when status = 'absence' then 1 else 0 end) as absence_count 
  from employee_attendance
@@ -19,9 +19,9 @@ function saveAttendanceData($date, $employees)
     deleteAttendanceDataByDate($date);
     $db = getDatabase();
     $db->beginTransaction();
-    $statement = $db->prepare("INSERT INTO employee_attendance(employee_id, date, status) VALUES (?, ?, ?)");
+    $statement = $db->prepare("INSERT INTO employee_attendance(employee_id, date, job, status, status_event, turn) VALUES (?, ?, ?, ?, ?, ?)");
     foreach ($employees as $employee) {
-        $statement->execute([$employee->cod, $date, $employee->status]);
+        $statement->execute([$employee->cod, $date, $employee->job, $employee->status, $employee->status_event, $employee->turn]);
     }
     $db->commit();
     return true;
@@ -36,7 +36,7 @@ function deleteAttendanceDataByDate($date)
 function getAttendanceDataByDate($date)
 {
     $db = getDatabase();
-    $statement = $db->prepare("SELECT employee_id, status FROM employee_attendance WHERE date = ?");
+    $statement = $db->prepare("SELECT employee_id, job, status, status_event, turn FROM employee_attendance WHERE date = ?");
     $statement->execute([$date]);
     return $statement->fetchAll();
 }
@@ -111,3 +111,125 @@ function getDatabase()
     $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     return $database;
 }
+
+
+if (!defined("RFID_STATUS_FILE")) {
+    define("RFID_STATUS_FILE", "rfid_status");
+}
+if (!defined("RFID_STATUS_READING")) {
+    define("RFID_STATUS_READING", "r");
+}
+if (!defined("RFID_STATUS_PAIRING")) {
+    define("RFID_STATUS_PAIRING", "p");
+}
+if (!defined("PAIRING_EMPLOYEE_ID_FILE")) {
+    define("PAIRING_EMPLOYEE_ID_FILE", "pairing_employee_id_file");
+}
+
+function getEmployeesWithRfid()
+{
+    $query = "SELECT employee_id, rfid_serial FROM employee_rfid";
+    $db = getDatabase();
+    $statement = $db->query($query);
+    return $statement->fetchAll();
+}
+
+function onRfidSerialRead($rfidSerial)
+{
+    if (getReaderStatus() === RFID_STATUS_PAIRING) {
+        pairEmployeeWithRfid($rfidSerial, getPairingEmployeeId());
+        setReaderStatus(RFID_STATUS_READING);
+    } else {
+        $employee = getEmployeeByRfidSerial($rfidSerial);
+        if ($employee) {
+            saveEmployeeAttendance($employee->id);
+        }
+    }
+}
+function deleteEmployeeAttendanceByIdAndDate($employeeId, $date)
+{
+
+    $query = "DELETE FROM employee_attendance where employee_id = ? and date = ?";
+    $db = getDatabase();
+    $statement = $db->prepare($query);
+    return $statement->execute([$employeeId, $date]);
+}
+
+function saveEmployeeAttendance($employeeId)
+{
+    $date = date("Y-m-d");
+    deleteEmployeeAttendanceByIdAndDate($date, $employeeId);
+    $status = "presence";
+    $query = "INSERT INTO employee_attendance(employee_id, date, status) VALUES (?, ?, ?)";
+    $db = getDatabase();
+    $statement = $db->prepare($query);
+    return $statement->execute([$employeeId, $date, $status]);
+}
+
+function setReaderForEmployeePairing($employeeId)
+{
+    setReaderStatus(RFID_STATUS_PAIRING);
+    setPairingEmployeeId($employeeId);
+}
+
+function setPairingEmployeeId($employeeId)
+{
+    file_put_contents(PAIRING_EMPLOYEE_ID_FILE, $employeeId);
+}
+
+function getPairingEmployeeId()
+{
+    return file_get_contents(PAIRING_EMPLOYEE_ID_FILE);
+}
+
+function pairEmployeeWithRfid($rfidSerial, $employeeId)
+{
+    removeRfidFromEmployee($rfidSerial);
+    $query = "INSERT INTO employee_rfid(employee_id, rfid_serial) VALUES (?, ?)";
+    $db = getDatabase();
+    $statement = $db->prepare($query);
+    return $statement->execute([$employeeId, $rfidSerial]);
+}
+
+function removeRfidFromEmployee($rfidSerial)
+{
+    $query = "DELETE FROM employee_rfid WHERE rfid_serial = ?";
+    $db = getDatabase();
+    $statement = $db->prepare($query);
+    return $statement->execute([$rfidSerial]);
+}
+
+function getEmployeeByRfidSerial($rfidSerial)
+{
+    $query = "SELECT e.id, e.name FROM employees e INNER JOIN employee_rfid
+    ON employee_rfid.employee_id = e.id
+    WHERE employee_rfid.rfid_serial = ?";
+
+    $db = getDatabase();
+    $statement = $db->prepare($query);
+    $statement->execute([$rfidSerial]);
+    return $statement->fetchObject();
+}
+function getEmployeeRfidById($employeeId)
+{
+    $query = "SELECT rfid_serial FROM employee_rfid WHERE employee_id = ?";
+    $db = getDatabase();
+    $statement = $db->prepare($query);
+    $statement->execute([$employeeId]);
+    return $statement->fetchObject();
+}
+
+function getReaderStatus()
+{
+    return file_get_contents(RFID_STATUS_FILE);
+}
+
+function setReaderStatus($newStatus)
+{
+    if (!in_array($newStatus, [RFID_STATUS_PAIRING, RFID_STATUS_READING])) {
+        return;
+    }
+
+    file_put_contents(RFID_STATUS_FILE, $newStatus);
+}
+
