@@ -83,7 +83,7 @@ include_once "nav.php";
             },
             async assignRfidCard(employee) {
                 shouldCheck = true;
-                const employeeId = employee.id;
+                const employeeId = employee.cod;
                 employee.waiting = true;
                 await fetch("./set_reader_for_pairing.php?employee_id=" + employeeId);
                 this.checkIfEmployeeHasJustAssignedRfid(employee);
@@ -115,9 +115,9 @@ include_once "nav.php";
                 // Set rfid_serial by default: null
                 let employeeDictionary = {};
                 employees = employees.map((employee, index) => {
-                    employeeDictionary[employee.id] = index;
+                    employeeDictionary[employee.cod] = index;
                     return {
-                        id: employee.id,
+                        cod: employee.cod,
                         name: employee.name,
                         rfid_serial: null,
                         waiting: false,
