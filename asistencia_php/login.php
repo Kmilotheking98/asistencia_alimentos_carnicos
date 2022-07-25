@@ -2,7 +2,7 @@
 
   session_start();
 
-  if (isset($_SESSION['user_id'])) {
+  if (isset($_SESSION['iduser'])) {
     header('Location: /php-login');
   }
   require 'database.php';
@@ -16,8 +16,8 @@
     $message = '';
 
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
-      $_SESSION['user_id'] = $results['id'];
-      header("Location: /php-login");
+      $_SESSION['iduser'] = $results['id'];
+      header("Location: /asistencia_alimentos_carnicos/asistencia_php/employees.php");
     } else {
       $message = 'Sorry, those credentials do not match';
     }
