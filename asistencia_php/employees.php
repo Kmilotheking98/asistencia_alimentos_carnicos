@@ -9,9 +9,12 @@ include("conexion.php");
 ?>
 
 <section class="home">
-    <div class="container cont__me">
-        <div class="employees__content">
-            <a href="employee_add.php" type="button" class="btn btn-warning">
+    <div class="container cont__me employees__content">
+
+
+        <div class='d-flex justify-content-end'>
+
+        <a href="employee_add.php" type="button" class="btn btn-warning me-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                     class="bi bi-person-plus-fill" viewBox="0 0 16 16">
                     <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
@@ -21,26 +24,15 @@ include("conexion.php");
                 &nbspAdd new employee
             </a>
 
-
-            <div class="buscar__employees__input">
-                <form action="buscar_employee.php" method="post">
-                    <div class="form-group mb-3">
-                        <label class="" style="font-size: 27px;" for="name">Please enttter the name of the
-                            employee</label>
-                        <h3 class="mb-4">Name:</h3>
-                        <input style="width: 500px;" placeholder="search the name" class="form-control" type="text"
+            <form class='d-flex' action="buscar_employee.php" method="post">
+                        <input style="width: 340px;" placeholder="search the name" class="form-control me-3" type="text"
                             name="buscar" id="">
-                    </div>
-                    <div class="form-group">
-                        <input class="btn btn__me" type='submit' value="Search the employee">
+                        <input class="btn btn__me" type='submit' value="Search"></input>
+            </form>
 
-                        </input>
-                    </div>
-                </form>
-            </div>
         </div>
 
-
+    
         <div class="tabla__employees rounded border">
             <div class="table-responsive">
                 <table class="table">
@@ -80,12 +72,12 @@ include("conexion.php");
 
                             <td>
                                 <a class="btn btn-warning" href="employee_edit.php? cod=<?php echo $employee->cod ?>">
-                                    Edit <i class="fa fa-edit"></i>
+                                    Editar <i class="fa fa-edit"></i>
                                 </a>
                             </td>
                             <td>
                                 <a class="btn btn-danger" href="employee_delete.php?cod=<?php echo $employee->cod ?>">
-                                    Delete <i class="fa fa-trash"></i>
+                                    Borrar <i class="fa fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
