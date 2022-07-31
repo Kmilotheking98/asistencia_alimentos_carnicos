@@ -1,16 +1,17 @@
 <?php
 if (!isset($_GET["cod"])) exit("No id provided");
+include_once "slidernavbar.php";
 include_once "header.php";
-include_once "nav.php";
 $cod = $_GET["cod"];
 include_once "functions.php";
 $employee = getEmployeeById($cod);
 ?>
-<div class="row">
-    <div class="col-12">
-        <h1 class="text-center">Edit employee</h1>
-    </div>
-    <div class="col-12">
+
+
+<section class="home">
+    <div class="container cont__me employees__content">
+
+    <div class="">
         <form action="employee_update.php" method="POST">
             <input type="hidden" name="cod" value="<?php echo $employee->cod ?>">
             <div class="form-group">
@@ -35,5 +36,10 @@ $employee = getEmployeeById($cod);
         </form>
     </div>
 </div>
+
+    </div>
+
+</section>
+
+    
 <?php
-include_once "footer.php";
