@@ -1,6 +1,7 @@
 <?php
+include_once "slidernavbar.php";
+
 include_once "header.php";
-include_once "nav.php";
 ?>
 <div class="row" id="app">
     <div class="col-12">
