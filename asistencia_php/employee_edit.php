@@ -1,12 +1,14 @@
 <?php
 if (!isset($_GET["cod"])) exit("No id provided");
 include_once "header.php";
-include_once "nav.php";
+include_once "slidernavbar.php";
 $cod = $_GET["cod"];
 include_once "functions.php";
 $employee = getEmployeeById($cod);
 ?>
-<div class="row">
+
+<section class="home">
+    <div class="container cont__me employees__content">
     <div class="col-12">
         <h1 class="text-center">Edit employee</h1>
     </div>
@@ -35,5 +37,5 @@ $employee = getEmployeeById($cod);
         </form>
     </div>
 </div>
+</section>
 <?php
-include_once "footer.php";

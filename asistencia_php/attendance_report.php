@@ -1,6 +1,6 @@
 <?php
 include_once "header.php";
-include_once "nav.php";
+include_once "slidernavbar.php";
 include_once "functions.php";
 $start = date("Y-m-d");
 $end = date("Y-m-d");
@@ -12,7 +12,8 @@ if (isset($_GET["end"])) {
 }
 $employees = getEmployeesWithAttendanceCount($start, $end);
 ?>
-<div class="row">
+<section class="home">
+<div class="container cont__me employees__content">
     <div class="col-12">
         <h1 class="text-center">Attendance report</h1>
     </div>
@@ -59,5 +60,6 @@ $employees = getEmployeesWithAttendanceCount($start, $end);
         </div>
     </div>
 </div>
+</section>
 <?php
-include_once "footer.php";
+

@@ -1,10 +1,11 @@
 <?php
 include_once "header.php";
-include_once "nav.php";
+include_once "slidernavbar.php";
 include("conexion.php");
 
 ?>
-<div class="row" id="app">
+<section class="home">
+<div class="container cont__me employees__content" id="app">
     <div class="col-12">
         <h1 class="text-center">RFID Pairing</h1>
     </div>
@@ -68,6 +69,7 @@ include("conexion.php");
     </div>
 </div>
 </div>
+</section>
 <?php     }}
 ?>
 
@@ -165,4 +167,3 @@ include("conexion.php");
     });
 </script>
 <?php
-include_once "footer.php";

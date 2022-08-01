@@ -1,13 +1,15 @@
 <?php
+include_once "slidernavbar.php";
 include_once "header.php";
-include_once "nav.php";
 ?>
-<div class="row">
+
+
+<section class="home">
+    <div class="container cont__me employees__content">
     <div class="col-12">
-        <h1 class="text-center">Add employee</h1>
-    </div>
-    <div class="col-12">
-        <form action="employee_save.php" method="POST">
+        <h1 class="text-center">Register Employee</h1> 
+            
+    <form action="employee_save.php" method="POST">
             <div class="form-group">
                 <label for="name">Employee ID</label>
                 <input name="cod" placeholder="Employee ID" type="number" id="cod" class="form-control" required >
@@ -28,8 +30,7 @@ include_once "nav.php";
                 </button>
             </div>
         </form>
-    </div>
-</div>
-<?php
 
-include_once "footer.php";
+    </div>
+</section>
+<?php
