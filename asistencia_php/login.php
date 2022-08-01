@@ -17,7 +17,7 @@
 
     if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
       $_SESSION['userid'] = $results['id'];
-      header("Location: /asistencia_php/employees.php");
+      header("Location: index.php");
     } else {
       $message = 'Sorry, those credentials do not match';
     }
