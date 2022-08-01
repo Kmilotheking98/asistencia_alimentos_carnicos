@@ -3,9 +3,9 @@
 
   require 'database.php';
 
-  if (isset($_SESSION['user_id'])) {
+  if (isset($_SESSION['iduser'])) {
     $records = $conn->prepare('SELECT iduser, email, password FROM user WHERE iduser = :iduser');
-    $records->bindParam(':iduser', $_SESSION['user_id']);
+    $records->bindParam(':iduser', $_SESSION['iduser']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
 

@@ -31,4 +31,5 @@ include_once "nav.php";
     </div>
 </div>
 <?php
+
 include_once "footer.php";
