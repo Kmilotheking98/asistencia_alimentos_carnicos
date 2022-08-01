@@ -1,8 +1,9 @@
 <?php
 include_once "header.php";
-include_once "nav.php";
+include_once "slidernavbar.php";
 ?>
-<div class="row" id="app">
+<section class="home">
+<div class="container cont__me employees__content" id="app">
     <div class="col-12">
         <h1 class="text-center">Attendance</h1>
     </div>
@@ -81,6 +82,7 @@ include_once "nav.php";
         </div>
     </div>
 </div>
+</section>
 <script src="js/vue.min.js"></script>
 <script src="js/vue-toasted.min.js"></script>
 <script>
@@ -168,4 +170,4 @@ include_once "nav.php";
     });
 </script>
 <?php
-include_once "footer.php";
+
