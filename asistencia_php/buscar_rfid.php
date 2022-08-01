@@ -167,4 +167,3 @@ include("conexion.php");
     });
 </script>
 <?php
-include_once "footer.php";
