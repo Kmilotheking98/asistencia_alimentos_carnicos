@@ -70,7 +70,7 @@
                     </a>
                 </li>
 
-                <!--
+                
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -82,7 +82,7 @@
                         <span class="switch"></span>
                     </div>
                 </li>
-                -->
+               
 
             </div>
         </div>
