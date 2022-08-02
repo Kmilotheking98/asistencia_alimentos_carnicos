@@ -4,10 +4,10 @@ include_once "header.php";
 include("conexion.php");
 
 ?>
-<div class="row" id="app">
-    <div class="col-12">
-        <h1 class="text-center">RFID Pairing</h1>
-    </div>
+
+<section class="home">
+    <div class="container cont__me employees__content">
+
     <div>
         <form action="buscar_rfid.php" method="post">
             <input type="text" name="buscar" id="">
@@ -31,6 +31,13 @@ include("conexion.php");
                     </th>
                 </tr>
             </thead>
+
+    </div>
+</section>
+
+
+
+    
  <?php
           $aKeyword= explode(" ", $_POST['buscar']);
 
@@ -165,4 +172,3 @@ include("conexion.php");
     });
 </script>
 <?php
-include_once "footer.php";
