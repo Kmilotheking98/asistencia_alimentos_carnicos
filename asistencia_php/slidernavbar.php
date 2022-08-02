@@ -25,7 +25,7 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="./employees.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Home</span>
                         </a>
@@ -34,7 +34,7 @@
 
 
                     <li class="nav-link">
-                        <a href="/index2.html">
+                        <a href="#">
                             <i class='bx bx-wallet icon'></i>
                             <span class="text nav-text">Tarjetas</span>
                         </a>
@@ -43,7 +43,7 @@
 
 
                     <li class="nav-link">
-                        <a href="./index3.html">
+                        <a href="#">
                             <i class='bx bx-pie-chart-alt icon'></i>
                             <span class="text nav-text">Asistencias</span>
                         </a>
