@@ -1,3 +1,12 @@
+<?php 
+session_start();
+if(!isset($_SESSION['user'])){
+    header("Location: login.php");
+}
+
+?>
+
+
 
 <nav class="sidebar close">
         <header>
@@ -8,7 +17,7 @@
 
                 <div class="text logo-text">
                     <span class="name">Asistencia</span>
-                    <span class="profession">User Name</span>
+                    <span class="profession"><?php echo $_SESSION['user']; ?></span>
                 </div>
             </div>
 

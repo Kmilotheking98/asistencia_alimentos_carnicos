@@ -1,8 +1,6 @@
 <?php
 
-  session_start();
-
-  if (isset($_SESSION['userid'])) {
+  if (isset($_SESSION['user'])) {
     header('Location: /php-login');
   }
   require 'database.php';
@@ -13,10 +11,9 @@
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
 
-    $message = '';
-
-    if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
-      $_SESSION['userid'] = $results['id'];
+    if (count($results) == 1 && password_verify($_POST['password'], $results['password'])) {
+     session_start();
+      $_SESSION['user'] = $results['email'];
       header("Location: index.php");
     } else {
       $message = 'Sorry, those credentials do not match';
