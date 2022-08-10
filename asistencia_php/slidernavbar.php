@@ -5,7 +5,6 @@ $permit=$_SESSION['permit'];
 if(!isset($_SESSION['user'])){
     header("Location: login.php");
 }
-
 ?>
 
 
@@ -19,8 +18,8 @@ if(!isset($_SESSION['user'])){
 
                 <div class="text logo-text">
                     <span class="name">Asistencia</span>
-                    <h1 class="profession"><?php echo $user; ?></h1>
                     <h5 ><?php echo $permit; ?></h5>
+                    <h1 class="profession"><?php echo $user; ?></h1>
                 </div>
             </div>
 
@@ -75,14 +74,6 @@ if(!isset($_SESSION['user'])){
             </div>
 
             <div class="bottom-content">
-                <li class="">
-                    <a href="logout.php">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-
-                
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -94,6 +85,16 @@ if(!isset($_SESSION['user'])){
                         <span class="switch"></span>
                     </div>
                 </li>
+
+                <li class="">
+                    <a href="logout.php">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                
+
                
 
             </div>
