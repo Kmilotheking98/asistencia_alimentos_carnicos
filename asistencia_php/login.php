@@ -1,7 +1,7 @@
 <?php
 
   if (isset($_SESSION['user'])) {
-    header('Location: /php-login');
+    header('Location: login.php');
   }
   require 'database.php';
 
@@ -11,7 +11,7 @@
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
 
-    if (count($results) == 1 && password_verify($_POST['password'], $results['password'])) {
+    if (count($results) > 0  && password_verify($_POST['password'], $results['password'])) {
      session_start();
       $_SESSION['user'] = $results['email'];
       header("Location: index.php");
