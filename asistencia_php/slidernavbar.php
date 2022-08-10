@@ -1,5 +1,7 @@
 <?php 
 session_start();
+$user=$_SESSION['user'];
+$permit=$_SESSION['permit'];
 if(!isset($_SESSION['user'])){
     header("Location: login.php");
 }
@@ -17,7 +19,8 @@ if(!isset($_SESSION['user'])){
 
                 <div class="text logo-text">
                     <span class="name">Asistencia</span>
-                    <span class="profession"><?php echo $_SESSION['user']; ?></span>
+                    <h1 class="profession"><?php echo $user; ?></h1>
+                    <h5 ><?php echo $permit; ?></h5>
                 </div>
             </div>
 

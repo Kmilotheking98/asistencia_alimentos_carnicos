@@ -6,7 +6,7 @@
   require 'database.php';
 
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
-    $records = $conn->prepare('SELECT iduser, email, password FROM user WHERE email = :email');
+    $records = $conn->prepare('SELECT * FROM user WHERE email = :email');
     $records->bindParam(':email', $_POST['email']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
@@ -14,6 +14,7 @@
     if (count($results) > 0  && password_verify($_POST['password'], $results['password'])) {
      session_start();
       $_SESSION['user'] = $results['email'];
+      $_SESSION['permit'] = $results['permit'];
       header("Location: index.php");
     } else {
       $message = 'Sorry, those credentials do not match';
