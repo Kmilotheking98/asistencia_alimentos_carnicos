@@ -1,3 +1,13 @@
+<?php 
+session_start();
+$user=$_SESSION['user'];
+$permit=$_SESSION['permit'];
+if(!isset($_SESSION['user'])){
+    header("Location: login.php");
+}
+?>
+
+
 
 <nav class="sidebar close">
         <header>
@@ -8,7 +18,8 @@
 
                 <div class="text logo-text">
                     <span class="name">Asistencia</span>
-                    <span class="profession">User Name</span>
+                    <h5 ><?php echo $permit; ?></h5>
+                    <h1 class="profession"><?php echo $user; ?></h1>
                 </div>
             </div>
 
@@ -63,14 +74,6 @@
             </div>
 
             <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-
-                
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -82,6 +85,16 @@
                         <span class="switch"></span>
                     </div>
                 </li>
+
+                <li class="">
+                    <a href="logout.php">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                
+
                
 
             </div>
