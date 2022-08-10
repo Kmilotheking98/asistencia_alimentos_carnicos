@@ -1,3 +1,13 @@
+<?php 
+session_start();
+$user=$_SESSION['user'];
+$permit=$_SESSION['permit'];
+if(!isset($_SESSION['user'])){
+    header("Location: login.php");
+}
+?>
+
+
 
 <nav class="sidebar close">
         <header>
@@ -8,7 +18,8 @@
 
                 <div class="text logo-text">
                     <span class="name">Asistencia</span>
-                    <span class="profession">User Name</span>
+                    <h5 ><?php echo $permit; ?></h5>
+                    <h1 class="profession"><?php echo $user; ?></h1>
                 </div>
             </div>
 
@@ -25,7 +36,7 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="./employees.php">
+                        <a href="employees.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Home</span>
                         </a>
@@ -34,8 +45,8 @@
 
 
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-wallet icon'></i>
+                        <a href="employees_rfid.php">
+                            <i class='bx bx-card icon'></i>
                             <span class="text nav-text">Tarjetas</span>
                         </a>
                     </li>
@@ -43,14 +54,14 @@
 
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="attendance_register.php">
                             <i class='bx bx-pie-chart-alt icon'></i>
                             <span class="text nav-text">Asistencias</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="attendance_report.php">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Reportes</span>
                         </a>
@@ -63,14 +74,6 @@
             </div>
 
             <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-
-                
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -82,7 +85,17 @@
                         <span class="switch"></span>
                     </div>
                 </li>
+
+                <li class="">
+                    <a href="logout.php">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
                 
+
+               
 
             </div>
         </div>

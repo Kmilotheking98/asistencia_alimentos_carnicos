@@ -1,11 +1,12 @@
 <?php
-include_once "slidernavbar.php";
 include_once "header.php";
+include_once "slidernavbar.php";
 ?>
-
 <section class="home">
-    <div class="container cont__me employees__content">
-
+<div class="container cont__me employees__content" id="app">
+    <div class="col-12">
+        <h1 class="text-center">RFID Pairing</h1>
+    </div>
     <div>
         <form action="buscar_rfid.php" method="post">
             <input type="text" name="buscar" id="">
@@ -49,14 +50,7 @@ include_once "header.php";
         </div>
     </div>
 </div>
-
-    </div>
 </section>
-
-
-
-
-   
 <script src="js/vue.min.js"></script>
 <script src="js/vue-toasted.min.js"></script>
 <script>
@@ -149,4 +143,3 @@ include_once "header.php";
     });
 </script>
 <?php
-include_once "footer.php";

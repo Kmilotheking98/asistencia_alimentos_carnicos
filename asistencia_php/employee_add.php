@@ -6,8 +6,9 @@ include_once "header.php";
 
 <section class="home">
     <div class="container cont__me employees__content">
-
-      
+    <div class="col-12">
+        <h1 class="text-center">Register Employee</h1> 
+            
     <form action="employee_save.php" method="POST">
             <div class="form-group">
                 <label for="name">Employee ID</label>
