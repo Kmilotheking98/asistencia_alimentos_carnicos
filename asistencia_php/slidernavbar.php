@@ -5,6 +5,14 @@ $permit=$_SESSION['permit'];
 if(!isset($_SESSION['user'])){
     header("Location: login.php");
 }
+
+if($permit == 1){
+    $permittext = "Admin";
+}elseif($permit == 2){
+    $permittext = "Supervisor";
+}else{
+    $permittext = "";
+}
 ?>
 
 
@@ -18,7 +26,7 @@ if(!isset($_SESSION['user'])){
 
                 <div class="text logo-text">
                     <span class="name">Asistencia</span>
-                    <h5 ><?php echo $permit; ?></h5>
+                    <h5 ><?php echo $permittext; ?></h5>
                     <h1 class="profession"><?php echo $user; ?></h1>
                 </div>
             </div>

@@ -16,6 +16,10 @@
       $_SESSION['user'] = $results['email'];
       $_SESSION['permit'] = $results['permit'];
       header("Location: index.php");
+
+      
+    
+
     } else {
       $message = 'Sorry, those credentials do not match';
     }
