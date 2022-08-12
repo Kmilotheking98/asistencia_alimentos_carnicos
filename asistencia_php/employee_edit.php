@@ -5,6 +5,10 @@ include_once "slidernavbar.php";
 $cod = $_GET["cod"];
 include_once "functions.php";
 $employee = getEmployeeById($cod);
+// esto va conectado con el select 
+include("conexion.php");
+$query = mysqli_query($conexion,'SELECT type_contract FROM employees');
+
 ?>
 
 <section class="home">
@@ -24,8 +28,22 @@ $employee = getEmployeeById($cod);
                 <input value="<?php echo $employee->last_name ?>" name="last_name" placeholder="Last Name" type="text" id="last_name" class="form-control" required>                
                 <label for="name">DNI</label>
                 <input value="<?php echo $employee->dni ?>" name="dni" placeholder="DNI" type="number" id="dni" class="form-control" required>
+                <label for="name">Type Of Contract</label>               
+                <td>
+                    <select name="type_contract" value="not temporary" class="form-control">
+                            <?php 
+// este while recorre los datos de la base de datos
+                            while($datos = mysqli_fetch_array($query)){}
+                            ?>
+                            <option value="<?php echo $employee->type_contract ?>"><?php echo $employee->type_contract ?></option>
+                            <option value="temporary" name="temporary" id="temporary">Temporary</option>
+                            <option value='not temporary' name='not temporary' id='not temporary'>Not temporary</option>
+
+                    </select>
+                </td>
+
                 <label for="name">Date Birth</label>
-                <input value="<?php echo $employee->date_birth?>" name="date_birth" placeholder="Date Birth" type="text" id="date_birth" class="form-control" required>
+                <input value="<?php echo $employee->date_birth?>" name="date_birth" placeholder="Date Birth" type="date" id="date_birth" class="form-control" required>
                 <label for="name">Home</label>
                 <input value="<?php echo $employee->home ?>" name="home" placeholder="Home" type="text" id="home" class="form-control" required>
             </div>

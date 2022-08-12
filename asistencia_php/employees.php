@@ -42,6 +42,7 @@ include("conexion.php");
                             <th>Name</th>
                             <th>last Name</th>
                             <th>DNI</th>
+                            <th>Type Of Contract</th>
                             <th>Date Birth</th>
                             <th>Home</th>
                             <th>Edit</th>
@@ -62,6 +63,9 @@ include("conexion.php");
                             </td>
                             <td>
                                 <?php echo $employee->dni ?>
+                            </td>
+                            <td>
+                                <?php echo $employee->type_contract ?>
                             </td>
                             <td>
                                 <?php echo $employee->date_birth ?>
