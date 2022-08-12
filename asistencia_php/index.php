@@ -3,22 +3,19 @@
 <?php
      session_start();
 if (isset($_SESSION['user'])) {
+// header("Location: employees.php");
 
-   
-if(isset($_SESSION['permit'])){
     switch($_SESSION['permit']){
-        case 'Admin':
+        case 1:
 
             header("Location: employees.php");
         break;
-        case 'Colaborador1':
-;
+        case 2:
             header("Location: attendance_report.php");
         break;
 
         default:
         
-        }
 
    }
 
