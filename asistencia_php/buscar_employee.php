@@ -41,8 +41,9 @@ include("conexion.php");
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>last Name</th>
-                                <th>DNI</th>
-                                <th>Date Birth</th>
+                                <th>DNI</th>                              
+                                <th>Type Of Contract</th>
+                                <th>Date Birth</th> 
                                 <th>Home</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -52,9 +53,9 @@ include("conexion.php");
                         <?php 
                     
                     // largo de la busqueda 
-                    $query ="SELECT * FROM employees WHERE  `cod`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%') OR last_name LIKE LOWER('%".$aKeyword[0]."%') OR dni LIKE LOWER('%".$aKeyword[0]."%') OR date_birth LIKE LOWER('%".$aKeyword[0]."%') OR home LIKE LOWER('%".$aKeyword[0]."%')";
+                    $query ="SELECT * FROM employees WHERE  `cod`  LIKE LOWER('%".$aKeyword[0]."%') OR name LIKE LOWER('%".$aKeyword[0]."%') OR last_name LIKE LOWER('%".$aKeyword[0]."%') OR dni LIKE LOWER('%".$aKeyword[0]."%') OR type_contract LIKE LOWER('%".$aKeyword[0]."%') OR date_birth LIKE LOWER('%".$aKeyword[0]."%') OR home LIKE LOWER('%".$aKeyword[0]."%')";
                     // cantidad de capos que recorrer 
-                         for($i = 5; $i < count($aKeyword); $i++) {
+                         for($i = 6; $i < count($aKeyword); $i++) {
                             if(!empty($aKeyword[$i])) {
                                 $query .= "OR  `cod`  LIKE '%" . $aKeyword[$i] . "%' OR cod LIKE '%" . $aKeyword[$i] . "%'";
                             }
@@ -64,10 +65,7 @@ include("conexion.php");
                          $numero = mysqli_num_rows($result);
 
                          if( mysqli_num_rows($result) > 0 AND $_POST['buscar'] != '') {
-                        
-                       //  echo ($);
-                       //  $filtrar = search($buscar);
-                         
+                            
                         while($employee=mysqli_fetch_row($result)){ ?>
 
                         <tbody>
@@ -85,11 +83,14 @@ include("conexion.php");
                                     <?php echo $employee['3'] ?>
                                 </td>
                                 <td>
+                                    <?php echo $employee['5'] ?>
+                                </td>
+                                <td>
                                     <?php echo $employee['4'] ?>
                                 </td>
                                 <td>
-                                    <?php echo $employee['5'] ?>
-                                </td>
+                                    <?php echo $employee['6'] ?>
+                                </td>                                
                                 <td>
                                     <a class="btn btn-warning"
                                         href="employee_edit.php?cod=<?php echo $employee['0'] ?>">

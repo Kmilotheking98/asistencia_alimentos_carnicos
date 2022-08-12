@@ -30,14 +30,14 @@ $query = mysqli_query($conexion,'SELECT type_contract FROM employees');
                 <input value="<?php echo $employee->dni ?>" name="dni" placeholder="DNI" type="number" id="dni" class="form-control" required>
                 <label for="name">Type Of Contract</label>               
                 <td>
-                    <select name="type_contract" value="not temporary" class="form-control">
+                    <select name="type_contract" value="indefinido" class="form-control">
                             <?php 
 // este while recorre los datos de la base de datos
                             while($datos = mysqli_fetch_array($query)){}
                             ?>
                             <option value="<?php echo $employee->type_contract ?>"><?php echo $employee->type_contract ?></option>
-                            <option value="temporary" name="temporary" id="temporary">Temporary</option>
-                            <option value='not temporary' name='not temporary' id='not temporary'>Not temporary</option>
+                            <option value="temporal" name="temporal" id="temporal">Temporal</option>
+                            <option value='indefinido' name='indefinido' id='indefinido'>Indefinido</option>
 
                     </select>
                 </td>

@@ -23,8 +23,8 @@ include_once "header.php";
                 <td>
                     <select v-model="type_contract" name="type_contract" class="form-control">
                         <option disabled value="unset">--Select--</option>
-                            <option value="temporary" name="temporary" id="temporary">Temporary</option>
-                            <option value="not temporary" name="not temporary" id="not temporary">Not temporary</option>
+                            <option value="temporal" name="temporal" id="temporal">Temporal</option>
+                            <option value="indefinido" name="indefinido" id="indefinido">Indefinido</option>
                     </select>
                 </td>
                 <label for="date">Date Birth &nbsp;</label>
