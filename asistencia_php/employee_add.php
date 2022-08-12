@@ -19,6 +19,14 @@ include_once "header.php";
                 <input name="last_name" placeholder="last Name" type="text" id="last_name" class="form-control" required >
                 <label for="name">DNI</label>
                 <input name="dni" placeholder="DNI" type="number" id="dni" class="form-control" required >
+                <label for="name">Type Of Contract</label>
+                <td>
+                    <select v-model="type_contract" name="type_contract" class="form-control">
+                        <option disabled value="unset">--Select--</option>
+                            <option value="temporary" name="temporary" id="temporary">Temporary</option>
+                            <option value="not temporary" name="not temporary" id="not temporary">Not temporary</option>
+                    </select>
+                </td>
                 <label for="date">Date Birth &nbsp;</label>
                 <input @change="refreshEmployeesList" v-model="date" name="date_birth" id="date_birth" type="date" class="form-control" required>
                 <label for="name">Home</label>
