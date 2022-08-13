@@ -1,6 +1,11 @@
 <?php
 include_once "header.php";
 include_once "slidernavbar.php";
+if ($_SESSION['permit'] ==3) {
+    header("Location: employees.php");
+}
+
+
 ?>
 <section class="home">
 <div class="container cont__me employees__content" id="app">
@@ -26,10 +31,10 @@ include_once "slidernavbar.php";
                             EMPLEADO
                         </th>
                         <th>
-                            TURNO
+                            PUESTO
                         </th>
                         <th>
-                            TRABAJO
+                            ESTADO
                         </th>
                         <th>
                             EVENTO

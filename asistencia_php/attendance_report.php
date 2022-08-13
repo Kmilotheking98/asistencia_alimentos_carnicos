@@ -2,6 +2,13 @@
 include_once "header.php";
 include_once "slidernavbar.php";
 include_once "functions.php";
+
+if ($_SESSION['permit'] ==3) {
+    header("Location: employees.php");
+}
+
+
+
 $start = date("Y-m-d");
 $end = date("Y-m-d");
 if (isset($_GET["start"])) {
