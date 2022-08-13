@@ -2,9 +2,6 @@
 
   require 'database.php';
 
-  $message = '';
-  
-
   if ( !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['permit'])) {
     $sql = "INSERT INTO user ( name, email, password, permit) VALUES (:name, :email, :password, :permit)";
     $stmt = $conn->prepare($sql);
@@ -17,6 +14,7 @@
 
     if ($stmt->execute()) {
       $message = 'Successfully created new user';
+      header('Location: login.php');
     } else {
       $message = 'Sorry there must have been an issue creating your account';
     }
@@ -44,7 +42,7 @@
     <form action="signup.php" method="POST">
       <input name="email" type="text" placeholder="Enter your email">
       <input name="name" type="text" placeholder="name">
-      <input name="permit" type="text" placeholder="permit">
+      <input name="rol_id" type="number" placeholder="rol">
       <input name="password" type="password" placeholder="Enter your Password">
       <input name="confirm_password" type="password" placeholder="Confirm Password">
       <input type="submit" value="Submit">

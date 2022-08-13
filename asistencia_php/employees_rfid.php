@@ -5,7 +5,7 @@ include_once "slidernavbar.php";
 <section class="home">
 <div class="container cont__me employees__content" id="app">
     <div class="col-12">
-        <h1 class="text-center">RFID Pairing</h1>
+        <h1 class="text-center">EMPAREJAMIENTO RFID</h1>
     </div>
     <div>
         <form action="buscar_rfid.php" method="post">
@@ -20,13 +20,13 @@ include_once "slidernavbar.php";
                 <thead>
                     <tr>
                         <th>
-                            Employee
+                            EMPLEADOS
                         </th>
                         <th>
-                            RFID serial
+                            CODIGO RFID 
                         </th>
                         <th>
-                            Actions
+                            ACCIONES
                         </th>
                     </tr>
                 </thead>
