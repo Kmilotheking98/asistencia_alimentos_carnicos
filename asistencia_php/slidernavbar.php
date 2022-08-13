@@ -11,7 +11,7 @@ if($permit == 1){
 }elseif($permit == 2){
     $permittext = "Supervisor";
 }else{
-    $permittext = "";
+    $permittext = "Colaborador";
 }
 ?>
 
@@ -40,46 +40,89 @@ if($permit == 1){
                 <li class="search-box">
                     <i class='bx bx-search icon'></i>
                     <input type="text" placeholder="Search...">
-                </li>
-
+                </li> 
                 <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="employees.php">
-                            <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home</span>
-                        </a>
-                    </li>
+<?php 
+if($permit == 1){?>
+
+
+    <li class="nav-link">
+        <a href="employees.php">
+            <i class='bx bx-home-alt icon'></i>
+            <span class="text nav-text">Home</span>
+        </a>
+    </li>
 
 
 
-                    <li class="nav-link">
-                        <a href="employees_rfid.php">
-                            <i class='bx bx-card icon'></i>
-                            <span class="text nav-text">Tarjetas</span>
-                        </a>
-                    </li>
+    <li class="nav-link">
+        <a href="employees_rfid.php">
+            <i class='bx bx-card icon'></i>
+            <span class="text nav-text">Tarjetas</span>
+        </a>
+    </li>
 
 
 
-                    <li class="nav-link">
-                        <a href="attendance_register.php">
-                            <i class='bx bx-pie-chart-alt icon'></i>
-                            <span class="text nav-text">Asistencias</span>
-                        </a>
-                    </li>
+    <li class="nav-link">
+        <a href="attendance_register.php">
+            <i class='bx bx-pie-chart-alt icon'></i>
+            <span class="text nav-text">Asistencias</span>
+        </a>
+    </li>
 
-                    <li class="nav-link">
-                        <a href="attendance_report.php">
-                            <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Reportes</span>
-                        </a>
-                    </li>
-
-
+    <li class="nav-link">
+        <a href="attendance_report.php">
+            <i class='bx bx-bar-chart-alt-2 icon'></i>
+            <span class="text nav-text">Reportes</span>
+        </a>
+    </li>
 
 
-                </ul>
-            </div>
+
+
+</ul>
+</div>
+
+<?php
+}else if($permit == 2){?>
+
+<li class="nav-link">
+        <a href="attendance_register.php">
+            <i class='bx bx-pie-chart-alt icon'></i>
+            <span class="text nav-text">Asistencias</span>
+        </a>
+    </li>
+
+    <li class="nav-link">
+        <a href="attendance_report.php">
+            <i class='bx bx-bar-chart-alt-2 icon'></i>
+            <span class="text nav-text">Reportes</span>
+        </a>
+    </li>
+
+
+<?php } elseif($permit == 3)  { ?>
+
+    <li class="nav-link">
+        <a href="employees.php">
+            <i class='bx bx-home-alt icon'></i>
+            <span class="text nav-text">Home</span>
+        </a>
+    </li>
+
+
+
+    <li class="nav-link">
+        <a href="employees_rfid.php">
+            <i class='bx bx-card icon'></i>
+            <span class="text nav-text">Tarjetas</span>
+        </a>
+    </li>
+
+
+
+<?php }?>
 
             <div class="bottom-content">
                 <li class="mode">
