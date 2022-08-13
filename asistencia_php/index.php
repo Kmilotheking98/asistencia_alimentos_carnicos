@@ -2,7 +2,8 @@
 <?php
      
 if (isset($_SESSION['user'])) {
-    switch($_SESSION['permit']){
+    if (isset($_SESSION['permit'])) {
+        switch($_SESSION['permit']){
         case 1:
 
             header("Location: employees.php");
@@ -10,9 +11,12 @@ if (isset($_SESSION['user'])) {
         case 2:
             header("Location: attendance_report.php");
         break;
+        case 3:
+            header("Location: employees.php");
+        break;
 
         default:
-        
+        }
 
    }
 
