@@ -1,6 +1,12 @@
 <?php
 include_once "header.php";
 include_once "slidernavbar.php";
+
+if ($_SESSION['permit'] ==2) {
+    header("Location: attendance_report.php");
+}
+
+?>
 ?>
 <section class="home">
 <div class="container cont__me employees__content" id="app">
