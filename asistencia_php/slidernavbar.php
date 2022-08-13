@@ -88,7 +88,6 @@ if($permit == 1){
                         <i class='bx bx-sun icon sun'></i>
                     </div>
                     <span class="mode-text text">Dark mode</span>
-
                     <div class="toggle-switch">
                         <span class="switch"></span>
                     </div>

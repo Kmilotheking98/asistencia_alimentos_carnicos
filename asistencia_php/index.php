@@ -1,10 +1,7 @@
+<?php session_start(); ?>
 <?php
-?>
-<?php
-     session_start();
+     
 if (isset($_SESSION['user'])) {
-// header("Location: employees.php");
-
     switch($_SESSION['permit']){
         case 1:
 
@@ -19,9 +16,6 @@ if (isset($_SESSION['user'])) {
 
    }
 
-
-
-
-
-
+}else{
+    header('Location: login.php');
 }
