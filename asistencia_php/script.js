@@ -14,7 +14,7 @@ searchBtn.addEventListener("click" , () =>{
     sidebar.classList.remove("close");
 })
 
-modeSwitch.addEventListener("click" , e =>{
+modeSwitch.addEventListener("click" , ()=>{
     body.classList.toggle("dark");
     store(body.classList.contains("dark"))
 

@@ -15,16 +15,16 @@ $employees = getEmployeesWithAttendanceCount($start, $end);
 <section class="home">
 <div class="container cont__me employees__content">
     <div class="col-12">
-        <h1 class="text-center">Attendance report</h1>
+        <h1 class="text-center">REGISTRO DE ASISTENCIAS</h1>
     </div>
     <div class="col-12">
 
         <form action="attendance_report.php" class="form-inline mb-2">
-            <label for="start">Start:&nbsp;</label>
+            <label for="start">INICIO:&nbsp;</label>
             <input required id="start" type="date" name="start" value="<?php echo $start ?>" class="form-control mr-2">
-            <label for="end">End:&nbsp;</label>
+            <label for="end">FIN:&nbsp;</label>
             <input required id="end" type="date" name="end" value="<?php echo $end ?>" class="form-control">
-            <button class="btn btn-success ml-2">Filter</button>
+            <button class="btn btn-success ml-2">Filtrar</button>
         </form>
     </div>
     <div class="col-12">
@@ -32,10 +32,10 @@ $employees = getEmployeesWithAttendanceCount($start, $end);
             <table class="table">
                 <thead>
                     <tr>
-                        <th> ID Employee</th>
-                        <th>Employee</th>
-                        <th>Presence count</th>
-                        <th>Absence count</th>
+                        <th> CODIGO DE EMPLEADO</th>
+                        <th>EMPLEADO</th>
+                        <th>ASISTENCIAS</th>
+                        <th>INACISTENCIAS</th>
                     </tr>
                 </thead>
                 <tbody>
