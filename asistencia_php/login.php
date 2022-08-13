@@ -1,9 +1,10 @@
 <?php
-
+    session_start();
+    require 'database.php';
   if (isset($_SESSION['user'])) {
     header('Location: login.php');
   }
-  require 'database.php';
+  
 
   if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $records = $conn->prepare('SELECT * FROM user WHERE email = :email');
@@ -12,7 +13,7 @@
     $results = $records->fetch(PDO::FETCH_ASSOC);
 
     if (count($results) > 0  && password_verify($_POST['password'], $results['password'])) {
-     session_start();
+ 
       $_SESSION['user'] = $results['email'];
       $_SESSION['permit'] = $results['permit'];
       header("Location: index.php");

@@ -5,13 +5,13 @@ include_once "slidernavbar.php";
 <section class="home">
 <div class="container cont__me employees__content" id="app">
     <div class="col-12">
-        <h1 class="text-center">Attendance</h1>
+        <h1 class="text-center">ASISTENCIAS</h1>
     </div>
     <div class="col-12">
         <div class="form-inline mb-2">
-            <label for="date">Date: &nbsp;</label>
+            <label for="date">FECHA: &nbsp;</label>
             <input @change="refreshEmployeesList" v-model="date" name="date" id="date" type="date" class="form-control">
-            <button @click="save" class="btn btn-success ml-2">Save</button>
+            <button @click="save" class="btn btn-success ml-2">Guardar</button>
         </div>
     </div>
     <div class="col-12">
@@ -20,22 +20,22 @@ include_once "slidernavbar.php";
                 <thead>
                     <tr>
                     <th>
-                            ID Employee
+                            CODIGO
                         </th>
                         <th>
-                            Employee
+                            EMPLEADO
                         </th>
                         <th>
-                            Job
+                            TURNO
                         </th>
                         <th>
-                            Status
+                            TRABAJO
                         </th>
                         <th>
-                            Status event
+                            EVENTO
                         </th>
                         <th>
-                            Turn
+                            TURNO
                         </th>
                     </tr>
                 </thead>
@@ -45,28 +45,28 @@ include_once "slidernavbar.php";
                         <td>{{employee.name}}</td>
                         <td>
                             <select v-model="employee.job" class="form-control">
-                                <option disabled value="unset">--Select--</option>
+                                <option disabled value="unset">--seleccionar--</option>
                                 <option value="Cajero">Cajero</option>
                                 <option value="Vendedor">Vendedor</option>
                             </select>
                         </td>
                         <td>
                             <select v-model="employee.status" class="form-control">
-                                <option disabled value="unset">--Select--</option>
-                                <option value="presence">Presence</option>
-                                <option value="absence">Absence</option>
+                                <option disabled value="unset">--seleccionar--</option>
+                                <option value="presence">Asistencia</option>
+                                <option value="absence">Ausencia</option>
                             </select>
                         </td>
                         <td>
                             <select v-model="employee.status_event" class="form-control">
-                                <option disabled value="unset">--Select--</option>
+                                <option disabled value="unset">--seleccionar--</option>
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
                             </select>
                         </td>
                         <td>
                             <select v-model="employee.turn" class="form-control">
-                                <option disabled value="unset">--Select--</option>
+                                <option disabled value="unset">--seleccionar--</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
