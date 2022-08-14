@@ -26,7 +26,7 @@ if($permit == 1){
 
                 <div class="text logo-text">
                     <span class="name">Asistencia</span>
-                    <h5 ><?php echo $permittext; ?></h5>
+                    <h5 style='line-height: 0.5;' ><?php echo $permittext; ?></h5>
                     <h1 class="profession"><?php echo $user; ?></h1>
                 </div>
             </div>
@@ -44,6 +44,8 @@ if($permit == 1){
                 <ul class="menu-links">
 <?php 
 if($permit == 1){?>
+
+
 
 
     <li class="nav-link">
@@ -79,7 +81,12 @@ if($permit == 1){?>
     </li>
 
 
-
+    <li class="">
+                    <a href="logout.php">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
 
 </ul>
 </div>
@@ -135,17 +142,6 @@ if($permit == 1){?>
                         <span class="switch"></span>
                     </div>
                 </li>
-
-                <li class="">
-                    <a href="logout.php">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-
-                
-
-               
 
             </div>
         </div>

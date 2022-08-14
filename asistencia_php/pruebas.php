@@ -13,12 +13,6 @@ if ($_SESSION['permit'] ==2) {
 
 <section class="home">
 
-    <div class="container cont__me employees__content">
-
-
-    </div>
-
-    </div>
 </section>
 
 <?php
