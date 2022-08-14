@@ -1,13 +1,14 @@
 <?php
-include_once "slidernavbar.php";
 include_once "header.php";
+include_once "slidernavbar.php";
 include("conexion.php");
 
 ?>
-
 <section class="home">
-    <div class="container cont__me employees__content">
-
+<div class="container cont__me employees__content" id="app">
+    <div class="col-12">
+        <h1 class="text-center">EMPAREJAR  RFID</h1>
+    </div>
     <div>
         <form action="buscar_rfid.php" method="post">
             <input type="text" name="buscar" id="">
@@ -21,23 +22,16 @@ include("conexion.php");
             <thead>
                 <tr>
                     <th>
-                        Employee
+                        EMPLEADOS
                     </th>
                     <th>
-                        RFID serial
+                       CODIGO RFID 
                     </th>
                     <th>
-                        Actions
+                        ACCIONES
                     </th>
                 </tr>
             </thead>
-
-    </div>
-</section>
-
-
-
-    
  <?php
           $aKeyword= explode(" ", $_POST['buscar']);
 
@@ -75,6 +69,7 @@ include("conexion.php");
     </div>
 </div>
 </div>
+</section>
 <?php     }}
 ?>
 
@@ -172,3 +167,4 @@ include("conexion.php");
     });
 </script>
 <?php
+include_once "footer.php";

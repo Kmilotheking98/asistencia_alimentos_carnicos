@@ -6,11 +6,19 @@ include_once "header.php";
 include_once "functions.php";
 $employees = getEmployees();
 include("conexion.php");
+
+if ($_SESSION['permit'] ==2) {
+    header("Location: attendance_report.php");
+}
+
 ?>
 
 <section class="home">
-    <div class="container cont__me employees__content">
 
+    <div class="container cont__me employees__content">
+        <div class="col-12">
+              <h1 class="text-left">EMPLEADOS</h1>
+        </div>
 
         <div class='d-flex justify-content-end'>
 
@@ -21,13 +29,13 @@ include("conexion.php");
                     <path fill-rule="evenodd"
                         d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
                 </svg>
-                &nbspAdd new employee
+                &nbspRegistrar Empleado
             </a>
 
             <form class='d-flex' action="buscar_employee.php" method="post">
-                        <input style="width: 340px;" placeholder="search the name" class="form-control me-3" type="text"
+                        <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text"
                             name="buscar" id="">
-                        <input class="btn btn__me" type='submit' value="Search"></input>
+                        <input class="btn btn__me" type='submit' value="Buscar"></input>
             </form>
 
         </div>
@@ -38,14 +46,15 @@ include("conexion.php");
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Employee ID</th>
-                            <th>Name</th>
-                            <th>last Name</th>
-                            <th>DNI</th>
-                            <th>Date Birth</th>
-                            <th>Home</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>CODIGO</th>
+                            <th>NOMBRE</th>
+                            <th>APELLIDOS</th>
+                            <th>CEDULA</th>
+                            <th>TIPO DE CONTRATO</th>
+                            <th>FECHA DE NACIMIENTO</th>
+                            <th>RESIDENCIA</th>
+                            <th>EDITAR</th>
+                            <th>ELIMINAR</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,6 +71,9 @@ include("conexion.php");
                             </td>
                             <td>
                                 <?php echo $employee->dni ?>
+                            </td>
+                            <td>
+                                <?php echo $employee->type_contract ?>
                             </td>
                             <td>
                                 <?php echo $employee->date_birth ?>

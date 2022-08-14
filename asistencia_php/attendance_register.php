@@ -1,94 +1,93 @@
 <?php
-include_once "slidernavbar.php";
 include_once "header.php";
+include_once "slidernavbar.php";
+if ($_SESSION['permit'] ==3) {
+    header("Location: employees.php");
+}
+
 
 ?>
-
-
 <section class="home">
-    <div class="container cont__me employees__content">
-
-
-        <div id="app">
-            <div class="">
-                <div class="form-inline mb-2">
-                    <label for="date">Date: &nbsp;</label>
-                    <input @change="refreshEmployeesList" v-model="date" name="date" id="date" type="date"
-                        class="form-control">
-                    <button @click="save" class="btn btn-success ml-2">Save</button>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    ID Employee
-                                </th>
-                                <th>
-                                    Employee
-                                </th>
-                                <th>
-                                    Job
-                                </th>
-                                <th>
-                                    Status
-                                </th>
-                                <th>
-                                    Status event
-                                </th>
-                                <th>
-                                    Turn
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="employee in employees">
-                                <td>{{employee.cod}}</td>
-                                <td>{{employee.name}}</td>
-                                <td>
-                                    <select v-model="employee.job" class="form-control">
-                                        <option disabled value="unset">--Select--</option>
-                                        <option value="Cajero">Cajero</option>
-                                        <option value="Vendedor">Vendedor</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select v-model="employee.status" class="form-control">
-                                        <option disabled value="unset">--Select--</option>
-                                        <option value="presence">Presence</option>
-                                        <option value="absence">Absence</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select v-model="employee.status_event" class="form-control">
-                                        <option disabled value="unset">--Select--</option>
-                                        <option value="si">Si</option>
-                                        <option value="no">No</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select v-model="employee.turn" class="form-control">
-                                        <option disabled value="unset">--Select--</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div class="container cont__me employees__content" id="app">
+    <div class="col-12">
+        <h1 class="text-center">ASISTENCIAS</h1>
+    </div>
+    <div class="col-12">
+        <div class="form-inline mb-2">
+            <label for="date">FECHA: &nbsp;</label>
+            <input @change="refreshEmployeesList" v-model="date" name="date" id="date" type="date" class="form-control">
+            <button @click="save" class="btn btn-success ml-2">Guardar</button>
         </div>
+    </div>
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>
+                            CODIGO
+                        </th>
+                        <th>
+                            EMPLEADO
+                        </th>
+                        <th>
+                            PUESTO
+                        </th>
+                        <th>
+                            ESTADO
+                        </th>
+                        <th>
+                            EVENTO
+                        </th>
+                        <th>
+                            TURNO
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="employee in employees">
+                    <td>{{employee.cod}}</td>
+                        <td>{{employee.name}}</td>
+                        <td>
+                            <select v-model="employee.job" class="form-control">
+                                <option disabled value="unset">--seleccionar--</option>
+                                <option value="Cajero">Cajero</option>
+                                <option value="Vendedor">Vendedor</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select v-model="employee.status" class="form-control">
+                                <option disabled value="unset">--seleccionar--</option>
+                                <option value="presence">Asistencia</option>
+                                <option value="absence">Ausencia</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select v-model="employee.status_event" class="form-control">
+                                <option disabled value="unset">--seleccionar--</option>
+                                <option value="si">Si</option>
+                                <option value="no">No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select v-model="employee.turn" class="form-control">
+                                <option disabled value="unset">--seleccionar--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </section>
-
-
 <script src="js/vue.min.js"></script>
 <script src="js/vue-toasted.min.js"></script>
 <script>
@@ -166,7 +165,7 @@ include_once "header.php";
                         employees[index].status = attendanceDetail.status;
                         employees[index].status_event = attendanceDetail.status_event;
                         employees[index].turn = attendanceDetail.turn;
-
+                        
                     }
                 });
                 // Let Vue do its magic ;)
@@ -176,3 +175,4 @@ include_once "header.php";
     });
 </script>
 <?php
+

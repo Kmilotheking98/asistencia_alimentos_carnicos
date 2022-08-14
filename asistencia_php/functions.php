@@ -48,35 +48,35 @@ function deleteEmployee($cod)
     return $statement->execute([$cod]);
 }
 
-function updateEmployee($cod, $name, $last_name, $dni, $date_birth, $home)
+function updateEmployee($cod, $name, $last_name, $dni, $type_contract, $date_birth, $home)
 {
     $db = getDatabase();   
     $datebirth = date("Y-m-d"); 
-    $query = "UPDATE employees SET cod = ?, name = ?, last_name = ?, dni = ?, date_birth = ?, home = ? WHERE cod = ?";
+    $query = "UPDATE employees SET cod = ?, name = ?, last_name = ?, dni = ?,type_contract = ?, date_birth = ?, home = ? WHERE cod = ?";
     $statement = $db->prepare($query);
-    return $statement->execute([$cod, $name, $last_name, $dni, $date_birth, $home, $cod]);
+    return $statement->execute([$cod, $name, $last_name, $dni, $type_contract, $date_birth, $home, $cod]);
 }
 function getEmployeeById($cod)
 {
     $db = getDatabase();
-    $statement = $db->prepare("SELECT cod, name, last_name, dni, date_birth, home  FROM employees WHERE cod = ?");
+    $statement = $db->prepare("SELECT cod, name, last_name, dni, type_contract, type_contract, date_birth, home  FROM employees WHERE cod = ?");
     $statement->execute([$cod]);
     return $statement->fetchObject();
 }
-function saveEmployee($cod, $name, $last_name, $dni, $date_birth, $home)
+function saveEmployee($cod, $name, $last_name, $dni, $type_contract, $date_birth, $home)
 { 
    
     $datebirth = date("Y-m-d");
-    $query = "INSERT INTO employees(`cod`, `name`, `last_name`, `dni`, `date_birth`, `home` ) VALUES (?,?,?,?,?,?)";
+    $query = "INSERT INTO employees(`cod`, `name`, `last_name`, `dni`, `type_contract`, `date_birth`, `home` ) VALUES (?,?,?,?,?,?,?)";
     $db = getDatabase();
     $statement = $db->prepare($query);
-    return $statement->execute([$cod, $name, $last_name, $dni, $date_birth, $home]);
+    return $statement->execute([$cod, $name, $last_name, $dni, $type_contract, $date_birth, $home]);
 }
 
 function getEmployees()
 {
     $db = getDatabase();
-    $statement = $db->query("SELECT `cod`, `name`, `last_name`, `dni`, `date_birth`, `home`  FROM employees");
+    $statement = $db->query("SELECT `cod`, `name`, `last_name`, `dni`, `type_contract`, `date_birth`, `home`  FROM employees");
     return $statement->fetchAll();
 }
 
