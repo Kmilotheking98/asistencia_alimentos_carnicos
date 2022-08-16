@@ -45,7 +45,6 @@ body.dark{
     --toggle-color: #fff;
     --text-color: #ccc;
 }
-
 /* ===== Sidebar ===== */
  .sidebar{
     position: fixed;
@@ -214,7 +213,7 @@ body.dark .sidebar li a:hover .text{
 }
 
 .sidebar .menu-bar{
-    height: calc(100% - 55px);
+    height: calc(95% - 55px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;

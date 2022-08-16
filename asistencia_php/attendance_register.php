@@ -1,6 +1,7 @@
 <?php
-include_once "header.php";
 include_once "slidernavbar.php";
+include_once "header.php";
+
 if ($_SESSION['permit'] ==3) {
     header("Location: employees.php");
 }
@@ -84,10 +85,10 @@ if ($_SESSION['permit'] ==3) {
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div>          
     </div>
 </div>
-</section>
+
 <script src="js/vue.min.js"></script>
 <script src="js/vue-toasted.min.js"></script>
 <script>
@@ -131,10 +132,17 @@ if ($_SESSION['permit'] ==3) {
                     method: "POST",
                     body: JSON.stringify(payload),
                 });
-                this.$toasted.show("Saved", {
+                this.$toasted.show("Guardado",{
                     position: "top-left",
                     duration: 1000,
-                });
+                },
+                    Swal.fire(
+                        'Datos Registrados!',
+                        'Guardado!',
+                        'success',
+                              )
+                );
+                
             },
             async refreshEmployeesList() {
                 // Get all employees
@@ -174,5 +182,6 @@ if ($_SESSION['permit'] ==3) {
         },
     });
 </script>
+</section>
 <?php
 

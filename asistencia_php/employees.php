@@ -1,11 +1,10 @@
-
-
 <?php
 include_once "slidernavbar.php";
 include_once "header.php";
 include_once "functions.php";
 $employees = getEmployees();
 include("conexion.php");
+session_start();
 
 if ($_SESSION['permit'] ==2) {
     header("Location: attendance_report.php");
@@ -31,7 +30,23 @@ if ($_SESSION['permit'] ==2) {
                 </svg>
                 &nbspRegistrar Empleado
             </a>
+                <?php
 
+                if (isset($_SESSION['msj'])){ 
+                    $respuesta = $_SESSION['msj'];?> 
+                <script>
+                    Swal.fire(
+                    '<?php echo $_SESSION['info']; ?>',
+                    '<?php echo $respuesta; ?>',
+                    //'REGISTRO EXITOSO',
+                    'success'
+                            )
+                </script>    
+                            
+                 <?php 
+                unset($_SESSION['info']);
+                unset($_SESSION['msj']);
+                } ?>     
             <form class='d-flex' action="buscar_employee.php" method="post">
                         <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text"
                             name="buscar" id="">
@@ -43,7 +58,7 @@ if ($_SESSION['permit'] ==2) {
     
         <div class="tabla__employees rounded border">
             <div class="table-responsive">
-                <table class="table">
+                <table  class="table table-striped">
                     <thead>
                         <tr>
                             <th>CODIGO</th>
@@ -84,17 +99,46 @@ if ($_SESSION['permit'] ==2) {
 
                             <td>
                                 <a class="btn btn-warning" href="employee_edit.php? cod=<?php echo $employee->cod ?>">
-                                    Editar <i class="fa fa-edit"></i>
+                                    Editar
+                                     <!-- <i class="bx bx-edit-alt icon"> -->
+
+                                     <i></i>
                                 </a>
                             </td>
                             <td>
-                                <a class="btn btn-danger" href="employee_delete.php?cod=<?php echo $employee->cod ?>">
-                                    Borrar <i class="fa fa-trash"></i>
+
+                                <a class="btn btn-danger" href="#" onclick="question(<?php echo $employee->cod ?>)">
+                                    Borrar 
+                                    <!-- <i class="bx bx-trash-alt icon" > -->
+
+                                    <i></i>
                                 </a>
                             </td>
                         </tr>
                         <?php } ?>
                     </tbody>
+                    <script type="text/javascript">
+                  function question(cod){
+
+                        Swal.fire({
+                            title: '¿Está seguro?',
+                            text: "¡No podrás revertir esto!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#695CFE',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: '¡Si, Borralo!',
+                            cancelButtonText: '¡No, Cancelar!'
+                            }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "employee_delete.php?cod="+cod;
+                               
+                            }
+                            })
+                                
+                  }
+
+                    </script>                        
                 </table>
             </div>
 

@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +6,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./bootstrap5/css/bootstrap.css">
     <link rel="stylesheet" href="./style.css">
+  
       <!----===== Boxicons CSS ===== -->
       <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Document</title>
@@ -18,5 +16,6 @@ session_start();
 
 <script src="script.js"></script>
 <script src="./bootstrap5/js/bootstrap.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
