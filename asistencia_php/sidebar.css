@@ -292,6 +292,20 @@ body.dark .home .text{
 
 @media (max-width: 754px) {
 
+    .sidebar.close {
+        width: 86px;
+    height: 79px;
+    border-radius: 12px;
+    }
+
+
     
+.sidebar {
+    
+    top: 9px;
+    left: 6px;
+    padding: 3px 14px;
+ 
+    }
     
 }
