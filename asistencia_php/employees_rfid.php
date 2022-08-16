@@ -1,29 +1,32 @@
 <?php
-include_once "header.php";
 include_once "slidernavbar.php";
+include_once "header.php";
 
-if ($_SESSION['permit'] ==2) {
+
+if ($_SESSION['permit'] == 2) {
     header("Location: attendance_report.php");
 }
 
 ?>
-?>
+<!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+  
 <section class="home">
 <div class="container cont__me employees__content" id="app">
     <div class="col-12">
         <h1 class="text-center">EMPAREJAMIENTO RFID</h1>
     </div>
     <div>
-        <form action="buscar_rfid.php" method="post">
-            <input type="text" name="buscar" id="">
-            <input type="submit" value="Search">
+        <form class='d-flex' action="buscar_rfid.php" method="post">
+            <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text" name="buscar" id="">
+            <input class="btn btn__me" type='submit'  value="Buscar">
 
         </form>
     </div>
     <div class="col-12">
         <div class="table-responsive">
-            <table class="table">
-                <thead>
+            <table class="table table-striped">
+                <thead >
                     <tr>
                         <th>
                             EMPLEADOS
@@ -41,14 +44,14 @@ if ($_SESSION['permit'] ==2) {
                         <td>{{employee.name}}</td>
                         <td>
 
-                            <h4 v-if="employee.rfid_serial"><span class="badge badge-success"><i class="fa fa-check"></i>&nbsp;Assigned ({{employee.rfid_serial}})</span></h4>
-                            <h4 v-else-if="employee.waiting"><span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;Waiting... Please read a RFID card</span></h4>
-                            <h4 v-else><span class="badge badge-primary"><i class="fa fa-times"></i>&nbsp;Not assigned</span></h4>
+                            <h4 v-if="employee.rfid_serial" class="btn btn-success"><span ><i class="fa fa-check"></i>&nbsp;Asignado ({{employee.rfid_serial}})</span></h4>
+                            <h4 v-else-if="employee.waiting" class="btn btn-warning"><span ><i class="fa fa-clock"></i>&nbsp;Esperando... por favor pasa la tarjeta RFID </span></h4>
+                            <h4 v-else><span class="btn btn-info"><i class="fa fa-times"></i>&nbsp;No registrado</span></h4>
                         </td>
                         <td>
-                            <button @click="removeRfidCard(employee.rfid_serial)" v-if="employee.rfid_serial" class="btn btn-danger">Remove</button>
-                            <button v-else-if="employee.waiting" @click="cancelWaitingForPairing" class="btn btn-warning">Cancel</button>
-                            <button @click="assignRfidCard(employee)" v-else class="btn btn-info">Assign</button>
+                            <button @click="removeRfidCard(employee.rfid_serial)" v-if="employee.rfid_serial" class="btn btn-danger">Remover</button>
+                            <button v-else-if="employee.waiting" @click="cancelWaitingForPairing" class="btn btn-warning">Cancelar</button>
+                            <button @click="assignRfidCard(employee)" v-else class="btn btn-info">Asignar</button>
                         </td>
                     </tr>
                 </tbody>
