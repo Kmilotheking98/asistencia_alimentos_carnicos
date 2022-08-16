@@ -36,18 +36,18 @@ $employees = getEmployeesWithAttendanceCount($start, $end);
     </div>
     <div class="col-12">
         <div class="table-responsive">
-            <table class="table">
+            <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th> CODIGO DE EMPLEADO</th>
                         <th>EMPLEADO</th>
                         <th>ASISTENCIAS</th>
                         <th>INACISTENCIAS</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     <?php foreach ($employees as $employee) { ?>
-                        <tr>
+                        <tr class="text-center">
                         <td>
                                 <?php echo $employee->cod ?>
                             </td>

@@ -22,8 +22,8 @@ if ($_SESSION['permit'] ==3) {
     </div>
     <div class="col-12">
         <div class="table-responsive">
-            <table class="table">
-                <thead>
+            <table class="table table-striped">
+                <thead class="text-center">
                     <tr>
                     <th>
                             CODIGO
@@ -47,8 +47,8 @@ if ($_SESSION['permit'] ==3) {
                 </thead>
                 <tbody>
                     <tr v-for="employee in employees">
-                    <td>{{employee.cod}}</td>
-                        <td>{{employee.name}}</td>
+                    <td class="text-center">{{employee.cod}}</td>
+                        <td class="text-center">{{employee.name}}</td>
                         <td>
                             <select v-model="employee.job" class="form-control">
                                 <option disabled value="unset">--seleccionar--</option>

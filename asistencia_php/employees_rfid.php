@@ -17,15 +17,15 @@ if ($_SESSION['permit'] ==2) {
         <h1 class="text-center">EMPAREJAMIENTO RFID</h1>
     </div>
     <div>
-        <form action="buscar_rfid.php" method="post">
-            <input type="text" name="buscar" id="">
-            <input type="submit" value="Buscar">
+        <form class='d-flex' action="buscar_rfid.php" method="post">
+            <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text" name="buscar" id="">
+            <input class="btn btn__me" type='submit'  value="Buscar">
 
         </form>
     </div>
     <div class="col-12">
         <div class="table-responsive">
-            <table class="table">
+            <table class="table table-striped">
                 <thead >
                     <tr>
                         <th>
