@@ -1,6 +1,7 @@
 <?php
-include_once "header.php";
 include_once "slidernavbar.php";
+include_once "header.php";
+
 if ($_SESSION['permit'] ==3) {
     header("Location: employees.php");
 }
@@ -21,8 +22,8 @@ if ($_SESSION['permit'] ==3) {
     </div>
     <div class="col-12">
         <div class="table-responsive">
-            <table class="table">
-                <thead>
+            <table class="table table-striped">
+                <thead class="text-center">
                     <tr>
                     <th>
                             CODIGO
@@ -46,8 +47,8 @@ if ($_SESSION['permit'] ==3) {
                 </thead>
                 <tbody>
                     <tr v-for="employee in employees">
-                    <td>{{employee.cod}}</td>
-                        <td>{{employee.name}}</td>
+                    <td class="text-center">{{employee.cod}}</td>
+                        <td class="text-center">{{employee.name}}</td>
                         <td>
                             <select v-model="employee.job" class="form-control">
                                 <option disabled value="unset">--seleccionar--</option>
@@ -84,10 +85,10 @@ if ($_SESSION['permit'] ==3) {
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div>          
     </div>
 </div>
-</section>
+
 <script src="js/vue.min.js"></script>
 <script src="js/vue-toasted.min.js"></script>
 <script>
@@ -131,10 +132,17 @@ if ($_SESSION['permit'] ==3) {
                     method: "POST",
                     body: JSON.stringify(payload),
                 });
-                this.$toasted.show("Saved", {
+                this.$toasted.show("Guardado",{
                     position: "top-left",
                     duration: 1000,
-                });
+                },
+                    Swal.fire(
+                        'Datos Registrados!',
+                        'Guardado!',
+                        'success',
+                              )
+                );
+                
             },
             async refreshEmployeesList() {
                 // Get all employees
@@ -174,5 +182,6 @@ if ($_SESSION['permit'] ==3) {
         },
     });
 </script>
+</section>
 <?php
 

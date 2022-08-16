@@ -1,16 +1,4 @@
-/* Google Font Import - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-   /*  font-family: 'Poppins', sans-serif; */
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-
-
-:root{
+:root {
     /* ===== Colors ===== */
     --body-color: #e7eaf3;
     --sidebar-color: #FFF;
@@ -26,18 +14,20 @@
     --tran-05: all 0.3s ease;
 }
 
-body{
-    min-height: 100vh;
+body {
     background-color: var(--body-color);
     transition: var(--tran-05);
+    color: #80808000;
+    padding: 20px;
+    margin-top: 20px;
 }
 
-::selection{
+::selection {
     background-color: var(--primary-color);
     color: #fff;
 }
 
-body.dark{
+body.dark {
     --body-color: #18191a;
     --sidebar-color: #242526;
     --primary-color: #3a3b3c;
@@ -51,7 +41,7 @@ body.dark{
     top: 0;
     left: 0;
     height: 100%;
-    width: 250px;
+    width: 281px;
     padding: 10px 14px;
     background: var(--sidebar-color);
     transition: var(--tran-05);
@@ -139,6 +129,7 @@ header .image-text .profession{
 }
 
 .sidebar header .toggle{
+    
     position: absolute;
     top: 50%;
     right: -25px;
@@ -213,7 +204,7 @@ body.dark .sidebar li a:hover .text{
 }
 
 .sidebar .menu-bar{
-    height: calc(95% - 55px);
+    height: calc(100% - 55px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -222,129 +213,6 @@ body.dark .sidebar li a:hover .text{
 .menu-bar::-webkit-scrollbar{
     display: none;
 }
-.sidebar .menu-bar .mode{
-    border-radius: 6px;
-    background-color: var(--primary-color-light);
-    position: relative;
-    transition: var(--tran-05);
-}
-
-.menu-bar .mode .sun-moon{
-    height: 50px;
-    width: 60px;
-}
-
-.mode .sun-moon i{
-    position: absolute;
-}
-.mode .sun-moon i.sun{
-    opacity: 0;
-}
-body.dark .mode .sun-moon i.sun{
-    opacity: 1;
-}
-body.dark .mode .sun-moon i.moon{
-    opacity: 0;
-}
-
-.menu-bar .bottom-content .toggle-switch{
-    position: absolute;
-    right: 0;
-    height: 100%;
-    min-width: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    cursor: pointer;
-}
-.toggle-switch .switch{
-    position: relative;
-    height: 22px;
-    width: 40px;
-    border-radius: 25px;
-    background-color: var(--toggle-color);
-    transition: var(--tran-05);
-}
-
-.switch::before{
-    content: '';
-    position: absolute;
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    background-color: var(--sidebar-color);
-    transition: var(--tran-04);
-}
-
-body.dark .switch::before{
-    left: 20px;
-}
-
-.home{
-    position: absolute;
-    top: 0;
-    top: 0;
-    left: 250px;
-    height: auto;
-    width: calc(100% - 250px);
-    background-color: var(--body-color);
-    transition: var(--tran-05);
-}
-
-.cont__me{
-    color: var(--text-color);
-    width: calc(110% - 250px);
-    padding: 0px 0px 0px 0px;    
-}
-
-.btn__me{
-    background-color: var(--primary-color);
-    color: #e7eaf3;
-    font-weight: 500;
-    
-}
-.employees__content{
-    margin-top: 60px;
-}
-
-.buscar__employees__input{
-    width: 60%;
-    margin-top: 40px;
-}
-
-.tabla__employees{
-    margin-top: 35px;
-    background-color: white;
-    padding: 18px;
-}
-
-.home .text{
-    font-size: 25px;
-    font-weight: 200;
-    color: var(--text-color);
-    padding: 12px 60px;
-}
-
-.sidebar.close ~ .home{
-    left: 78px;
-    height: 100vh;
-    width: calc(100% - 78px);
-}
-body.dark .home .text{
-    color: var(--text-color);
-}
-
-.table-{
-
-overflow: scroll;
-
-}
-
-
 .sidebar .menu-bar .mode{
     border-radius: 6px;
     background-color: var(--primary-color-light);
