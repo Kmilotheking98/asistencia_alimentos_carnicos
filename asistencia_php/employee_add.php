@@ -3,7 +3,7 @@ include_once "slidernavbar.php";
 include_once "header.php";
 ?>
 
-
+  
 <section class="home">
     <div class="container cont__me employees__content">
     <div class="col-12">
