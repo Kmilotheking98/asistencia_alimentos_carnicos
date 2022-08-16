@@ -11,8 +11,26 @@ if ($_SESSION['permit'] ==2) {
 
 ?>
 
-<section class="home">
 
-</section>
+<!DOCTYPE html>
+
+<body>
+
+    <!-- 1 Navbar Resposible -->
+
+
+
+
+    <div class="employees-home ">
+
+    
+    </div>
+
+
+
+  
+</body>
+
+</html>
 
 <?php
