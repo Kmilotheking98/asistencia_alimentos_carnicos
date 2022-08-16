@@ -3,7 +3,7 @@ include_once "slidernavbar.php";
 include_once "header.php";
 
 
-if ($_SESSION['permit'] ==2) {
+if ($_SESSION['permit'] == 2) {
     header("Location: attendance_report.php");
 }
 

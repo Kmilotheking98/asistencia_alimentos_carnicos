@@ -19,5 +19,7 @@
 <script src="script.js"></script>
 <script src="./bootstrap5/js/bootstrap.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="./navbar-responsible.js"></script>
+
 </body>
 </html>

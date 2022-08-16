@@ -1,15 +1,17 @@
 <?php
+session_start();
 include_once "slidernavbar.php";
 include_once "header.php";
 include_once "functions.php";
 $employees = getEmployees();
 include("conexion.php");
-session_start();
 
-if ($_SESSION['permit'] ==2) {
+
+if ($_SESSION['permit'] == 2) {
     header("Location: attendance_report.php");
 }
 
+error_reporting(E_ALL ^ E_NOTICE);
 ?>
 
 <section class="home">

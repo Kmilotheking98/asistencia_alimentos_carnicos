@@ -26,7 +26,7 @@ if($permit == 1){
 
                 <div class="text logo-text">
                     <span class="name">Asistencia</span>
-                    <h5 ><?php echo $permittext; ?></h5>
+                    <h5 style='line-height: 0.5;' ><?php echo $permittext; ?></h5>
                     <h1 class="profession"><?php echo $user; ?></h1>
                 </div>
             </div>
