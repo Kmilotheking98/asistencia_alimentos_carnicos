@@ -11,7 +11,7 @@ if ($_SESSION['permit'] == 2) {
     header("Location: attendance_report.php");
 }
 
-error_reporting(E_ALL ^ E_NOTICE);
+
 ?>
 
 <section class="home">

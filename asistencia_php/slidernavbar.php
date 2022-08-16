@@ -1,5 +1,7 @@
 <?php 
+error_reporting(E_ALL ^ E_NOTICE);
 session_start();
+
 $user=$_SESSION['user'];
 $permit=$_SESSION['permit'];
 if(!isset($_SESSION['user'])){
