@@ -8,6 +8,8 @@
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="./bootstrap5/css/bootstrap.css">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./sidebar.css">
+    
   
       <!----===== Boxicons CSS ===== -->
       <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
