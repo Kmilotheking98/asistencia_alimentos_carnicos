@@ -5,7 +5,7 @@ include_once "functions.php";
 $employees = getEmployees();
 include("conexion.php");
 
-if ($_SESSION['permit'] ==2) {
+if ($_SESSION['permit'] == 2) {
     header("Location: attendance_report.php");
 }
 
@@ -47,23 +47,7 @@ if ($_SESSION['permit'] ==2) {
                             </svg>                            
                             &nbspRegistrar Empleado
                         </a>
-                            <?php
-
-                                if (isset($_SESSION['msj'])){ 
-                                    $respuesta = $_SESSION['msj'];?> 
-                                        <script>
-                                            Swal.fire(
-                                            '<?php echo $_SESSION['info']; ?>',
-                                            '<?php echo $respuesta; ?>',
-                                            //'REGISTRO EXITOSO',
-                                            'success'
-                                                    )
-                                        </script>    
-                                            
-                                 <?php 
-                                unset($_SESSION['info']);
-                                unset($_SESSION['msj']);
-                            } ?> 
+                           
                     </div>
 
                 </div>
@@ -130,22 +114,30 @@ if ($_SESSION['permit'] ==2) {
                                 </td>
                                 <td>
                                     <?php echo $employee['6'] ?>
-                                </td>                                
+                                </td>  
                                 <td>
-                                <a class="btn btn-warning" href="employee_edit.php? cod=<?php echo $employee->cod ?>">
-                                    Editar
+                                    <a class="btn btn-warning"
+                                        href="employee_edit.php?cod=<?php echo $employee['0'] ?>">
+                                        Editar
                                      <!-- <i class="bx bx-edit-alt icon"> -->
                                      <i></i>
-                                </a>
+                                    </a>
                                 </td>
-                                <td>
-
-                                <a class="btn btn-danger" href="#" onclick="question(<?php echo $employee->cod ?>)">
-                                    Borrar 
-                                    <!-- <i class="bx bx-trash-alt icon" > -->
-                                    <i></i>
-                                </a>
-                                </td>
+                                <td> 
+                                    <?php
+                                    // capturar codigo en variable para que pueda eliminar por mediante la busqueda  
+                                    $cod = $employee['0']; 
+                                   // echo"$cod";
+                                     ?>                                  
+                                <a class="btn btn-danger" href="#" onclick="question(<?php echo $cod ?>)">                                    
+                                    <!-- <a 
+                                        href="employee_delete.php?cod="> -->
+                                        Borrar 
+                                        <!-- <i class="bx bx-trash-alt icon" > -->
+                                        <i></i>
+                                    </a>
+                                </td>                                
+                                                         
                             </tr>
                             <?php   }}elseif($_POST['buscar']==""){
                                 echo"<br> <p style='font-size:30px;font-weight:bold;'>Por favor ingresar dato a buscar del empleado...</p><br> ";
@@ -154,7 +146,7 @@ if ($_SESSION['permit'] ==2) {
                             } ?>
                     </tbody>
                     <script type="text/javascript">
-                  function question(cod){
+                  function question($cod){
 
                         Swal.fire({
                             title: '¿Está seguro?',
@@ -167,7 +159,7 @@ if ($_SESSION['permit'] ==2) {
                             cancelButtonText: '¡No, Cancelar!'
                             }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = "employee_delete.php?cod="+cod;
+                                window.location.href = "employee_delete.php?cod="+$cod;
                                
                             }
                             })
