@@ -8,10 +8,8 @@ if ($_SESSION['permit'] == 2) {
 }
 
 ?>
-<!-- Bootstrap CSS -->
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
-  
-<section class="home">
+
+<section class="employees-home ">
 <div class="container cont__me employees__content" id="app">
     <div class="col-12">
         <h1 class="text-center">EMPAREJAMIENTO RFID</h1>
