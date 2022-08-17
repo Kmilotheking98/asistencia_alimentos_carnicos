@@ -31,7 +31,6 @@ body {
     transition: var(--tran-05);
     color: #80808000;
     padding: 20px;
-    margin-top: 20px;
 }
 
 ::selection {
@@ -51,23 +50,72 @@ body.dark {
 /* ====== Home Employee ====== */
 
 .employees-home {
-color: var(--text-color);
-text-align: justify;
-float: right;
-width: 90%;
+    color: var(--text-color);
+    text-align: justify;
+    float: right;
+    width: 90%;
+    padding: 10px;
 }
 
-.btn__me{
+.btn__me {
     background-color: var(--primary-color);
     color: #e7eaf3;
     font-weight: 500;
 }
 
+.barra-top {
+    width: 100%;
+    height: auto;
+}
+
+.container-barra{
+
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+.barra-buscar-container{
+
+    width: auto;
+}
+
+.table-container{
+
+    width: 100%;
+    height: auto;
+    margin-top: 25px;
+    background: var(--sidebar-color);
+    height: auto;
+    border-radius: 20px;
+    padding: 20px;
+    color: var(--text-color);
+
+}
+
+.table{color: var(--text-color);}
 
 @media (max-width: 754px) {
 
-   
-    
-    
-    }
+.employees-home {
 
+float: none;
+width: 100%;
+margin-top: 65px;
+
+}
+
+
+}
+
+@media (max-width: 594px) {
+
+
+    .container-barra{
+
+        
+        display: flex;
+        flex-direction: column;
+
+    } 
+
+}
