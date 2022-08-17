@@ -4,14 +4,11 @@ include_once "header.php";
 ?>
 
   
-
-<!DOCTYPE html>
-
-<body>
-    <div class="employees-home ">
-        <div class="col-12">
-              <h1 class="text-left">REGISTRAR EMPLEADOS</h1>
-        </div>
+<section class="home">
+    <div class="container cont__me employees__content">
+    <div class="col-12">
+        <h1 class="text-center">REGISTRAR EMPLEADOS</h1> 
+            
     <form action="employee_save.php" method="POST">
             <div class="form-group">
                 <label for="name">CODIGO</label>
@@ -42,7 +39,6 @@ include_once "header.php";
             </div>
         </form>
 
-        </div>
-</body>
-</html>
+    </div>
+</section>
 <?php

@@ -17,13 +17,13 @@ if($permit == 1){
 }
 ?>
 
-<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/png" href="img/logo.png">
 
 <nav class="sidebar close">
         <header >
             <div class="image-text">
                 <span class="image">
-                    <img src="logo.png" alt="">
+                    <img src="img/logo.png" alt="">
                 </span>
 
                 <div class="text logo-text">

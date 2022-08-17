@@ -14,67 +14,53 @@ if ($_SESSION['permit'] == 2) {
 
 ?>
 
+<section class="home">
 
-<!DOCTYPE html>
-
-<body>
-
-    <div class="employees-home ">
+    <div class="container cont__me employees__content">
         <div class="col-12">
               <h1 class="text-left">EMPLEADOS</h1>
         </div>
-        <div class="barra-top">
-            <div class="container-barra  bd-highlight">
-                <div class="barra-buscar-container p-2 bd-highlight">
 
-                    <form class='d-flex' action="buscar_employee.php" method="post">
-                        <input placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text" name="buscar"
-                            id="">
+        <div class='d-flex justify-content-end'>
+
+        <a href="employee_add.php" type="button" class="btn btn-warning me-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                    <path fill-rule="evenodd"
+                        d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                </svg>
+                &nbspRegistrar Empleado
+            </a>
+                <?php
+
+                if (isset($_SESSION['msj'])){ 
+                    $respuesta = $_SESSION['msj'];?> 
+                <script>
+                    Swal.fire(
+                    '<?php echo $_SESSION['info']; ?>',
+                    '<?php echo $respuesta; ?>',
+                    //'REGISTRO EXITOSO',
+                    'success'
+                            )
+                </script>    
+                            
+                 <?php 
+                unset($_SESSION['info']);
+                unset($_SESSION['msj']);
+                } ?>     
+            <form class='d-flex' action="buscar_employee.php" method="post">
+                        <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text"
+                            name="buscar" id="">
                         <input class="btn btn__me" type='submit' value="Buscar"></input>
-                    </form>
+            </form>
 
-                </div>
-                <div class="p-2 bd-highlight">
-
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    
-                        <a href="employee_add.php" type="button" class="btn btn-warning me-md-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-                                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                <path fill-rule="evenodd"
-                                    d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
-                            </svg>                            
-                            &nbspRegistrar Empleado
-                        </a>
-                            <?php
-
-                                if (isset($_SESSION['msj'])){ 
-                                    $respuesta = $_SESSION['msj'];?> 
-                                        <script>
-                                            Swal.fire(
-                                            '<?php echo $_SESSION['info']; ?>',
-                                            '<?php echo $respuesta; ?>',
-                                            //'REGISTRO EXITOSO',
-                                            'success'
-                                                    )
-                                        </script>    
-                                            
-                                 <?php 
-                                unset($_SESSION['info']);
-                                unset($_SESSION['msj']);
-                            } ?> 
-                    </div>
-
-                </div>
-            </div>
         </div>
 
-        <div class='table-container'>
-
-        <div class="tabla__employees rounded ">
+    
+        <div class="tabla__employees rounded border">
             <div class="table-responsive">
-                <table class="table">
+                <table  class="table table-striped">
                     <thead>
                         <tr>
                             <th>CODIGO</th>
@@ -117,6 +103,7 @@ if ($_SESSION['permit'] == 2) {
                                 <a class="btn btn-warning" href="employee_edit.php? cod=<?php echo $employee->cod ?>">
                                     Editar
                                      <!-- <i class="bx bx-edit-alt icon"> -->
+
                                      <i></i>
                                 </a>
                             </td>
@@ -125,6 +112,7 @@ if ($_SESSION['permit'] == 2) {
                                 <a class="btn btn-danger" href="#" onclick="question(<?php echo $employee->cod ?>)">
                                     Borrar 
                                     <!-- <i class="bx bx-trash-alt icon" > -->
+
                                     <i></i>
                                 </a>
                             </td>
@@ -152,17 +140,13 @@ if ($_SESSION['permit'] == 2) {
                                 
                   }
 
-                    </script>                          
+                    </script>                        
                 </table>
             </div>
 
         </div>
 
-        </div>
-
     </div>
-</body>
-
-</html>
+</section>
 
 <?php
