@@ -16,6 +16,10 @@ sum(case when status = 'absence' then 1 else 0 end) as absence_count
 
 function saveAttendanceData($date, $employees)
 {
+    // session_start();
+    // $_SESSION['info_r']= 'Datos Registrados!';
+    // $_SESSION['msj_r']= "El registro de asistencias se ha completado";
+    
     deleteAttendanceDataByDate($date);
     $db = getDatabase();
     $db->beginTransaction();
@@ -43,6 +47,10 @@ function getAttendanceDataByDate($date)
 
 function deleteEmployee($cod)
 {
+    session_start();
+    $_SESSION['info']= 'Datos Borrados!';
+    $_SESSION['msj']= "El empleado ha sido eliminado correctamente";
+
     $db = getDatabase();
     $statement = $db->prepare("DELETE FROM employees WHERE cod = ?");
     return $statement->execute([$cod]);
@@ -50,6 +58,10 @@ function deleteEmployee($cod)
 
 function updateEmployee($cod, $name, $last_name, $dni, $type_contract, $date_birth, $home)
 {
+    session_start();
+    $_SESSION['info']= 'Datos Actualizados!';
+    $_SESSION['msj']= "El empleado se actualizado de manera correcta";
+    
     $db = getDatabase();   
     $datebirth = date("Y-m-d"); 
     $query = "UPDATE employees SET cod = ?, name = ?, last_name = ?, dni = ?,type_contract = ?, date_birth = ?, home = ? WHERE cod = ?";
@@ -65,11 +77,16 @@ function getEmployeeById($cod)
 }
 function saveEmployee($cod, $name, $last_name, $dni, $type_contract, $date_birth, $home)
 { 
-   
+
+   session_start();
+    $_SESSION['info']= 'Nuevo Trabajador!';
+    $_SESSION['msj']= "El empleado se registro con exito";
+
     $datebirth = date("Y-m-d");
     $query = "INSERT INTO employees(`cod`, `name`, `last_name`, `dni`, `type_contract`, `date_birth`, `home` ) VALUES (?,?,?,?,?,?,?)";
     $db = getDatabase();
     $statement = $db->prepare($query);
+    
     return $statement->execute([$cod, $name, $last_name, $dni, $type_contract, $date_birth, $home]);
 }
 
