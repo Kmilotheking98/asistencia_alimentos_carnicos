@@ -2,17 +2,20 @@
 include_once "slidernavbar.php";
 include_once "header.php";
 
-if ($_SESSION['permit'] ==3) {
+if ($_SESSION['permit'] == 3) {
     header("Location: employees.php");
 }
 
 
 ?>
-<section class="home">
-<div class="container cont__me employees__content" id="app">
-    <div class="col-12">
-        <h1 class="text-center">ASISTENCIAS</h1>
-    </div>
+
+<!DOCTYPE html>
+
+<body>
+    <div class="employees-home " id="app">
+        <div class="col-12">
+              <h1 class="text-left">ASISTENCIAS</h1>
+        </div>
     <div class="col-12">
         <div class="form-inline mb-2">
             <label for="date">FECHA: &nbsp;</label>
@@ -22,7 +25,7 @@ if ($_SESSION['permit'] ==3) {
     </div>
     <div class="col-12">
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table">
                 <thead class="text-center">
                     <tr>
                     <th>
@@ -182,6 +185,7 @@ if ($_SESSION['permit'] ==3) {
         },
     });
 </script>
-</section>
+</div>
+</body>
+</html>
 <?php
-

@@ -19,11 +19,14 @@ if (isset($_GET["end"])) {
 }
 $employees = getEmployeesWithAttendanceCount($start, $end);
 ?>
-<section class="home">
-<div class="container cont__me employees__content">
-    <div class="col-12">
-        <h1 class="text-center">REGISTRO DE ASISTENCIAS</h1>
-    </div>
+
+<!DOCTYPE html>
+
+<body>
+    <div class="employees-home ">
+        <div class="col-12">
+              <h1 class="text-left">REGISTRO DE ASISTENCIAS</h1>
+        </div>
     <div class="col-12">
 
         <form action="attendance_report.php" class="form-inline mb-2">
@@ -36,7 +39,7 @@ $employees = getEmployeesWithAttendanceCount($start, $end);
     </div>
     <div class="col-12">
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table">
                 <thead>
                     <tr class="text-center">
                         <th> CODIGO DE EMPLEADO</th>
@@ -67,6 +70,6 @@ $employees = getEmployeesWithAttendanceCount($start, $end);
         </div>
     </div>
 </div>
-</section>
+</body>
+</html>
 <?php
-

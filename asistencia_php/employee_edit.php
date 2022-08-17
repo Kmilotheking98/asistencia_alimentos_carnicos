@@ -10,12 +10,13 @@ include("conexion.php");
 $query = mysqli_query($conexion,'SELECT type_contract FROM employees');
 
 ?>
+<!DOCTYPE html>
 
-<section class="home">
-    <div class="container cont__me employees__content">
-    <div class="col-12">
-        <h1 class="text-center">EDITAR EMPLEADO</h1>
-    </div>
+<body>
+    <div class="employees-home ">
+        <div class="col-12">
+              <h1 class="text-left">EDITAR EMPLEADO</h1>
+        </div>
     <div class="col-12">
         <form action="employee_update.php" method="POST">
             <input type="hidden" name="cod" value="<?php echo $employee->cod ?>">
@@ -54,6 +55,9 @@ $query = mysqli_query($conexion,'SELECT type_contract FROM employees');
             </div>
         </form>
     </div>
+
 </div>
-</section>
+</body>
+</html>
+
 <?php
