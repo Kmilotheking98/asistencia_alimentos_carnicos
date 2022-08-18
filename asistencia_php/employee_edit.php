@@ -1,7 +1,7 @@
 <?php
 if (!isset($_GET["cod"])) exit("No id provided");
-include_once "header.php";
 include_once "slidernavbar.php";
+include_once "header.php";
 $cod = $_GET["cod"];
 include_once "functions.php";
 $employee = getEmployeeById($cod);

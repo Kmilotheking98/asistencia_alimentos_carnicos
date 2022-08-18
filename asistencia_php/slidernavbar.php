@@ -80,6 +80,12 @@ if($permit == 1){
                         </a>
                     </li>
 
+                    <li >
+                    <a href="logout.php">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
 
 
 
@@ -138,13 +144,7 @@ if($permit == 1){
                     </div>
                 </li>
 
-                <li >
-                    <a href="logout.php">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-
+             
                 
 
                
