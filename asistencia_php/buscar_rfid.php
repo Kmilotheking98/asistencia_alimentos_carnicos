@@ -16,7 +16,7 @@ if ($_SESSION['permit'] == 2) {
     </div>
     <div>
     <form class='d-flex' action="buscar_rfid.php" method="post">
-            <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text" name="buscar" id="">
+            <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text" name="buscar" id="Buscar">
             <input class="btn btn__me" type='submit'  value="Buscar">
 
         </form>
@@ -50,14 +50,14 @@ if ($_SESSION['permit'] == 2) {
           $result = $conexion->query($query);
           $numero = mysqli_num_rows($result);
           if( mysqli_num_rows($result) > 0 AND $_POST['buscar'] != '') {
-            while($b_employee_rfid=mysqli_fetch_row($result)){ ?>
+            while($employee=mysqli_fetch_row($result)){ ?>
 
         <tbody>
             <tr v-for="employee in employees">
-                        <td>{{<?php echo $b_employee_rfid['0'] ?>}}</td>
+                        <td>{{employee.name}}</td>
                         <td>
 
-                            <h4 v-if="employee.rfid_serial" class="btn btn-success"><span ><i class="fa fa-check"></i>&nbsp;Asignado ({{<?php echo $b_employee_rfid['0'] ?>}})</span></h4>
+                            <h4 v-if="employee.rfid_serial" class="btn btn-success"><span ><i class="fa fa-check"></i>&nbsp;Asignado ({{employee.rfid_serial}})</span></h4>
                             <h4 v-else-if="employee.waiting" class="btn btn-warning"><span ><i class="fa fa-clock"></i>&nbsp;Esperando... por favor pasa la tarjeta RFID </span></h4>
                             <h4 v-else><span class="btn btn-info"><i class="fa fa-times"></i>&nbsp;No registrado</span></h4>
                         </td>
