@@ -1,4 +1,5 @@
 <?php 
+
 error_reporting(E_ALL ^ E_NOTICE);
 session_start();
 
@@ -17,13 +18,23 @@ if($permit == 1){
 }
 ?>
 
-<link rel="icon" type="image/png" href="img/logo.png">
+<!-- <link rel="icon" type="image/png" href="img/logo.png"> -->
+
+<head>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="stylesheet" href="./bootstrap5/css/bootstrap.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./sidebar.css">  
+      <!----===== Boxicons CSS ===== -->
+      <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+   
+</head>
 
 <nav class="sidebar close">
         <header >
             <div class="image-text">
                 <span class="image">
-                    <img src="img/logo.png" alt="">
+                    <img src="img/logo.png" alt="Alimentos Carnicos">
                 </span>
 
                 <div class="text logo-text">
