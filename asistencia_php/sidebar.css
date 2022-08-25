@@ -204,7 +204,7 @@ body.dark .sidebar li a:hover .text{
 }
 
 .sidebar .menu-bar{
-    height: calc(95% - 55px);
+    height: calc(97% - 55px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -301,7 +301,7 @@ body.dark .home .text{
 
     
 .sidebar {
-    height: auto;
+    height: 650;
     top: 9px;
     left: 6px;
     padding: 3px 14px;
