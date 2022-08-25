@@ -6,8 +6,10 @@ const modeSwitch = body.querySelector(".toggle-switch");
 const modeText = body.querySelector(".mode-Dark");
 
 load();
+loadtogle();
 toggle.addEventListener("click" , () =>{
     sidebar.classList.toggle("close");
+    storetogle(sidebar.classList.contains("close"))
 })
 
 searchBtn.addEventListener("click" , () =>{
@@ -36,7 +38,22 @@ function load() {
     }else if(darkmode=='true'){
         body.classList.add('dark')
     }
+
 }
+function loadtogle() {
+    const toglemode = localStorage.getItem("close")
+
+    if(!toglemode){
+        storetogle('true')
+    }else if(toglemode=='false'){
+        sidebar.classList.toggle("close")
+    }
+}
+
 function store(value) {
     localStorage.setItem('dark', value)
+
+}
+function storetogle(value) {
+    localStorage.setItem('close', value)
 }
