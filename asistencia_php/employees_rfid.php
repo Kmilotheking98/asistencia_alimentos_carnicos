@@ -15,17 +15,20 @@ if ($_SESSION['permit'] == 2) {
         <h1 class="text-center">EMPAREJAMIENTO RFID</h1>
     </div>
     <div>
-        <form class='d-flex' action="buscar_rfid.php" method="post">
-            <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text" name="buscar" id="">
+        <!-- <form class='d-flex' action="buscar_rfid.php" method="post">
+            <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="search" name="buscar" id="">
             <input class="btn btn__me" type='submit'  value="Buscar">
 
-        </form>
+        </form> -->
     </div>
     <div class="col-12">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead >
                     <tr>
+                        <th class="text-center">
+                            # CODIGO
+                        </th>                    
                         <th>
                             EMPLEADOS
                         </th>
@@ -39,6 +42,7 @@ if ($_SESSION['permit'] == 2) {
                 </thead>
                 <tbody>
                     <tr v-for="employee in employees">
+                        <td class="text-center">{{employee.cod}}</td>
                         <td>{{employee.name}}</td>
                         <td>
 
