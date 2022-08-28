@@ -28,7 +28,7 @@ if ($_SESSION['permit'] == 2) {
                 <div class="barra-buscar-container p-2 bd-highlight">
 
                     <form class='d-flex' action="buscar_employee.php" method="post">
-                        <input placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text" name="buscar"
+                        <input placeholder="¿Qué deceas buscar?" class="form-control me-3" type="search" name="buscar"
                             id="">
                         <input class="btn btn__me" type='submit' value="Buscar"></input>
                     </form>
@@ -91,10 +91,10 @@ if ($_SESSION['permit'] == 2) {
                     <tbody>
                         <?php foreach ($employees as $employee) { ?>
                         <tr>
-                            <td>
+                            <td class="text-center">
                                 <?php echo $employee->cod ?>
                             </td>
-                            <td>
+                            <td >
                                 <?php echo $employee->name ?>
                             </td>
                             <td>

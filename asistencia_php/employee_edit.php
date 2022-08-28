@@ -1,13 +1,19 @@
 <?php
+session_start();
 if (!isset($_GET["cod"])) exit("No id provided");
-include_once "header.php";
+
 include_once "slidernavbar.php";
+include_once "header.php";
 $cod = $_GET["cod"];
 include_once "functions.php";
 $employee = getEmployeeById($cod);
 // esto va conectado con el select 
 include("conexion.php");
 $query = mysqli_query($conexion,'SELECT type_contract FROM employees');
+
+if ($_SESSION['permit'] == 2) {
+    header("Location: attendance_report.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -22,7 +28,7 @@ $query = mysqli_query($conexion,'SELECT type_contract FROM employees');
             <input type="hidden" name="cod" value="<?php echo $employee->cod ?>">
             <div class="form-group">
                 <label for="name">CODIGO</label>
-                <input value="<?php echo $employee->cod ?>" name="cod" placeholder="Codigo del empleado" type="number" id="cod" class="form-control" required>
+                <input disabled value="<?php echo $employee->cod ?>" name="cod" placeholder="Codigo del empleado" type="number" id="cod" class="form-control" required>
                 <label for="name">NOMBRE</label>
                 <input value="<?php echo $employee->name ?>" name="name" placeholder="Nombre" type="text" id="name" class="form-control" required>
                 <label for="name">APELLIDOS</label>
