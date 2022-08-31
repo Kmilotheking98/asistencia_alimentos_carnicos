@@ -202,23 +202,23 @@ body.dark .sidebar li a:hover .text{
     color: var(--text-color);
 }
 
-.sidebar .menu-bar{
+/* .sidebar .menu-bar{
     height: calc(97% - 55px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow-y: scroll;
-}
+} */
 .menu-bar::-webkit-scrollbar{
     display: none;
 }
-.sidebar .menu-bar .mode{
+/* .sidebar .menu-bar .mode{
     border-radius: 6px;
     background-color: var(--primary-color-light);
     position: relative;
     transition: var(--tran-05);
     top: -49px;
-}
+} */
 
 .menu-bar .mode .sun-moon{
     height: 50px;
