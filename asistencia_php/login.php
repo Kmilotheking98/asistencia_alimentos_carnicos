@@ -32,12 +32,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title >Login</title>
     <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    
   </head>
-  <body>
+  <body class="login">
     <?php require 'partials/header.php' ?>
 
     <?php if(!empty($message)): ?>
@@ -45,12 +47,13 @@
     <?php endif; ?>
 
     <h1>Login</h1>
+
     <span>or <a href="signup.php">SignUp</a></span>
 
     <form action="login.php" method="POST">
       <input name="email" type="text" placeholder="Enter your email">
       <input name="password" type="password" placeholder="Enter your Password">
-      <input type="submit" value="Submit">
+      <input class="btn btn__me" type="submit" value="Entrar">
     </form>
   </body>
 </html>

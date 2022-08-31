@@ -25,10 +25,12 @@
   <head>
     <meta charset="utf-8">
     <title>SignUp</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
-  <body>
+  <body class="login">
 
     <?php require 'partials/header.php' ?>
 
@@ -42,10 +44,16 @@
     <form action="signup.php" method="POST">
       <input name="email" type="text" placeholder="Enter your email">
       <input name="name" type="text" placeholder="name">
-      <input name="rol_id" type="number" placeholder="rol">
+      <!-- <input name="rol_id" type="number" placeholder="rol"> -->
+      <select name="permit" class="form-control" placeholder="rol">
+          <option disabled value="unset">--Seleccionar Rol--</option>
+            <option value="1" name="permit" id="1">Administrador</option>
+            <option value='2' name='permit' id='2'>Supervisor</option>
+            <option value='3' name='permit' id='3'>Colaborador</option>
+      </select>
       <input name="password" type="password" placeholder="Enter your Password">
       <input name="confirm_password" type="password" placeholder="Confirm Password">
-      <input type="submit" value="Submit">
+      <input type="submit" value="Registrar">
     </form>
 
   </body>

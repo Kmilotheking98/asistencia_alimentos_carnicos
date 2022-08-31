@@ -1,40 +1,103 @@
+:root {
+  /* ===== Colors ===== */
+  --body-color: #e7eaf3;
+  --sidebar-color: #FFF;
+  --primary-color: #695CFE;
+  --primary-color-light: #F6F5FF;
+  --toggle-color: #DDD;
+  --text-color: #707070;
+  --text-color1: #333;
+  --text-color2: #F51D10;
+  
+  /* ====== Transition ====== */
+  --tran-03: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.3s ease;
+  --tran-05: all 0.3s ease;
+}
 /* General */
 body {
+  background-color: var(--body-color);
+  transition: var(--tran-05);
+  color: #80808000;
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
   text-align: center;
 }
 
+::selection {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+body.dark {
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --primary-color: #3a3b3c;
+  --primary-color-light: #3a3b3c;
+  --toggle-color: #fff;
+  --text-color: #ccc;
+}
 /* Input Forms*/
-input[type="text"], input[type="password"]{
+input[type="text"], input[type="password"],select{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: var(--primary-color-light);
+  color: var(--text-color);
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: 500;
+  transition: var(--tran-05);
+}
+
+input[type="submit"] {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: var(--primary-color-light);
+  color: var(--text-color);
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: 500;
+  transition: var(--tran-05);
+}
+input[type="submit"]:hover {
+  background-color:var(--primary-color-light); 
+}
+input[type="text"], input[type="password"],select{
+  height: 100%;
+  width: 100%;
   outline: none;
   padding: 20px;
   display: block;
   width: 300px;
   border-radius: 3px;
-  border: 1px solid #eee;
+  border: 1px solid var(--body-color);
   margin: 20px auto;
 }
 
 input[type="submit"] {
   padding: 10px;
-  color: #fff;
-  background: #0098cb;
-  width: 320px;
+  color:var(--sidebar-color);  
+  background:var(--primary-color);  
+  width: 295px;
   margin: 20px auto;
-  margin-top: 0;
+  margin-top: 5;
   border: 0;
   border-radius: 3px;
   cursor: pointer;
 }
 input[type="submit"]:hover {
-  background-color: #00b8eb;
+  background-color:var(--toggle-color); 
+    color:var(--text-color);  
 }
-
 /* Header */
 header {
-  border-bottom: 2px solid #eee;
+  border-bottom: 2px solid var(--sidebar-color); 
   padding: 20px 0;
   margin-bottom: 10px;
   width: 100%;
@@ -42,5 +105,22 @@ header {
 }
 header a {
   text-decoration: none;
-  color: #333;
+  color: var(--text-color1); 
 }
+
+.login {
+  color: var(--text-color1);
+
+}
+.imagelog{
+display: center;
+}
+
+
+.imagelog img{
+height: 50px;
+}
+.imagelog a{
+  color: var(--text-color2); 
+}
+  

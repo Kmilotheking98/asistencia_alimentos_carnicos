@@ -8,26 +8,27 @@ if ($_SESSION['permit'] == 2) {
 }
 
 ?>
-<!-- Bootstrap CSS -->
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
-  
-<section class="home">
+
+<section class="employees-home ">
 <div class="container cont__me employees__content" id="app">
     <div class="col-12">
         <h1 class="text-center">EMPAREJAMIENTO RFID</h1>
     </div>
     <div>
-        <form class='d-flex' action="buscar_rfid.php" method="post">
-            <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text" name="buscar" id="">
+        <!-- <form class='d-flex' action="buscar_rfid.php" method="post">
+            <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="search" name="buscar" id="">
             <input class="btn btn__me" type='submit'  value="Buscar">
 
-        </form>
+        </form> -->
     </div>
     <div class="col-12">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead >
                     <tr>
+                        <th class="text-center">
+                            # CODIGO
+                        </th>                    
                         <th>
                             EMPLEADOS
                         </th>
@@ -41,6 +42,7 @@ if ($_SESSION['permit'] == 2) {
                 </thead>
                 <tbody>
                     <tr v-for="employee in employees">
+                        <td class="text-center">{{employee.cod}}</td>
                         <td>{{employee.name}}</td>
                         <td>
 

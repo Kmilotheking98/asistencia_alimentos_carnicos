@@ -12,14 +12,15 @@ if ($_SESSION['permit'] == 2) {
 
 <div class="container cont__me employees__content" id="app">
     <div class="col-12">
-        <h1 class="text-center">EMPAREJAR  RFID</h1>
+        <h1 class="text-center">BUSQUEDA RFID</h1>
     </div>
     <div>
-    <form class='d-flex' action="buscar_rfid.php" method="post">
-            <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="text" name="buscar" id="Buscar">
-            <input class="btn btn__me" type='submit'  value="Buscar">
+    <!-- <form class='d-flex' action="buscar_rfid.php" method="post"> -->
+            <input @inputs="consultarempolyees" type="search" id="buscar" name="buscar"
+            style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3">
+            <!-- <input class="btn btn__me" type='submit'  value="Buscar"> -->
 
-        </form>
+        <!-- </form> -->
     </div>
     <div class="col-12">
     <div class="table-responsive">
@@ -37,7 +38,7 @@ if ($_SESSION['permit'] == 2) {
                     </th>
                 </tr>
             </thead>
- <?php
+ <!-- <?php
           $aKeyword= explode(" ", $_POST['buscar']);
 
           $query ="SELECT * FROM employee_rfid WHERE  employee_id  LIKE LOWER('%".$aKeyword[0]."%') OR rfid_serial LIKE LOWER('%".$aKeyword[0]."%')";
@@ -50,22 +51,23 @@ if ($_SESSION['permit'] == 2) {
           $result = $conexion->query($query);
           $numero = mysqli_num_rows($result);
           if( mysqli_num_rows($result) > 0 AND $_POST['buscar'] != '') {
-            while($employee=mysqli_fetch_row($result)){ ?>
+            while($employee_rfid=mysqli_fetch_row($result)){ ?> -->
 
         <tbody>
             <tr v-for="employee in employees">
+                        <!-- <td>{{<?php echo $employee_rfid['0'] ?>}}</td> -->
                         <td>{{employee.name}}</td>
-                        <td>
-
-                            <h4 v-if="employee.rfid_serial" class="btn btn-success"><span ><i class="fa fa-check"></i>&nbsp;Asignado ({{employee.rfid_serial}})</span></h4>
+                        <td v-for="item in employee">
+                        <h4  v-if="employee.rfid_serial" class="btn btn-success"><span ><i  class="fa fa-check"></i>&nbsp;Asignado ({{item}})</span></h4>
+                            <!-- <h4 v-if="employee.rfid_serial" class="btn btn-success"><span ><i class="fa fa-check"></i>&nbsp;Asignado ({{<?php echo $employee_rfid['0'] ?>}})</span></h4> -->
                             <h4 v-else-if="employee.waiting" class="btn btn-warning"><span ><i class="fa fa-clock"></i>&nbsp;Esperando... por favor pasa la tarjeta RFID </span></h4>
                             <h4 v-else><span class="btn btn-info"><i class="fa fa-times"></i>&nbsp;No registrado</span></h4>
                         </td>
-                        <td>
+                        <!-- <td>
                             <button @click="removeRfidCard(employee.rfid_serial)" v-if="employee.rfid_serial" class="btn btn-danger">Remover</button>
                             <button v-else-if="employee.waiting" @click="cancelWaitingForPairing" class="btn btn-warning">Cancelar</button>
                             <button @click="assignRfidCard(employee)" v-else class="btn btn-info">Asignar</button>
-                        </td>
+                        </td> -->
                 </tr>
             </tbody>
         </table>
@@ -73,37 +75,53 @@ if ($_SESSION['permit'] == 2) {
 </div>
 </div>
 </section>
-<?php     }}
-?>
+<!-- <?php     }}
+?> -->
 
 
 
 
 <script src="js/vue.min.js"></script>
 <script src="js/vue-toasted.min.js"></script>
-<script>
+<script >
     Vue.use(Toasted);
     let shouldCheck = true;
     const CHECK_PAIRING_EMPLOYEE_INTERVAL = 1000;
-function findById(items,employee_id){
-    for($i in items){
-        if(items[i].id == employee_id){
-            return items[i];
-        }
-    }
-    return null;
-}     
+
+    // function buscar_ahora(buscar) {
+    //     var parametros = {"buscar":buscar};
+    //     $.ajax({
+    //     data:parametros,
+    //     type: 'POST',
+    //     url: 'buscar.php',
+    //     success: function(data) {
+    //     document.getElementById("datos_buscador").innerHTML = data;
+    //     }
+    //     });
+    //     }
+// function findById(items,employee_id){
+//     for($i in items){
+//         if(items[i].id == employee_id){
+//             return items[i];
+//         }
+//     }
+//     return null;
+// }     
     new Vue({
         el: "#app",
         data: () => ({
             employees: [],
             date: "",
+
         }),
         async mounted() {
             await this.setReaderForReading();
             await this.refreshEmployeesList();
+           // await this.consultarempolyees();
         },
         methods: {
+
+
             async removeRfidCard(rfidSerial) {
                 await fetch("./remove_rfid_card.php?rfid_serial=" + rfidSerial);
                 this.$toasted.show("RFID removed", {
@@ -174,8 +192,38 @@ function findById(items,employee_id){
                 });
                 // Let Vue do its magic ;)
                 this.employees = employees;
-            }
-        },
+                // this.search = employees;
+                // console.log(search)
+            }, 
+                consultarempolyees() {
+                var key = event.target.value; 
+                var response = [];
+                    if (key != ""){
+                        for(employee of this.employees){
+                           for(value of object.value(employee)){
+                            if(value.indexOf(key) >= 0)
+                                response.push(employee);
+                            
+
+                            }
+                        } this.employees = response;
+                    }console.log(response)
+                    // fetch("./get_employees_with_rfid.php")
+                    // .then((response) => response.json())
+                    // .then((consulta)=>{                            
+                        
+                        // $.ajax({
+                        //         data:parametros,
+                        //         type: 'POST',
+                        //         url: 'buscar.php',
+                        //         success: function(data) {
+                        //         document.getElementById("datos_buscador").innerHTML = data;
+                        //         }
+                        //         });
+                    //     console.log(consulta);
+                    // } ).catch(console.log)
+         console.log(this.employees)   }            
+        }, 
     });
 </script>
 <?php
