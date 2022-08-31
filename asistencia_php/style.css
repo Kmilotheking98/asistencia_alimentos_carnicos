@@ -67,7 +67,7 @@ body.dark {
 }
 .sidebar.close ~ .employees-home{
     
-    padding-left: calc(5% - 100px);
+    padding-left: calc(100% - 99.99%);
 }
 
 /* ===== Reusable code - Here ===== */
@@ -363,6 +363,10 @@ body.dark .home .text{
         
         padding-left: calc(100% - 79%);
     }
+    .sidebar.close ~ .employees-home{
+    
+        padding-left: calc(100% - 92.99%);
+    }
     
     .employees-home {
     
@@ -378,6 +382,10 @@ body.dark .home .text{
     .sidebar ~ .employees-home{
         
         padding-left: calc(100% - 79%);
+    }
+    .sidebar.close ~ .employees-home{
+    
+        padding-left: calc(100% - 90.99%);
     }
     
     .employees-home {
@@ -396,6 +404,10 @@ body.dark .home .text{
         
         padding-left: calc(100% - 79%);
     }
+    .sidebar.close ~ .employees-home{
+    
+        padding-left: calc(100% - 90.99%);
+    }
     
     .employees-home {
     
@@ -413,6 +425,10 @@ body.dark .home .text{
         .sidebar ~ .employees-home{
             
             padding-left: calc(100% - 62%);
+        }
+        .sidebar.close ~ .employees-home{
+    
+            padding-left: calc(100% - 88.99%);
         }
         
         .employees-home {
