@@ -52,7 +52,7 @@ if($permit == 1){
 
                 <li class="search-box">
                     <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
+                    <input type="search" placeholder="Search...">
                 </li> 
                 <ul class="menu-links">
                 <?php 
