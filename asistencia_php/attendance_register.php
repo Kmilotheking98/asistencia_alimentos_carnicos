@@ -8,10 +8,6 @@ if ($_SESSION['permit'] == 3) {
 
 
 ?>
-
-<!DOCTYPE html>
-
-<body>
     <div class="employees-home " id="app">
         <div class="col-12">
               <h1 class="text-left">ASISTENCIAS</h1>
@@ -91,7 +87,8 @@ if ($_SESSION['permit'] == 3) {
         </div>          
     </div>
 </div>
-
+<!-- <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css"> -->
 <script src="js/vue.min.js"></script>
 <script src="js/vue-toasted.min.js"></script>
 <script>
@@ -186,6 +183,5 @@ if ($_SESSION['permit'] == 3) {
     });
 </script>
 </div>
-</body>
-</html>
+
 <?php
