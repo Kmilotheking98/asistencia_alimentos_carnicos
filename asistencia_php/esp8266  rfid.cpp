@@ -21,7 +21,7 @@ const char *password = "esther5310";
 /*The ip or server address. If you are on localhost, put your computer's IP (for example http://192.168.1.65)
 If the server is online, put the server's domain for example https://parzibyte.me
 */
-const String SERVER_ADDRESS = "http://192.168.0.107/asistencia_alimentos_carnicos/asistencia_php";
+const String SERVER_ADDRESS = "http://alimentoscarnicos.ml/asistencia_php";
 void setup()
 {
   Serial.begin(9600); // Initialize serial communications with the PC. Just for debug
