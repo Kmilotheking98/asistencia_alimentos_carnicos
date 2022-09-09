@@ -51,7 +51,10 @@ if ($_SESSION['permit'] == 2) {
                             <h4 v-else><span class="btn btn-info"><i class="fa fa-times"></i>&nbsp;No registrado</span></h4>
                         </td>
                         <td>
-                            <button @click="removeRfidCard(employee.rfid_serial)" v-if="employee.rfid_serial" class="btn btn-danger">Remover</button>
+                            <button @click="removeRfidCard(employee.rfid_serial)"  
+                   
+                            v-if="employee.rfid_serial" class="btn btn-danger">Remover</button>
+
                             <button v-else-if="employee.waiting" @click="cancelWaitingForPairing" class="btn btn-warning">Cancelar</button>
                             <button @click="assignRfidCard(employee)" v-else class="btn btn-info">Asignar</button>
                         </td>
@@ -102,7 +105,7 @@ if ($_SESSION['permit'] == 2) {
                 this.checkIfEmployeeHasJustAssignedRfid(employee);
             },
             async checkIfEmployeeHasJustAssignedRfid(employee) {
-                const r = await fetch("./get_employee_rfid_serial_by_id.php?employee_id=" + employee.id);
+                const r = await fetch("./get_employee_rfid_serial_by_id.php?employee_id=" + employee.cod);
                 const serial = await r.json();
                 if (!shouldCheck) {
                     employee.waiting = false;
@@ -153,4 +156,28 @@ if ($_SESSION['permit'] == 2) {
         },
     });
 </script>
+
+
+<script type="text/javascript">
+                  function question(cod){
+
+                        Swal.fire({
+                            title: '¿Está seguro?',
+                            text: "¡No podrás revertir esto!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#695CFE',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: '¡Si, Borralo!',
+                            cancelButtonText: '¡No, Cancelar!'
+                            }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "removeRfidCard(employee.rfid_serial)";
+                               
+                            }
+                            })
+                                
+                  }
+
+                    </script>  
 <?php

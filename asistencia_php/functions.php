@@ -159,7 +159,7 @@ function onRfidSerialRead($rfidSerial)
     } else {
         $employee = getEmployeeByRfidSerial($rfidSerial);
         if ($employee) {
-            saveEmployeeAttendance($employee->id);
+            saveEmployeeAttendance($employee->cod);
         }
     }
 }
@@ -218,8 +218,8 @@ function removeRfidFromEmployee($rfidSerial)
 
 function getEmployeeByRfidSerial($rfidSerial)
 {
-    $query = "SELECT e.id, e.name FROM employees e INNER JOIN employee_rfid
-    ON employee_rfid.employee_id = e.id
+    $query = "SELECT e.cod, e.name FROM employees e INNER JOIN employee_rfid
+    ON employee_rfid.employee_id = e.cod
     WHERE employee_rfid.rfid_serial = ?";
 
     $db = getDatabase();
