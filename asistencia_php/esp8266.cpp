@@ -15,8 +15,9 @@ MFRC522 reader(SS_PIN, RST_PIN);
 MFRC522::MIFARE_Key key;
 
 // Credentials to connect to the wifi network
-const char *ssid = "User";
-const char *password = "Password";
+const char *ssid = "GONZALIAS-(((e)))";
+const char *password = "esther5310";
+
 /*The ip or server address. If you are on localhost, put your computer's IP (for example http://192.168.1.65)
 If the server is online, put the server's domain for example https://parzibyte.me
 */
