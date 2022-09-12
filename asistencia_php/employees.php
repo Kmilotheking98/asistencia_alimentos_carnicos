@@ -6,12 +6,14 @@ include_once "functions.php";
 $employees = getEmployees();
 include("conexion.php");
 
+if (isset($_SESSION['user'])) {
+    if ($_SESSION['permit'] == 2) {
+        header("Location: attendance_report.php");
+    }
 
-if ($_SESSION['permit'] == 2) {
-    header("Location: attendance_report.php");
+}else{
+    header('Location: login.php');
 }
-
-
 ?>
 
 
