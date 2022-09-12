@@ -2,6 +2,9 @@
 include_once "slidernavbar.php";
 include_once "header.php";
 
+if(!isset($_SESSION['user'])){
+    header("Location: login.php");
+}
 
 if ($_SESSION['permit'] == 2) {
     header("Location: attendance_report.php");
