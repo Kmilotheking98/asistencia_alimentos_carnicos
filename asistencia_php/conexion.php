@@ -2,8 +2,6 @@
 
   //Conexion
 
- 
-
   $servidor = "localhost";
 
   $usuario = "root";
@@ -12,23 +10,24 @@
 
   $nombreBD = "attendance1";
 
-  $conexion = new mysqli($servidor, $usuario, $password, $nombreBD);
 
-  if ($conexion->connect_error){
+  try {
+    // forma 1
 
-  die("La conexión ha fallado " . $conexion->connect_error);
+    $conn = new PDO("mysql:host=$servidor;dbname=$nombreBD;", $usuario, $password);
 
+    //forma 2
 
-  }else{
+  $conexion = new mysqli($servidor, $usuario, $password, $nombreBD);  
 
+  } catch (PDOException $e) {
+    
+    if ($conexion->connect_error){
 
-
+      die("La conexión ha fallado " . $conexion->connect_error);
+      die('Connection Failed: ' . $e->getMessage());
+    
+      }
+    
   }
-
- 
-
- 
-
-
-
-?>
+   ?>
