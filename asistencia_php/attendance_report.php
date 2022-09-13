@@ -39,8 +39,8 @@ $employees = getEmployeesWithAttendanceCount($start, $end);
             <label for="end">FIN:&nbsp;</label>
             <input required id="end" type="date" name="end" value="<?php echo $end ?>" class="form-control">
             <button class="btn btn-success ml-2">Filtrar</button>
+            <a href="./download_employee_report.php?start=<?php echo $start ?>&end=<?php echo $end ?>" class="btn btn__me">DESCARGAR INFORME DE ECXEL</a>
         </form>
-        <a href="./download_employee_report.php?start=<?php echo $start ?>&end=<?php echo $end ?>" class="btn btn__me">DESCARGAR INFORME DE ECXEL</a>
     </div>
     <div class="col-12">
         <div class="table-responsive">
