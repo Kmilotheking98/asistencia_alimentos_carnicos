@@ -138,6 +138,7 @@ if($permit == 1){
                 <?php }?>
 
             <div class="bottom-content">
+                <br></br>
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -155,7 +156,7 @@ if($permit == 1){
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
-
+                <br></br>
                 
 
                
