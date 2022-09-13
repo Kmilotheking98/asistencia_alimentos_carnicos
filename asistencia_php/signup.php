@@ -1,10 +1,10 @@
 <?php
 
-  require 'database.php';
+  require 'conexion.php';
 
   if ( !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['permit'])) {
     $sql = "INSERT INTO user ( name, email, password, permit) VALUES (:name, :email, :password, :permit)";
-    $stmt = $conn->prepare($sql);
+    $stmt = $conn ->prepare($sql);
     $stmt->bindParam(':name', $_POST['name']);
     $stmt->bindParam(':email', $_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);

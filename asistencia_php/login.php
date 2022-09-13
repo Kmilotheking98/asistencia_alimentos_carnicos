@@ -1,20 +1,20 @@
 <?php
     session_start();
-    require 'database.php';
+    require 'conexion.php';
   if (isset($_SESSION['user'])) {
     header('Location: login.php');
   }
   
 
-  if (!empty($_POST['email']) && !empty($_POST['password'])) {
-    $records = $conn->prepare('SELECT * FROM user WHERE email = :email');
-    $records->bindParam(':email', $_POST['email']);
+  if (!empty($_POST['name']) && !empty($_POST['password'])) {
+    $records = $conn ->prepare('SELECT * FROM user WHERE name = :name or email = :name');
+    $records->bindParam(':name', $_POST['name']);
     $records->execute();
     $results = $records->fetch(PDO::FETCH_ASSOC);
 
     if (count($results) > 0  && password_verify($_POST['password'], $results['password'])) {
  
-      $_SESSION['user'] = $results['email'];
+      $_SESSION['user'] = $results['name'];
       $_SESSION['permit'] = $results['permit'];
       header("Location: index.php");
 
@@ -51,8 +51,8 @@
     <span>or <a href="signup.php">SignUp</a></span>
 
     <form action="login.php" method="POST">
-      <input name="email" type="text" placeholder="Enter your email">
-      <input name="password" type="password" placeholder="Enter your Password">
+      <input name="name" type="text" placeholder="Introduce tu nombre de usuario">
+      <input name="password" type="password" placeholder="Introduce tucontraseña">
       <input class="btn btn__me" type="submit" value="Entrar">
     </form>
   </body>

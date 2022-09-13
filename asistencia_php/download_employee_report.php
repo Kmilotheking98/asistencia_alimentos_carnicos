@@ -19,14 +19,16 @@ $nombreDelDocumento = "Reporte.xlsx";
 $hoja = $documento->getActiveSheet();
 $hoja->setTitle("Hoja 1");
 $hoja->setCellValueByColumnAndRow(1, 1, sprintf("Desde %s a %s", $start, $end));
-$hoja->setCellValueByColumnAndRow(1, 2, "Empleado");
-$hoja->setCellValueByColumnAndRow(2, 2, "Asistencias");
-$hoja->setCellValueByColumnAndRow(3, 2, "Ausencias");
+$hoja->setCellValueByColumnAndRow(1, 2, "codigo");
+$hoja->setCellValueByColumnAndRow(2, 2, "Empleado");
+$hoja->setCellValueByColumnAndRow(3, 2, "Asistencias");
+$hoja->setCellValueByColumnAndRow(4, 2, "Ausencias");
 $y = 3;
 foreach ($employees as $employee) {
-    $hoja->setCellValueByColumnAndRow(1, $y, $employee->name);
-    $hoja->setCellValueByColumnAndRow(2, $y, $employee->presence_count);
-    $hoja->setCellValueByColumnAndRow(3, $y, $employee->absence_count);
+    $hoja->setCellValueByColumnAndRow(1, $y, $employee->cod);
+    $hoja->setCellValueByColumnAndRow(2, $y, $employee->name);
+    $hoja->setCellValueByColumnAndRow(3, $y, $employee->presence_count);
+    $hoja->setCellValueByColumnAndRow(4, $y, $employee->absence_count);
     $y++;
 }
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
