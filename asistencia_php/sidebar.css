@@ -1,6 +1,6 @@
 :root {
     /* ===== Colors ===== */
-    --body-color: #e7eaf3;
+    --body-color: rgb(255, 255, 255);
     --sidebar-color: #FFF;
     --primary-color: #695CFE;
     --primary-color-light: #F6F5FF;
