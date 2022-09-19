@@ -19,10 +19,12 @@ if (isset($_SESSION['user'])) {
 
 <!DOCTYPE html>
 
-<body style="">
+<body>
 
     <div class="employees-home ">
-       
+        <div class="col-12">
+              <h1 class="text-left">EMPLEADOS</h1>
+        </div>
         <div class="barra-top">
             <div class="container-barra  bd-highlight">
                 <div class="barra-buscar-container p-2 bd-highlight">
@@ -70,9 +72,9 @@ if (isset($_SESSION['user'])) {
             </div>
         </div>
 
-        <div class='table-container border'>
+        <div class='table-container'>
 
-        <div class="tabla__employees rounded  p-3">
+        <div class="tabla__employees rounded ">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
