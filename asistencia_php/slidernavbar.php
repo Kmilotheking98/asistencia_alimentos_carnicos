@@ -52,7 +52,7 @@ if($permit == 1){
 
                 <li class="search-box">
                     <i class='bx bx-search icon'></i>
-                    <input type="search" placeholder="Search...">
+                    <input type="text" placeholder="Search...">
                 </li> 
                 <ul class="menu-links">
                 <?php 
@@ -138,7 +138,6 @@ if($permit == 1){
                 <?php }?>
 
             <div class="bottom-content">
-                <br></br>
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -156,7 +155,7 @@ if($permit == 1){
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
-                <br></br>
+
                 
 
                
