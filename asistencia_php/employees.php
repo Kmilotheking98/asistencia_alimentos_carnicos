@@ -77,15 +77,15 @@ if (isset($_SESSION['user'])) {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>CODIGO</th>
-                            <th>NOMBRE</th>
-                            <th>APELLIDOS</th>
-                            <th>CEDULA</th>
-                            <th>TIPO DE CONTRATO</th>
-                            <th>FECHA DE NACIMIENTO</th>
-                            <th>RESIDENCIA</th>
-                            <th>EDITAR</th>
-                            <th>ELIMINAR</th>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Cedula</th>
+                            <th>Tipo de contrato</th>
+                            <th>Fecha de nacimiento</th>
+                            <th>Residencia</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
