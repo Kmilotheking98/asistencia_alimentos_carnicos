@@ -30,7 +30,7 @@ if($permit == 1){
    
 </head>
 
-<nav class="sidebar close">
+<nav class="sidebar close border-end">
         <header >
             <div class="image-text">
                 <span class="image">
