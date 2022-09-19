@@ -348,7 +348,7 @@ body.dark .home .text{
     margin-top: 25px;
     background: var(--sidebar-color);
     height: auto;
-    border-radius: 20px;
+    border-radius: 15px;
     padding: 20px;
     color: var(--text-color);
 
