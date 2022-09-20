@@ -9,9 +9,9 @@ include_once "header.php";
 
 <body>
     <div class="employees-home ">
-        <div class="col-12">
-              <h1 class="text-left">REGISTRAR EMPLEADOS</h1>
-        </div>
+            <div class="col-12">
+                <h1 class="text-left">REGISTRAR EMPLEADOS</h1>
+            </div>
 
 
         <section>
