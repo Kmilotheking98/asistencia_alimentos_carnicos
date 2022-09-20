@@ -22,20 +22,9 @@ if (isset($_SESSION['user'])) {
 <body>
 
     <div class="employees-home ">
-
-        <div class="col-12">
-
-           
-
-        </div>
-
         <div class="barra-top">
             
             <div class="container-barra  bd-highlight">
-
-           
-
-
                 <div class="barra-buscar-container p-2 bd-highlight">
 
                     <form class='d-flex' action="buscar_employee.php" method="post">
@@ -98,17 +87,17 @@ if (isset($_SESSION['user'])) {
             <div class="tabla__employees rounded ">
                 <div class="table-responsive">
                     <table class="table">
-                        <thead>
+                        <thead class="sticky-top">
                             <tr>
-                                <th>CODIGO</th>
-                                <th>NOMBRE</th>
-                                <th>APELLIDOS</th>
-                                <th>CEDULA</th>
-                                <th>TIPO DE CONTRATO</th>
-                                <th>FECHA DE NACIMIENTO</th>
-                                <th>RESIDENCIA</th>
-                                <th>EDITAR</th>
-                                <th>ELIMINAR</th>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Cedula</th>
+                                <th>Tipo de contrato</th>
+                                <th>Fecha de nacimiento</th>
+                                <th>Residencia</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -155,7 +144,6 @@ if (isset($_SESSION['user'])) {
 
                                     <a class="btn btn-danger" href="#" onclick="question(<?php echo $employee->cod ?>)">
 
-
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                             <path
@@ -187,6 +175,21 @@ if (isset($_SESSION['user'])) {
                                     }
                                 })
 
+
+                        Swal.fire({
+                            title: '¿Está seguro?',
+                            text: "¡No podrás revertir esto!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmBut``                                                tonColor: '#d33',
+                            cancelButtonColor: '#695CFE',
+                            confirmButtonText: '¡Si, Borralo!',
+                            cancelButtonText: '¡No, Cancelar!'
+                            }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "employee_delete.php?cod="+cod;
+                               
+
                             }
 
                         </script>
@@ -202,4 +205,3 @@ if (isset($_SESSION['user'])) {
 
 </html>
 
-<?php
