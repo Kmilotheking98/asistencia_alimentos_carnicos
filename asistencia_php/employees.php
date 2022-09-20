@@ -147,8 +147,8 @@ if (isset($_SESSION['user'])) {
                             text: "¡No podrás revertir esto!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmButtonColor: '#695CFE',
-                            cancelButtonColor: '#d33',
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#695CFE',
                             confirmButtonText: '¡Si, Borralo!',
                             cancelButtonText: '¡No, Cancelar!'
                             }).then((result) => {
@@ -173,4 +173,3 @@ if (isset($_SESSION['user'])) {
 
 </html>
 
-<?php
