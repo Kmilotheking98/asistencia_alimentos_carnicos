@@ -15,6 +15,7 @@
 }
 
 body {
+  
     background-color: var(--body-color);
     transition: var(--tran-05);
     color: #80808000;

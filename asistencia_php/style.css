@@ -356,6 +356,11 @@ body.dark .home .text{
 
 .table{color: var(--text-color);}
 
+tr:hover{
+    background-color: var(--primary-color-light);
+    
+}
+
 /* ===== Navbar Resize ===== */
 @media (max-width: 1200px) {
 
@@ -443,7 +448,7 @@ body.dark .home .text{
         }
         
     
-@media (max-width: 754px) {
+@media (max-width: 894px) {
 
     .sidebar.close {
         width: 86px;
@@ -469,7 +474,7 @@ body.dark .home .text{
 
         
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
 
     } 
     .sidebar .menu-bar{
@@ -511,7 +516,7 @@ body.dark .home .text{
 
         
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
 
     } 
     .sidebar .menu-bar{
@@ -541,7 +546,7 @@ body.dark .home .text{
 
         
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
 
     }
 
@@ -573,7 +578,7 @@ body.dark .home .text{
 
         
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
 
     }
     .sidebar .menu-bar{
