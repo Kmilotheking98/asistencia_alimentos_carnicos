@@ -143,45 +143,27 @@ if (isset($_SESSION['user'])) {
                                 <td>
 
                                     <a class="btn btn-danger" href="#" onclick="question(<?php echo $employee->cod ?>)">
+                                        
 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                         </svg>
 
-
+                                    
                                     </a>
                                 </td>
                             </tr>
                             <?php } ?>
                         </tbody>
-                        <script type="text/javascript">
-                            function question(cod) {
+                <script type="text/javascript">
+                  function question($cod){
 
-                                Swal.fire({
-                                    title: '¿Está seguro?',
-                                    text: "¡No podrás revertir esto!",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#695CFE',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: '¡Si, Borralo!',
-                                    cancelButtonText: '¡No, Cancelar!'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        window.location.href = "employee_delete.php?cod=" + cod;
-
-                                    }
-                                })
-
-
-                        Swal.fire({
+                    Swal.fire({
                             title: '¿Está seguro?',
                             text: "¡No podrás revertir esto!",
                             icon: 'warning',
                             showCancelButton: true,
-                            confirmBut``                                                tonColor: '#d33',
+                            confirmButtonColor: '#d33',
                             cancelButtonColor: '#695CFE',
                             confirmButtonText: '¡Si, Borralo!',
                             cancelButtonText: '¡No, Cancelar!'
@@ -189,10 +171,11 @@ if (isset($_SESSION['user'])) {
                             if (result.isConfirmed) {
                                 window.location.href = "employee_delete.php?cod="+cod;
                                
-
                             }
+                            })                                
+                  }
 
-                        </script>
+                </script>         
                     </table>
                 </div>
 
