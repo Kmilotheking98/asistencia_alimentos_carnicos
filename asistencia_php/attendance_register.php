@@ -22,6 +22,13 @@ if ($_SESSION['permit'] == 3) {
             <input @change="refreshEmployeesList" v-model="date" name="date" id="date" type="date" class="form-control">
             <button @click="save" class="btn btn-success ml-2">Guardar</button>
         </div>
+        <div>
+
+            <input type="search" class="form-control" placeholder="Buscar por codigo del empleado" 
+            v-model="search" @keyup="fetchData()" />
+     
+        </div>
+
     </div>
     <div class="col-12">
         <div class="table-responsive">
@@ -86,13 +93,14 @@ if ($_SESSION['permit'] == 3) {
                             </select>
                         </td>
                     </tr>
+                    <tr v-if="nodata">
+                                <td colspan="2" align="center">No Data Found</td>
+                            </tr>
                 </tbody>
             </table>
         </div>          
     </div>
 </div>
-<!-- <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/all.min.css"> -->
 <script src="js/vue.min.js"></script>
 <script src="js/vue-toasted.min.js"></script>
 <script>
@@ -100,10 +108,14 @@ if ($_SESSION['permit'] == 3) {
     const UNSET_STATUS = "unset";
     new Vue({
         el: "#app",
-        data: () => ({
+        data: {
             employees: [],
             date: "",
-        }),
+
+            search:'',
+            nodata:false
+
+        },
         async mounted() {
             this.date = this.getTodaysDate();
             await this.refreshEmployeesList();
@@ -182,10 +194,32 @@ if ($_SESSION['permit'] == 3) {
                 });
                 // Let Vue do its magic ;)
                 this.employees = employees;
-            }
+            },
+            fetchData:function(){
+         axios.post('./action_attendance_register.php', {
+             search:this.search
+         }).then(function(response){
+             if(response.data.length > 0)
+             {
+                 application.employees = response.data;
+                 application.nodata = false;
+             }
+             else
+             {
+                 application.employees = '';
+                 application.nodata = true;
+             }
+         });
+        }
+
         },
+        created:function(){
+        this.fetchData();    }
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.10/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </div>
 
-<?php

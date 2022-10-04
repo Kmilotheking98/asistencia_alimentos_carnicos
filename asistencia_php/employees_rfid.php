@@ -2,6 +2,7 @@
 include_once "slidernavbar.php";
 include_once "header.php";
 
+
 if(!isset($_SESSION['user'])){
     header("Location: login.php");
 }
@@ -18,11 +19,10 @@ if ($_SESSION['permit'] == 2) {
         <h1 class="text-center">EMPAREJAMIENTO RFID</h1>
     </div>
     <div>
-        <!-- <form class='d-flex' action="buscar_rfid.php" method="post">
-            <input style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3" type="search" name="buscar" id="">
-            <input class="btn btn__me" type='submit'  value="Buscar">
 
-        </form> -->
+    <input type="search" class="form-control" placeholder="Buscar por codigo del empleado" 
+        v-model="search" @keyup="fetchData()" />
+         
     </div>
     <div class="col-12">
         <div class="table-responsive">
@@ -44,6 +44,7 @@ if ($_SESSION['permit'] == 2) {
                     </tr>
                 </thead>
                 <tbody>
+                <tr >
                     <tr v-for="employee in employees">
                         <td class="text-center">{{employee.cod}}</td>
                         <td>{{employee.name}}</td>
@@ -54,14 +55,17 @@ if ($_SESSION['permit'] == 2) {
                             <h4 v-else><span class="btn btn-info"><i class="fa fa-times"></i>&nbsp;No registrado</span></h4>
                         </td>
                         <td>
-                            <button @click="removeRfidCard(employee.rfid_serial)"  
-                   
+                            <button @click="question(employee.rfid_serial)"  
+                            href="#"
                             v-if="employee.rfid_serial" class="btn btn-danger">Remover</button>
 
                             <button v-else-if="employee.waiting" @click="cancelWaitingForPairing" class="btn btn-warning">Cancelar</button>
                             <button @click="assignRfidCard(employee)" v-else class="btn btn-info">Asignar</button>
                         </td>
                     </tr>
+                    <tr v-if="nodata">
+                                <td colspan="2" align="center">No Data Found</td>
+                            </tr>
                 </tbody>
             </table>
         </div>
@@ -74,23 +78,49 @@ if ($_SESSION['permit'] == 2) {
     Vue.use(Toasted);
     let shouldCheck = true;
     const CHECK_PAIRING_EMPLOYEE_INTERVAL = 1000;
-    new Vue({
+    var application = new Vue({
         el: "#app",
-        data: () => ({
+        data: {
             employees: [],
             date: "",
-        }),
+            search:'',
+            nodata:false
+
+
+
+        },
         async mounted() {
             await this.setReaderForReading();
             await this.refreshEmployeesList();
+            
         },
         methods: {
+
+            async question(rfidSerial){
+
+                        Swal.fire({
+                            title: '¿Está seguro?',
+                            text: "¡No podrás revertir esto!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#695CFE',
+                            confirmButtonText: '¡Si, Remuevelo!',
+                            cancelButtonText: '¡No, Cancelar!'
+                            }).then((result) => {
+                            if (result.isConfirmed) {
+                             this.removeRfidCard(rfidSerial)  
+                            }
+                            })
+                                
+                  },
             async removeRfidCard(rfidSerial) {
                 await fetch("./remove_rfid_card.php?rfid_serial=" + rfidSerial);
-                this.$toasted.show("RFID removed", {
+                this.$toasted.show("RFID Removido", {
                     position: "top-left",
-                    duration: 1000,
-                });
+                    duration: 1000,                    
+                }
+                );
                 await this.refreshEmployeesList();
             },
             async cancelWaitingForPairing() {
@@ -118,7 +148,13 @@ if ($_SESSION['permit'] == 2) {
                     this.$toasted.show("RFID assigned!", {
                         position: "top-left",
                         duration: 1000,
-                    });
+                    },
+                    Swal.fire(
+                        'Tarjeta Registrada!',
+                        'Guardado con exito!',
+                        'success',
+                              )
+                    );
                     await this.setReaderForReading();
                     await this.refreshEmployeesList();
                 } else {
@@ -155,32 +191,36 @@ if ($_SESSION['permit'] == 2) {
                 });
                 // Let Vue do its magic ;)
                 this.employees = employees;
-            }
+            },
+            fetchData:function(){
+         axios.post('./action_employees_rfid.php', {
+             search:this.search
+         }).then(function(response){
+             if(response.data.length > 0)
+             {
+                 application.employees = response.data;
+                 application.nodata = false;
+             }
+             else
+             {
+                 application.employees = '';
+                 application.nodata = true;
+                this.refreshEmployeesList()
+             }
+         });
+        }
+
+
+
         },
+        created:function(){
+        this.fetchData();    }
+
     });
 </script>
 
-
-<script type="text/javascript">
-                  function question(cod){
-
-                        Swal.fire({
-                            title: '¿Está seguro?',
-                            text: "¡No podrás revertir esto!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#695CFE',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: '¡Si, Borralo!',
-                            cancelButtonText: '¡No, Cancelar!'
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = "removeRfidCard(employee.rfid_serial)";
-                               
-                            }
-                            })
-                                
-                  }
-
-                    </script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.10/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <?php
