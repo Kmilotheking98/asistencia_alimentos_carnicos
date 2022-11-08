@@ -1,4 +1,4 @@
-
+<!-- 
 <!DOCTYPE html>
 <html>
 	<head>
@@ -35,6 +35,9 @@
 							<tr v-for="employee in employees">
 								<td>{{employee.employee_id}}</td>
 								<td>{{employee.job}}</td>
+								<td>{{employee.date}}</td>
+								<td>{{employee.status_event}}</td>
+								<td>{{employee.turn}}</td>
 							</tr>
 							<tr v-if="nodata">
 								<td colspan="2" align="center">No Data Found</td>
@@ -79,5 +82,52 @@ var application = new Vue({
 	}
 });
 
-</script>
+</script> -->
+<?php
+require_once 'PHPExcel/Classes/PHPExcel.php';
+require_once 'conexion.php';
+
+$archivos = 'Documentos/pruebas.csv';
+$excel = PHPExcel_IOFactory::load($archivos);
+
+$excel-> setActiveSheetIndex(0);
+
+$numerofila = $excel-> setActiveSheetIndex(0)->getHighestRow();
+
+echo " <table id='tabla_detalle' class='table-responsive' style='width:100%; table-layout: fixed'>
+<thead>
+	<tr>
+		<th>CODIGO</th>
+		<th>NOMBRE</th>
+		<th>APELLIDOS</th>
+		<th>CEDULA</th>
+		<th>TIPO DE CONTRATO</th>
+		<th>FECHA DE NACIMIENTO</th>
+		<th>RESIDENCIA</th>
+	</tr>
+</thead>
+<tbody id='tbody_tabla_detalle'>";
+   for($row = 2; $row <=$filas;$row++){
+	$cod = $hoja -> getCell('A'.$row)->getvalue();
+	$name = $hoja -> getCell('B'.$row)->getvalue();
+	$last_name = $hoja -> getCell('C'.$row)->getvalue();
+	$dni = $hoja -> getCell('D'.$row)->getvalue();
+	$date_birth = $hoja -> getCell('E'.$row)->getvalue();
+	$type_contract = $hoja -> getCell('F'.$row)->getvalue();
+	$home = $hoja -> getCell('G'.$row)->getvalue();
+
+	echo "<tr>";
+	echo "<td>".$cod."</td>";
+	echo "<td>".$name."</td>";
+	echo "<td>".$last_name."</td>";
+	echo "<td>".$dni."</td>";
+	echo "<td>".$date_birth."</td>";
+	echo "<td>".$type_contract."</td>";
+	echo "<td>".$home."</td>";
+	echo "</tr>";
+   } 
+   echo "</tbody></table>";
+
+
+?>
 
