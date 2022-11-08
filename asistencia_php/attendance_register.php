@@ -100,6 +100,32 @@ if ($_SESSION['permit'] == 3) {
             </table>
         </div>          
     </div>
+    <div class="col-lg-12">
+        <div class="card-header">
+            Importar Excel
+        </div>
+             <div class="card-body">
+                <h5 class="card-title">Agregar Registros Desde Excel</h5>
+                    <p class="card-text">Por favor cargar el Excel para agregar registros en cantidad .</p>
+                        <form action="#" enctype="multipart/form-data">
+                                <div class="row">
+                                         <div class="col-lg-8">
+                                            <input class="form-control" type='file' id="txt_archivo" accept=".csv,.xlsx,.xls">
+                                         </div>
+                                        <div class="col-lg-2">
+                                            <button href="#" class="btn btn__me" style="width:100%" onclick="CargarExcel()" >Cargar Excel</button><br>   
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <button href="#" class="btn btn-success" style="width:100%" onclick="GuardarExcel_attendaces()" disabled id="btn_guardar" >Guardar Excel</button><br>   
+                                        </div>                                            
+                                </div>
+                        </form>
+                </div>
+            <div  id="div_table"><br>
+                                Aqui se cargaran los datos en forma de tabla para poderlos importar
+            </div>
+</div>
+
 </div>
 <script src="js/vue.min.js"></script>
 <script src="js/vue-toasted.min.js"></script>
@@ -217,6 +243,106 @@ if ($_SESSION['permit'] == 3) {
         this.fetchData();    }
     });
 </script>
+<script type="text/javascript">
+    $('input[type="file"]').on('change', function(){
+            var ext = $( this ).val().split('.').pop();
+                if ($( this ).val() != '') {
+                    if(ext == "xls" || ext == "xlsx" || ext == "csv"){
+                    }
+                else
+                {
+                $( this ).val('');
+                    Swal.fire("Mensaje De Error","Extensión no permitida: " + ext+"","error");
+            }
+            }
+        });
+
+
+        function CargarExcel(){
+            var excel = $("#txt_archivo").val();
+            if(excel === ""){
+                return  Swal.fire("Mensaje De Advertencia","Seleccionar un archivo Excel: ","warning");
+            }
+            var formData = new FormData();
+            var files = $("#txt_archivo")[0].files[0];
+            formData.append('archivoexcel',files);
+            $.ajax({
+                url: "importar_excel_ajax_attendance.php",
+                type: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success : function(resp){
+                    
+                    $('#div_table').html(resp);
+                    document.getElementById('btn_guardar').disabled=false;
+                    return  Swal.fire("Importacion Exitosa","El Excel se Importo con exito: "+resp+"","success");
+                }
+            }); 
+            return false;
+
+        };
+
+        function GuardarExcel_attendaces(){
+            var contador =0;
+            var arreglo_employee_id = new Array();
+            var arreglo_date = new Array();
+            var arreglo_job = new Array();
+            var arreglo_status = new Array();
+            var arreglo_status_event = new Array();
+            var arreglo_turn = new Array();
+            var arreglo_home = new Array();
+
+            
+            $("#tabla_detalle tbody#tbody_tabla_detalle tr").each(function(){
+                
+                arreglo_employee_id.push($(this).find('td').eq(0).text());
+                arreglo_date.push($(this).find('td').eq(1).text());
+                arreglo_job.push($(this).find('td').eq(2).text());
+                arreglo_status.push($(this).find('td').eq(3).text());
+                arreglo_status_event.push($(this).find('td').eq(4).text());
+                arreglo_turn.push($(this).find('td').eq(5).text());
+                contador++;
+                
+            });  
+            //alert(contador);
+            if(contador==0){
+                return  Swal.fire("Mensaje De Advertencia","La tabla de Excel debe tener como minimo 1 dato... : ","warning");
+            };
+                //alert(arreglo_employee_id+" .... "+arreglo_date);
+            var employee_id = arreglo_employee_id.toString();
+            var date = arreglo_date.toString();
+            var job =arreglo_job.toString();
+            var status = arreglo_status.toString();
+            var status_event = arreglo_status_event.toString();
+            var turn= arreglo_type_contract.toString();
+
+                //alert(employee_id+" .... "+last_date);
+            $.ajax({
+                url: "control_register_attendance.php",
+                type: 'post',
+                data: {
+                    emp_id:employee_id,
+                    d: date,
+                    j: job,
+                    st:status,
+                    st_ev:status_event ,
+                    turno: turn
+                }
+
+            }).done(function(resp){
+                alert(resp);
+            });
+
+
+
+            }
+
+        
+ 
+</script>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.10/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->

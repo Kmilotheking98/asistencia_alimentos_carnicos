@@ -162,16 +162,141 @@ if (isset($_SESSION['user'])) {
                                 
                   }
 
-                    </script>                          
+                    </script> 
+                  
                 </table>
             </div>
-
+                                <div class="col-lg-12">
+                            <div class="card-header">
+                                Importar Excel
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Agregar Registros Desde Excel</h5>
+                                <p class="card-text">Por favor cargar el Excel para agregar registros en cantidad .</p>
+                                    <form action="#" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <input class="form-control" type='file' id="txt_archivo" accept=".csv,.xlsx,.xls">
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <button href="#" class="btn btn__me" style="width:100%" onclick="CargarExcel()" >Cargar Excel</button><br>   
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <button href="#" class="btn btn-success" style="width:100%" onclick="GuardarExcel_employees()" disabled id="btn_guardar" >Guardar Excel</button><br>   
+                                            </div>                                            
+                                        </div>
+                                    </form>
+                                </div>
+                            <div  id="div_table"><br>
+                                Aqui se cargaran los datos en forma de tabla para poderlos importar
+                            </div>
+                    </div>
         </div>
-
         </div>
 
     </div>
 </body>
+<script type="text/javascript">
+    $('input[type="file"]').on('change', function(){
+            var ext = $( this ).val().split('.').pop();
+                if ($( this ).val() != '') {
+                    if(ext == "xls" || ext == "xlsx" || ext == "csv"){
+                    }
+                else
+                {
+                $( this ).val('');
+                    Swal.fire("Mensaje De Error","Extensión no permitida: " + ext+"","error");
+            }
+            }
+        });
+
+
+        function CargarExcel(){
+            var excel = $("#txt_archivo").val();
+            if(excel === ""){
+                return  Swal.fire("Mensaje De Advertencia","Seleccionar un archivo Excel: ","warning");
+            }
+            var formData = new FormData();
+            var files = $("#txt_archivo")[0].files[0];
+            formData.append('archivoexcel',files);
+            $.ajax({
+                url: "importar_excel_ajax_employees.php",
+                type: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success : function(resp){
+                    
+                    $('#div_table').html(resp);
+                    document.getElementById('btn_guardar').disabled=false;
+                    return  Swal.fire("Importacion Exitosa","El Excel se Importo con exito: "+resp+"","success");
+                }
+            }); 
+            return false;
+
+        };
+
+        function GuardarExcel_employees(){
+            var contador =0;
+            var arreglo_cod = new Array();
+            var arreglo_name = new Array();
+            var arreglo_last_name = new Array();
+            var arreglo_dni = new Array();
+            var arreglo_date_birth = new Array();
+            var arreglo_type_contract = new Array();
+            var arreglo_home = new Array();
+
+            
+            $("#tabla_detalle tbody#tbody_tabla_detalle tr").each(function(){
+                
+                arreglo_cod.push($(this).find('td').eq(0).text());
+                arreglo_name.push($(this).find('td').eq(1).text());
+                arreglo_last_name.push($(this).find('td').eq(2).text());
+                arreglo_dni.push($(this).find('td').eq(3).text());
+                arreglo_date_birth.push($(this).find('td').eq(4).text());
+                arreglo_type_contract.push($(this).find('td').eq(5).text());
+                arreglo_home.push($(this).find('td').eq(6).text());
+                contador++;
+                
+            });  
+            //alert(contador);
+            if(contador==0){
+                return  Swal.fire("Mensaje De Advertencia","La tabla de Excel debe tener como minimo 1 dato... : ","warning");
+            };
+                //alert(arreglo_cod+" .... "+arreglo_name);
+            var cod = arreglo_cod.toString();
+            var name = arreglo_name.toString();
+            var last_name =arreglo_last_name.toString();
+            var dni = arreglo_dni.toString();
+            var date_birth = arreglo_date_birth.toString();
+            var type_contract= arreglo_type_contract.toString();
+            var home = arreglo_home.toString();
+                //alert(cod+" .... "+last_name);
+            $.ajax({
+                url: "control_register_employees.php",
+                type: 'post',
+                data: {
+                    codem:cod,
+                    nam: name,
+                    l_name: last_name,
+                    Dni:dni,
+                    D_birth:date_birth ,
+                    T_contract: type_contract,
+                    hme:home
+
+                }
+
+            }).done(function(resp){
+                alert(resp);
+            });
+
+
+
+            }
+
+        
+ 
+</script>
 
 </html>
 
