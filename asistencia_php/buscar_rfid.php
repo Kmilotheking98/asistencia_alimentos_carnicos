@@ -24,7 +24,7 @@ if ($_SESSION['permit'] == 2) {
             > -->
             <!-- <input class="btn btn__me" type='submit'  value="Buscar"> -->
 
-        <!-- </form> -->
+        </form>
     </div>
     <div class="col-12">
     <div class="table-responsive">
