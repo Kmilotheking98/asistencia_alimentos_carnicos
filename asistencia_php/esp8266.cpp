@@ -15,16 +15,16 @@ MFRC522 reader(SS_PIN, RST_PIN);
 MFRC522::MIFARE_Key key;
 
 // Credentials to connect to the wifi network
-const char *ssid = "SSID";
-const char *password = "PASSWORD";
-/*
-The ip or server address. If you are on localhost, put your computer's IP (for example http://192.168.1.65)
+const char *ssid = "GONZALIAS-(((e)))";
+const char *password = "esther5310";
+
+/*The ip or server address. If you are on localhost, put your computer's IP (for example http://192.168.1.65)
 If the server is online, put the server's domain for example https://parzibyte.me
 */
-const String SERVER_ADDRESS = "http://192.168.1.77/asistencia-php-rfid";
+const String SERVER_ADDRESS = "http://192.168.0.107/asistencia_alimentos_carnicos/asistencia_php";
 void setup()
 {
-
+  Serial.begin(9600); // Initialize serial communications with the PC. Just for debug
   // Connect to wifi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED)
@@ -108,7 +108,6 @@ void loop()
   {
     if (httpCode == HTTP_CODE_OK)
     {
-
       // const String &payload = http.getString().c_str(); //Get the request response payload
     }
     else

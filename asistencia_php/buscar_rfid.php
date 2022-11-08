@@ -15,12 +15,16 @@ if ($_SESSION['permit'] == 2) {
         <h1 class="text-center">BUSQUEDA RFID</h1>
     </div>
     <div>
-    <!-- <form class='d-flex' action="buscar_rfid.php" method="post"> -->
-            <input @inputs="consultarempolyees" type="search" id="buscar" name="buscar"
-            style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3">
+    <form class='d-flex' action="buscar_rfid.php" method="post">
+    <input type="search" class="form-control" placeholder="Search Name or Position" v-on:keyup="searchMonitor" v-model="search.keyword">
+            <!-- <input @inputs="consultarempolyees" type="search" id="buscar" name="buscar"
+            style="width: 340px;" placeholder="¿Qué deceas buscar?" class="form-control me-3"
+            v-on:keyup="searchMonitor"
+            v-model="search.keyword"
+            > -->
             <!-- <input class="btn btn__me" type='submit'  value="Buscar"> -->
 
-        <!-- </form> -->
+        </form>
     </div>
     <div class="col-12">
     <div class="table-responsive">
@@ -54,21 +58,24 @@ if ($_SESSION['permit'] == 2) {
             while($employee_rfid=mysqli_fetch_row($result)){ ?> -->
 
         <tbody>
-            <tr v-for="employee in employees">
-                        <!-- <td>{{<?php echo $employee_rfid['0'] ?>}}</td> -->
+        <tr v-for="employee in employees">
+                        <td class="text-center">{{employee.cod}}</td>
                         <td>{{employee.name}}</td>
-                        <td v-for="item in employee">
-                        <h4  v-if="employee.rfid_serial" class="btn btn-success"><span ><i  class="fa fa-check"></i>&nbsp;Asignado ({{item}})</span></h4>
-                            <!-- <h4 v-if="employee.rfid_serial" class="btn btn-success"><span ><i class="fa fa-check"></i>&nbsp;Asignado ({{<?php echo $employee_rfid['0'] ?>}})</span></h4> -->
+                        <td>
+
+                            <h4 v-if="employee.rfid_serial" class="btn btn-success"><span ><i class="fa fa-check"></i>&nbsp;Asignado ({{employee.rfid_serial}})</span></h4>
                             <h4 v-else-if="employee.waiting" class="btn btn-warning"><span ><i class="fa fa-clock"></i>&nbsp;Esperando... por favor pasa la tarjeta RFID </span></h4>
                             <h4 v-else><span class="btn btn-info"><i class="fa fa-times"></i>&nbsp;No registrado</span></h4>
                         </td>
-                        <!-- <td>
-                            <button @click="removeRfidCard(employee.rfid_serial)" v-if="employee.rfid_serial" class="btn btn-danger">Remover</button>
+                        <td>
+                            <button @click="removeRfidCard(employee.rfid_serial)"  
+                   
+                            v-if="employee.rfid_serial" class="btn btn-danger">Remover</button>
+
                             <button v-else-if="employee.waiting" @click="cancelWaitingForPairing" class="btn btn-warning">Cancelar</button>
                             <button @click="assignRfidCard(employee)" v-else class="btn btn-info">Asignar</button>
-                        </td> -->
-                </tr>
+                        </td>
+                    </tr>
             </tbody>
         </table>
     </div>
@@ -88,36 +95,18 @@ if ($_SESSION['permit'] == 2) {
     let shouldCheck = true;
     const CHECK_PAIRING_EMPLOYEE_INTERVAL = 1000;
 
-    // function buscar_ahora(buscar) {
-    //     var parametros = {"buscar":buscar};
-    //     $.ajax({
-    //     data:parametros,
-    //     type: 'POST',
-    //     url: 'buscar.php',
-    //     success: function(data) {
-    //     document.getElementById("datos_buscador").innerHTML = data;
-    //     }
-    //     });
-    //     }
-// function findById(items,employee_id){
-//     for($i in items){
-//         if(items[i].id == employee_id){
-//             return items[i];
-//         }
-//     }
-//     return null;
-// }     
     new Vue({
         el: "#app",
         data: () => ({
             employees: [],
             date: "",
+            search: {keyword:''},
 
         }),
         async mounted() {
             await this.setReaderForReading();
             await this.refreshEmployeesList();
-           // await this.consultarempolyees();
+            await this.consultarempolyees();
         },
         methods: {
 
@@ -195,34 +184,36 @@ if ($_SESSION['permit'] == 2) {
                 // this.search = employees;
                 // console.log(search)
             }, 
-                consultarempolyees() {
-                var key = event.target.value; 
-                var response = [];
-                    if (key != ""){
-                        for(employee of this.employees){
-                           for(value of object.value(employee)){
-                            if(value.indexOf(key) >= 0)
-                                response.push(employee);
-                            
-
-                            }
-                        } this.employees = response;
-                    }console.log(response)
-                    // fetch("./get_employees_with_rfid.php")
-                    // .then((response) => response.json())
-                    // .then((consulta)=>{                            
-                        
-                        // $.ajax({
-                        //         data:parametros,
-                        //         type: 'POST',
-                        //         url: 'buscar.php',
-                        //         success: function(data) {
-                        //         document.getElementById("datos_buscador").innerHTML = data;
-                        //         }
-                        //         });
-                    //     console.log(consulta);
-                    // } ).catch(console.log)
-         console.log(this.employees)   }            
+ searchMonitor: function() {
+            var keyword = app.toFormData(app.search);
+            axios.post('action.php?action=search', keyword)
+                .then(function(response){
+                    app.employees = response.data.employees;
+ 
+                    if(response.data.employees == ''){
+                        app.noMember = true;
+                    }
+                    else{
+                        app.noMember = false;
+                    }
+                });
+        },
+ 
+        fetchemployee: function(){
+            axios.post('action.php')
+                .then(function(response){
+                    app.employees = response.data.employees;
+                });
+        },
+ 
+        toFormData: function(obj){
+            var form_data = new FormData();
+            for(var key in obj){
+                form_data.append(key, obj[key]);
+            }
+            return form_data;
+        },
+    }            
         }, 
     });
 </script>
