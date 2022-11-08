@@ -349,3 +349,4 @@ if ($_SESSION['permit'] == 3) {
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </div>
 
+<?php
