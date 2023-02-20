@@ -227,13 +227,13 @@ if ($_SESSION['permit'] == 3) {
          }).then(function(response){
              if(response.data.length > 0)
              {
-                 application.employees = response.data;
-                 application.nodata = false;
+                 app.employees = response.data;
+                 app.nodata = false;
              }
              else
              {
-                 application.employees = '';
-                 application.nodata = true;
+                 app.employees = '';
+                 app.nodata = true;
              }
          });
         }
@@ -276,7 +276,7 @@ if ($_SESSION['permit'] == 3) {
                     
                     $('#div_table').html(resp);
                     document.getElementById('btn_guardar').disabled=false;
-                    return  Swal.fire("Importacion Exitosa","El Excel se Importo con exito: "+resp+"","success");
+                    return  Swal.fire("Carga Exitosa","El Excel se cargo con exito: "+resp+"","success");
                 }
             }); 
             return false;
@@ -315,7 +315,7 @@ if ($_SESSION['permit'] == 3) {
             var job =arreglo_job.toString();
             var status = arreglo_status.toString();
             var status_event = arreglo_status_event.toString();
-            var turn= arreglo_type_contract.toString();
+            var turn= arreglo_turn.toString();
 
                 //alert(employee_id+" .... "+last_date);
             $.ajax({
@@ -331,7 +331,7 @@ if ($_SESSION['permit'] == 3) {
                 }
 
             }).done(function(resp){
-                alert(resp);
+                Swal.fire("Importacion Exitosa","El Excel se Importo con exito a la base de datos: "+resp+"","success");
             });
 
 
@@ -348,4 +348,3 @@ if ($_SESSION['permit'] == 3) {
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </div>
-

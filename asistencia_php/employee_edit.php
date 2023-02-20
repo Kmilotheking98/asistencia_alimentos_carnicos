@@ -66,4 +66,3 @@ if ($_SESSION['permit'] == 2) {
 </body>
 </html>
 
-<?php

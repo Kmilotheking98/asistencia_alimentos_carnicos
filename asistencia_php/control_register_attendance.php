@@ -18,7 +18,7 @@ $array_status_event = explode(",",$status_event);// cuando encuentra una , lo se
 $array_turn = explode(",",$turn);// cuando encuentra una , lo separa y lo convierte en arreglo
 
     for($i = 0; $i < count($array_employee_id); $i++){
-        $consulta = $ME-> GuardarExcel($array_employee_id[$i],$array_date[$i],$array_job[$i] ,$array_status[$i] ,$array_status_event[$i] ,$array_turn[$i]);
+        $consulta = $ME-> GuardarExcel_attendaces($array_employee_id[$i],$array_date[$i],$array_job[$i] ,$array_status[$i] ,$array_status_event[$i] ,$array_turn[$i]);
     }
     echo $consulta
 ?>

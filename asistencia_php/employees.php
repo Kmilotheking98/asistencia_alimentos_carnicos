@@ -229,7 +229,7 @@ if (isset($_SESSION['user'])) {
                     
                     $('#div_table').html(resp);
                     document.getElementById('btn_guardar').disabled=false;
-                    return  Swal.fire("Importacion Exitosa","El Excel se Importo con exito: "+resp+"","success");
+                    return  Swal.fire("Carga Exitosa","El Excel se cargo con exito: "+resp+"","success");
                 }
             }); 
             return false;
@@ -287,7 +287,8 @@ if (isset($_SESSION['user'])) {
                 }
 
             }).done(function(resp){
-                alert(resp);
+                Swal.fire("Importacion Exitosa","El Excel se Importo con exito a la base de datos: "+resp+"","success");
+
             });
 
 
