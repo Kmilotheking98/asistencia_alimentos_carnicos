@@ -1,6 +1,7 @@
 <?php
 include_once "slidernavbar.php";
 include_once "header.php";
+require_once 'conexion.php';
 
 if(!isset($_SESSION['user'])){
     header("Location: login.php");
@@ -60,11 +61,25 @@ if ($_SESSION['permit'] == 3) {
                     <td class="text-center">{{employee.cod}}</td>
                         <td class="text-center">{{employee.name}}</td>
                         <td>
-                            <select v-model="employee.job" class="form-control">
-                                <option disabled value="unset">--seleccionar--</option>
-                                <option value="Cajero">Cajero</option>
-                                <option value="Vendedor">Vendedor</option>
-                            </select>
+                        <select v-model="employee.job" class="form-control">
+                            <option disabled value="unset">--seleccionar--</option>
+                            <?php
+                            // Conexión a la base de datos
+                           // $conn = mysqli_connect("localhost", "usuario", "contraseña", "basededatos");
+                            
+                            // Consulta SQL para obtener los valores de la tabla
+                            $sql = "SELECT DISTINCT job FROM employee_attendance";
+                            $result = mysqli_query($conexion, $sql);
+                            
+                            // Creación de opciones para el campo select
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<option value='" . $row['job'] . "'>" . $row['job'] . "</option>";
+                            }
+                            
+                            // Cierre de la conexión a la base de datos
+                            mysqli_close($conn);
+                            ?>
+                    </select>
                         </td>
                         <td>
                             <select v-model="employee.status" class="form-control">
@@ -291,10 +306,10 @@ if ($_SESSION['permit'] == 3) {
             var arreglo_status = new Array();
             var arreglo_status_event = new Array();
             var arreglo_turn = new Array();
-            var arreglo_home = new Array();
+
 
             
-            $("#tabla_detalle tbody#tbody_tabla_detalle tr").each(function(){
+            $("#tabla_detalles tbody#tbody_tabla_detalles tr").each(function(){
                 
                 arreglo_employee_id.push($(this).find('td').eq(0).text());
                 arreglo_date.push($(this).find('td').eq(1).text());
@@ -322,13 +337,14 @@ if ($_SESSION['permit'] == 3) {
                 url: "control_register_attendance.php",
                 type: 'post',
                 data: {
-                    emp_id:employee_id,
-                    d: date,
-                    j: job,
-                    st:status,
-                    st_ev:status_event ,
-                    turno: turn
+                    employeeID:employee_id,
+                    Date: date,
+                    Job: job,
+                    Status:status,
+                    StatusEvent:status_event ,
+                    Turn: turn
                 }
+                
 
             }).done(function(resp){
                 Swal.fire("Importacion Exitosa","El Excel se Importo con exito a la base de datos: "+resp+"","success");

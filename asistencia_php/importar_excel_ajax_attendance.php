@@ -15,7 +15,7 @@ if(is_array($_FILES['archivoexcel']) && count($_FILES['archivoexcel'])>0){
     $filas = $hoja -> getHighestRow();
     
         
-        echo " <table id='tabla_detalle' class='table' style='width:100%; table-layout: fixed'>
+        echo " <table id='tabla_detalles' class='table' style='width:100%; table-layout: fixed'>
         <thead>
             <tr>
                 <th>CODIGO</th>
@@ -24,10 +24,9 @@ if(is_array($_FILES['archivoexcel']) && count($_FILES['archivoexcel'])>0){
                 <th>ESTADO</th>
                 <th>EVENTO</th>
                 <th>TURNO</th>
-                <th>IMPORTE DE DATOS</th>
             </tr>
         </thead>
-        <tbody id='tbody_tabla_detalle'>";
+        <tbody id='tbody_tabla_detalles'>";
            for($row = 2; $row<=$filas;$row++){
             $employee_id = $hoja -> getCell('A'.$row)->getvalue();
             $date = $hoja -> getCell('B'.$row)->getvalue(); // convertir la fecha de Excel a formato de fecha
@@ -38,7 +37,7 @@ if(is_array($_FILES['archivoexcel']) && count($_FILES['archivoexcel'])>0){
             $query = "select count(*) as contador from employee_attendance where employee_id='".$employee_id."' ";
             $resultado = $conexion->query($query);
             $respuesta = $resultado->fetch_assoc();
-            // if($respuesta['contador']=='0'){
+            if($respuesta['contador']=='0'){
                 if($employee_id==""){
 
                 }else{
@@ -48,14 +47,13 @@ if(is_array($_FILES['archivoexcel']) && count($_FILES['archivoexcel'])>0){
                 echo "<td>".$job."</td>";
                 echo "<td>".$status."</td>";
                 echo "<td>".$status_event."</td>";
-                echo "<td>".$turn."</td>";
-                //echo "<p> Sin registrar</p>";    
+                echo "<td>".$turn."</td>"; 
                 echo "</tr>";
 
             }
-             //}else{
+             }else{
 
-             //}
+             }
            } 
            echo "</tbody></table>";
     }
